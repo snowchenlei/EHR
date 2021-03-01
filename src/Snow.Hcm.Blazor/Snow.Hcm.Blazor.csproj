@@ -28,4 +28,8 @@
     <ProjectReference Include="..\..\src\Snow.Hcm.HttpApi.Client\Snow.Hcm.HttpApi.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Employees\" />
+  </ItemGroup>
+
 </Project>

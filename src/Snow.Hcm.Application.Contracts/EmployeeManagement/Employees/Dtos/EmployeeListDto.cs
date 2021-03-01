@@ -26,7 +26,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 性别
         /// </summary>
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// 手机号
@@ -46,11 +46,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 生日
         /// </summary>
-        public string BirthDay { get; set; }
+        public DateTime BirthDay { get; set; }
 
         /// <summary>
         /// 入职时间
         /// </summary>
-        public string JoinDate { get; set; }
+        public DateTime JoinDate { get; set; }
     }
 }

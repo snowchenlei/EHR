@@ -1,8 +1,14 @@
 {
-    "culture": "zh-Hans",
-    "texts": {
-      "Menu:Home": "首页",
-      "Welcome": "欢迎",
-      "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io."
-    }
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:Home": "首页",
+    "Welcome": "欢迎",
+    "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io.",
+    "Menu:EmployeeManagement": "员工管理",
+    "Menu:Employees": "员工",
+    "NewEmployee": "新员工",
+    "Enum:Gender:0": "未知",
+    "Enum:Gender:1": "男性",
+    "Enum:Gender:2": "女性"
   }
+}
