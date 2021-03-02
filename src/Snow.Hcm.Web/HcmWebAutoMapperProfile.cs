@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
+using Snow.Hcm.EmployeeManagement.Employees.Dtos;
+using Snow.Hcm.Web.ViewModel.Employees;
 
 namespace Snow.Hcm.Web
 {
     public class HcmWebAutoMapperProfile : Profile
     {
         public HcmWebAutoMapperProfile()
-        {
-            //Define your AutoMapper configuration here for the Web project.
+        {            
+            CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
         }
     }
 }
