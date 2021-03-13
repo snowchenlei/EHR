@@ -6,12 +6,56 @@
 @inject IStringLocalizer<HcmResource> L
 @{
 }
+<link href="~/libs/daterangepicker/daterangepicker.css" rel="stylesheet" asp-append-version="true" />
 <abp-dynamic-form abp-model="Employee" asp-page="/Employees/CreateModal">
     <abp-modal>
-        <abp-modal-header title="@L["NewBook"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-form-content />
+            <abp-input asp-for="Employee.Name" />
+            <abp-input asp-for="Employee.DepartmentId" />
+            <abp-input asp-for="Employee.Age" />
+            <abp-select asp-for="Employee.Gender" />
+            <abp-input asp-for="Employee.PhoneNumber" />
+            <abp-input asp-for="Employee.IdCardNumber" />
+            <abp-input asp-for="Employee.AreaId" />
+            <abp-input asp-for="Employee.Address" />
+            <input type="text" asp-for="Employee.BirthDay" class="form-control" />
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
 </abp-dynamic-form>
+@section scripts{
+    <script src="~/bootstrap-daterangepicker/moment.min.js" asp-append-version="true"></script>
+    <script src="~/libs/daterangepicker/daterangepicker.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    var $dateRangepicker = $('#Employee_BirthDay');
+    $(function () {
+        $dateRangepicker.daterangepicker({
+            "timePicker": true,
+            "locale": {
+                'format': "YYYY/MM/DD HH:mm",
+                'separator': " - ",
+                'applyLabel': '确定',
+                'cancelLabel': '取消',
+                'fromLabel': '从',
+                'toLabel': '到',
+                'weekLabel': 'W',
+                'customRangeLabel': 'Custom Range',
+                'daysOfWeek': ['日', '一', '二', '三', '四', '五', '六'],
+                'monthNames': [
+                    '一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'
+                ],
+                'firstDay': moment.localeData()._week.dow
+            },
+            "startDate": moment(new Date(dateTime.setDate(dateTime.getDate() - 7))),
+            "endDate": moment(new Date()),
+            "maxDate": moment(new Date())
+        },
+            function (start, end, label) {
+                $('#search_date_start').val(start.format('YYYY-MM-DD HH:mm:ss'));
+                $('#search_date_end').val(end.format('YYYY-MM-DD HH:mm:ss'));
+            });
+    });
+</script>
+}
