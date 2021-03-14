@@ -55,14 +55,13 @@
             ]
         })
     );
-    var createModal = new abp.ModalManager(abp.appPath + 'Employees/CreateModal');
+    var createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal' });
 
     createModal.onResult(function () {
         dataTable.ajax.reload();
     });
 
     $('#NewEmployeeButton').click(function (e) {
-        e.preventDefault();
         createModal.open();
     });
 });

@@ -5,33 +5,47 @@
 @model Snow.Hcm.Web.Pages.Employees.CreateModalModel
 @inject IStringLocalizer<HcmResource> L
 @{
+    Layout = null;
 }
 <link href="~/libs/daterangepicker/daterangepicker.css" rel="stylesheet" asp-append-version="true" />
-<abp-dynamic-form abp-model="Employee" asp-page="/Employees/CreateModal">
+<link href="~/libs/select2/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+<link href="~/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" asp-append-version="true" />
+<form method="post" action="@Url.Page("/Employees/CreateModal")">
     <abp-modal>
         <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Employee.Name" />
-            <abp-input asp-for="Employee.DepartmentId" />
             <abp-input asp-for="Employee.Age" />
             <abp-select asp-for="Employee.Gender" />
             <abp-input asp-for="Employee.PhoneNumber" />
             <abp-input asp-for="Employee.IdCardNumber" />
-            <abp-input asp-for="Employee.AreaId" />
+            <div class="form-group">
+                <select name="province" class="form-control"></select>
+                <select name="city" class="form-control"></select>
+                <select name="area" class="form-control"></select>
+                <abp-input asp-for="Employee.AreaId" />
+            </div>
             <abp-input asp-for="Employee.Address" />
-            <input type="text" asp-for="Employee.BirthDay" class="form-control" />
+            <div>
+                <label asp-for="Employee.BirthDay" class="control-label"></label>
+                <input type="text" asp-for="Employee.BirthDay" class="form-control" />
+                <span asp-validation-for="Employee.BirthDay" class="text-danger"></span>
+            </div>
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
-</abp-dynamic-form>
-@section scripts{
-    <script src="~/bootstrap-daterangepicker/moment.min.js" asp-append-version="true"></script>
-    <script src="~/libs/daterangepicker/daterangepicker.js" asp-append-version="true"></script>
+</form>
+
+<script src="~/libs/moment/moment.js" asp-append-version="true"></script>
+<script src="~/libs/moment/min/moment-with-locales.js" asp-append-version="true"></script>
+<script src="~/libs/moment/locale/zh-cn.js" asp-append-version="true"></script>
+<script src="~/libs/daterangepicker/daterangepicker.js" asp-append-version="true"></script>
+<script src="~/libs/select2/js/select2.min.js" asp-append-version="true"></script>
 <script type="text/javascript">
-    var $dateRangepicker = $('#Employee_BirthDay');
+    var $dateRangePicker = $('#Employee_BirthDay');
     $(function () {
-        $dateRangepicker.daterangepicker({
-            "timePicker": true,
+        $dateRangePicker.daterangepicker({
+            singleDatePicker: true,
             "locale": {
                 'format': "YYYY/MM/DD HH:mm",
                 'separator': " - ",
@@ -47,10 +61,7 @@
                     '七月', '八月', '九月', '十月', '十一月', '十二月'
                 ],
                 'firstDay': moment.localeData()._week.dow
-            },
-            "startDate": moment(new Date(dateTime.setDate(dateTime.getDate() - 7))),
-            "endDate": moment(new Date()),
-            "maxDate": moment(new Date())
+            }
         },
             function (start, end, label) {
                 $('#search_date_start').val(start.format('YYYY-MM-DD HH:mm:ss'));
@@ -58,4 +69,3 @@
             });
     });
 </script>
-}
