@@ -1,4 +1,6 @@
-﻿using Volo.Abp.Account;
+﻿using Snow.RegionManagement;
+using Snow.RegionManagement.Admin;
+using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -15,7 +17,9 @@ namespace Snow.Hcm
         typeof(AbpIdentityApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpTenantManagementApplicationContractsModule),
-        typeof(AbpObjectExtendingModule)
+        typeof(AbpObjectExtendingModule),
+        typeof(SnowRegionManagementApplicationContractsModule),
+        typeof(SnowRegionManagementApplicationContractsSharedModule)
     )]
     public class HcmApplicationContractsModule : AbpModule
     {

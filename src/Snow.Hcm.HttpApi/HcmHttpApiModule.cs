@@ -1,5 +1,6 @@
 ﻿using Localization.Resources.AbpUi;
 using Snow.Hcm.Localization;
+using Snow.RegionManagement.Admin;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -16,7 +17,8 @@ namespace Snow.Hcm
         typeof(AbpIdentityHttpApiModule),
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpTenantManagementHttpApiModule),
-        typeof(AbpFeatureManagementHttpApiModule)
+        typeof(AbpFeatureManagementHttpApiModule),
+        typeof(SnowRegionManagementHttpApiModule)
         )]
     public class HcmHttpApiModule : AbpModule
     {

@@ -20,7 +20,7 @@
             <abp-input asp-for="Employee.PhoneNumber" />
             <abp-input asp-for="Employee.IdCardNumber" />
             <div class="form-group">
-                <select name="province" class="form-control"></select>
+                <select name="province" class="form-control" asp-items="@Model.Provinces"></select>
                 <select name="city" class="form-control"></select>
                 <select name="area" class="form-control"></select>
                 <abp-input asp-for="Employee.AreaId" />

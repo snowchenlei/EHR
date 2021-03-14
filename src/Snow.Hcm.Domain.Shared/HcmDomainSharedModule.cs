@@ -1,4 +1,5 @@
 ﻿using Snow.Hcm.Localization;
+using Snow.RegionManagement;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -23,7 +24,8 @@ namespace Snow.Hcm
         typeof(AbpIdentityServerDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(AbpTenantManagementDomainSharedModule)
+        typeof(AbpTenantManagementDomainSharedModule),
+        typeof(SnowRegionManagementDomainSharedModule)
         )]
     public class HcmDomainSharedModule : AbpModule
     {
