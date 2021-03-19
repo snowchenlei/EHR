@@ -10,6 +10,7 @@ using Snow.Hcm.Localization;
 using Snow.Hcm.MultiTenancy;
 using Snow.Hcm.Web.Menus;
 using Microsoft.OpenApi.Models;
+using Snow.RegionManagement.Admin.Web;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
@@ -50,7 +51,8 @@ namespace Snow.Hcm.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(SnowRegionManagementWebModule)
         )]
     public class HcmWebModule : AbpModule
     {
