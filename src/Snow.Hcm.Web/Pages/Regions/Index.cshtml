@@ -1,0 +1,43 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@using Snow.RegionManagement.Localization
+@using Snow.RegionManagement.Permissions
+@using Snow.RegionManagement.Web.Pages.Regions
+@model IndexModel
+@inject IAuthorizationService Authorization
+@inject IStringLocalizer<RegionManagementResource> L
+@{ }
+
+@section scripts {
+    <abp-script-bundle name="@typeof(IndexModel).FullName">
+        <abp-script src="/Pages/AbpPermissionManagement/permission-management-modal.js" />
+        <abp-script src="/Pages/regions/index.js" />
+    </abp-script-bundle>
+}
+
+<abp-card id="RegionsWrapper">
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Regions"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                @if (await Authorization.IsGrantedAsync(RegionManagementPermissions.Regions.Create))
+                {
+    <abp-button button-type="Primary" name="CreateRegion" text="@L["NewRegion"].Value" icon="plus" />}
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" class="nowrap">
+            <thead>
+                <tr>
+                    <th>@L["Actions"]</th>
+                    <th>@L["Name"]</th>
+                    <th>@L["Level"]</th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
