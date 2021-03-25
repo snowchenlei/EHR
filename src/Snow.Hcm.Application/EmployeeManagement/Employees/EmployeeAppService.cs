@@ -87,7 +87,9 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public virtual async Task<EmployeeListDto> CreateAsync(EmployeeCreateDto input)
         {
             var entity = ObjectMapper.Map<EmployeeCreateDto, Employee>(input);
-            entity = await _employeeRepository.InsertAsync(entity, true);
+            entity.EmployeeNumber = GuidGenerator.Create().ToString("N");
+            entity.JoinDate = DateTime.Now;
+            entity = await _employeeRepository.InsertAsync(entity);
             return ObjectMapper.Map<Employee, EmployeeListDto>(entity);
         }
 

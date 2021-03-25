@@ -19,15 +19,15 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         UnKnown,
 
         /// <summary>
-        /// 男性
+        /// 男
         /// </summary>
-        [Description("男性")]
+        [Description("男")]
         Man,
 
         /// <summary>
-        /// 女性
+        /// 女
         /// </summary>
-        [Description("女性")]
+        [Description("女")]
         Woman
     }
 }

@@ -1,0 +1,43 @@
+﻿@using Snow.Hcm.Localization;
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<HcmResource> L
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label class="control-label">@L["Hcm:Province"]</label>
+        <select id="sel_province" class="custom-select form-control" asp-items="@Model.Provinces"></select>
+    </div>
+    <div class="form-group col-md-4">
+        <label class="control-label">@L["Hcm:City"]</label>
+        <select id="sel_city" class="custom-select form-control" asp-items="@Model.Cities"></select>
+    </div>
+    <div class="form-group col-md-4">
+        <label class="control-label">@L["Hcm:Area"]</label>
+        <select id="sel_area" class="custom-select form-control" asp-items="@Model.Areas"></select>
+    </div>
+</div>
+<script type="text/javascript">
+    var regionAppService = snow.regionManagement.admin.regions.region;
+    $(function () {
+        $('#sel_province').change(function () {
+            loadRegionChildren('sel_city', parseInt($(this).val()), function (parentId) {
+                loadArea(parentId);
+            });
+        })
+        $('#sel_city').change(function () {
+            loadArea(parseInt($(this).val()));
+        })
+    });
+    function loadArea(parentId) {
+        loadRegionChildren('sel_area', parentId, function () {
+            $("#sel_area").trigger("change");
+        });
+    }
+    function loadRegionChildren(elementId, parentId, callback) {
+        regionAppService.getChildren(parentId)
+            .then(function (result) {
+                $('#' + elementId).empty();
+                $('#' + elementId).append(result.items.map(r => `<option value="${r.id}">${r.name}</option>`))
+                callback(result.items[0].id);
+            });
+    }
+</script>

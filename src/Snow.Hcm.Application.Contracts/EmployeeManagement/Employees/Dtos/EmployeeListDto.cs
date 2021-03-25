@@ -26,7 +26,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 性别
         /// </summary>
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
 
         /// <summary>
         /// 手机号

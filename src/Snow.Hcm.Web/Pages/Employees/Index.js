@@ -1,16 +1,53 @@
 ﻿$(function () {
     var l = abp.localization.getResource('Hcm');
-    var employee = snow.hcm.employeeManagement.employees.employee;
+    var employeeAppService = snow.hcm.employeeManagement.employees.employee;
 
-    var dataTable = $('#EmployeesTable').DataTable(
+    var _dataTable = $('#EmployeesTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(employee.getList),
+            ajax: abp.libs.datatables.createAjax(employeeAppService.getList),
             columnDefs: [
+                {
+                    title: l("Actions"),
+                    rowAction: {
+                        items: [
+                            {
+                                text: l('Edit'),
+                                visible: abp.auth.isGranted(
+                                    'Hcm.Employee.Update'
+                                ),
+                                action: function (data) {
+                                    _editModal.open({
+                                        id: data.record.id,
+                                    });
+                                },
+                            },
+                            {
+                                text: l('Delete'),
+                                visible: abp.auth.isGranted(
+                                    'Hcm.Employee.Delete'
+                                ),
+                                confirmMessage: function (data) {
+                                    return l(
+                                        'AreYouSure',
+                                        data.record.employeeNumber
+                                    );
+                                },
+                                action: function (data) {
+                                    employeeAppService
+                                        .delete(data.record.id)
+                                        .then(function () {
+                                            _dataTable.ajax.reload();
+                                        });
+                                },
+                            }
+                        ]
+                    }
+                },
                 {
                     title: l('EmployeeNumber'),
                     data: "employeeNumber"
@@ -25,43 +62,33 @@
                 },
                 {
                     title: l('Gender'),
-                    data: "gender",
-                    render: function (data) {
-                        return l('Enum:Gender:' + data);
-                    }
+                    data: "gender"
                 },
                 {
                     title: l('BirthDay'),
                     data: "birthDay",
                     render: function (data) {
-                        return luxon
-                            .DateTime
-                            .fromISO(data, {
-                                locale: abp.localization.currentCulture.name
-                            }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
+                        return data.substring(0, data.indexOf(' '));
                     }
                 },
                 {
                     title: l('JoinDate'),
                     data: "joinDate",
                     render: function (data) {
-                        return luxon
-                            .DateTime
-                            .fromISO(data, {
-                                locale: abp.localization.currentCulture.name
-                            }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
+                        return data.substring(0, data.indexOf(' '));
                     }
                 }
             ]
         })
     );
-    var createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal' });
+    var createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal', scriptUrl: '/Pages/Employees/CreateModal.js', });
 
     createModal.onResult(function () {
-        dataTable.ajax.reload();
+        _dataTable.ajax.reload();
     });
 
     $('#NewEmployeeButton').click(function (e) {
+        e.preventDefault();
         createModal.open();
     });
 });
