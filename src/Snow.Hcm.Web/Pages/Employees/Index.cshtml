@@ -1,11 +1,27 @@
 ﻿@page
 @using Snow.Hcm.Localization;
+@using Snow.Hcm.Web.Pages.Employees; 
 @using Microsoft.Extensions.Localization
-@model Snow.Hcm.Web.Pages.Employees.IndexModel
+@model IndexModel
 @inject IStringLocalizer<HcmResource> L
+@section styles {
+    <abp-style-bundle name="@typeof(IndexModel).FullName">
+        <abp-style src="/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css" />
+        <abp-style src="/libs/select2/css/select2.min.css" rel="stylesheet" />
+        <abp-style src="/libs/daterangepicker/daterangepicker.css" />
+    </abp-style-bundle>
+}
 @section scripts
 {
-    <abp-script src="/Pages/Employees/Index.js" />
+    <abp-script-bundle name="@typeof(IndexModel).FullName">
+        <abp-script src="/libs/moment/min/moment.min.js" />
+        @*<abp-script src="/libs/moment/min/moment-with-locales.min.js" />
+        <abp-script src="/libs/moment/locale/zh-cn.js" />*@
+        <abp-script src="/libs/daterangepicker/daterangepicker.js" />
+        <abp-script src="/libs/select2/js/select2.min.js" />
+        <abp-script src="/Pages/Employees/Index.js" />
+        @*<abp-script src="/Pages/Employees/CreateModal.js" />*@
+    </abp-script-bundle>
 }
 <abp-card>
     <abp-card-header>
