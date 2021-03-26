@@ -39,7 +39,6 @@
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.*" />
-    <PackageReference Include="Snow.RegionManagement.Admin.Web" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,7 +51,7 @@
     <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="4.2.1" />
     <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.2.1" />
     <PackageReference Include="Volo.Abp.Identity.Web" Version="4.2.1" />
-    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.2.1" />
+	<PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.2.1" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.2.1" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="4.2.1" />
   </ItemGroup>

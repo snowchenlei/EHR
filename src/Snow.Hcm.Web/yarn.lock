@@ -1425,7 +1425,7 @@ jquery-validation@^1.19.2:
   resolved "https://registry.yarnpkg.com/jquery-validation/-/jquery-validation-1.19.2.tgz#c602831b0d8c5881400af424e872757ce241eff9"
   integrity sha512-yHaAqOGaAB7+p2u5lpzhhQVt3CBMUw3fHcuCJ7nXmXz0LWLHPN7yOhwnocp5nrn2SmnXR1jpV+whx2j1kLz1tQ==
 
-jquery@>=1.10:
+jquery@>=1.10, jquery@>=1.4.4:
   version "3.6.0"
   resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.6.0.tgz?cache=0&sync_timestamp=1614705838607&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjquery%2Fdownload%2Fjquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha1-xyoJ8Vwb3OFC9J2/EXC9+K2sJHA=
@@ -2761,3 +2761,10 @@ yarn@^1.22.10:
   version "1.22.10"
   resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
   integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
+
+ztree@3.5.24:
+  version "3.5.24"
+  resolved "https://registry.npm.taobao.org/ztree/download/ztree-3.5.24.tgz#b63fe52981fdf2c329675cfd2772f0d147521ff1"
+  integrity sha1-tj/lKYH98sMpZ1z9J3Lw0UdSH/E=
+  dependencies:
+    jquery ">=1.4.4"

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Snow.Hcm.Web.ViewModel.Regions;
 using Snow.RegionManagement.Admin.Regions;
 
@@ -12,7 +13,7 @@ namespace Snow.Hcm.Web.Pages.Regions
     public class CreateModalModel : PageModel
     {
         private readonly IRegionAppService _regionAppService;
-
+        public List<SelectListItem> Regions { get; set; }
         public CreateModalModel(IRegionAppService regionAppService)
         {
             _regionAppService = regionAppService;
@@ -21,8 +22,16 @@ namespace Snow.Hcm.Web.Pages.Regions
         [BindProperty]
         public RegionCreateViewModel Region { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+            Regions = (await _regionAppService.GetListAsync(new GetRegionsInput()))
+                .Items
+                .Select(r => new SelectListItem
+                {
+                    Text = r.Name,
+                    Value = r.Id.ToString()
+                })
+                .ToList();
             Region = new RegionCreateViewModel();
         }
     }
