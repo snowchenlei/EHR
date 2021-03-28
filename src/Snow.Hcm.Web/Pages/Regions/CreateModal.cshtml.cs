@@ -10,7 +10,7 @@ using Snow.RegionManagement.Admin.Regions;
 
 namespace Snow.Hcm.Web.Pages.Regions
 {
-    public class CreateModalModel : PageModel
+    public class CreateModalModel : HcmPageModel
     {
         private readonly IRegionAppService _regionAppService;
         public List<SelectListItem> Regions { get; set; }
