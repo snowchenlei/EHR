@@ -12,6 +12,7 @@ namespace Snow.Hcm.Web
         {            
             CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
             CreateMap<GetRegionForEditOutput, RegionEditViewModel>();
+            CreateMap<RegionCreateViewModel, RegionCreateDto>();
         }
     }
 }

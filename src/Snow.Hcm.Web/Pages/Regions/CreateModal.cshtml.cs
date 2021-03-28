@@ -34,5 +34,12 @@ namespace Snow.Hcm.Web.Pages.Regions
                 .ToList();
             Region = new RegionCreateViewModel();
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var dto = ObjectMapper.Map<RegionCreateViewModel, RegionCreateDto>(Region);
+            await _regionAppService.CreateAsync(dto);
+            return NoContent();
+        }
     }
 }

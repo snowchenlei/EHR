@@ -56,6 +56,7 @@
         }));
 
         _createModal.onResult(function () {
+            debugger
             _dataTable.ajax.reload();
         });
 

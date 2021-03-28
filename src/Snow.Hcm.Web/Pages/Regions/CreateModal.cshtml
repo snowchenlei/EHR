@@ -13,14 +13,13 @@
         <abp-modal-body>
             <abp-input asp-for="Region.Id" type="number" />
             <abp-input asp-for="Region.Name" />
-            <abp-select asp-for="Region.ParentId" />
+            <abp-input asp-for="Region.ParentName"/>
             <abp-input asp-for="Region.Alias" />
             <abp-input asp-for="Region.AreaCode" />
             <abp-input asp-for="Region.PostCode" />
             <abp-input asp-for="Region.Latitude" type="number" />
             <abp-input asp-for="Region.Longitude" type="number" />
             <abp-input asp-for="Region.EnglishName" />
-            @*<abp-select asp-for="Region.ParentId" asp-items="Model.Regions" />*@
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>

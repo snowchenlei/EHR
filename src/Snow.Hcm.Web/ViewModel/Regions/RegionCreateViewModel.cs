@@ -10,6 +10,11 @@ namespace Snow.Hcm.Web.ViewModel.Regions
         public int Id { get; set; }
 
         /// <summary>
+        /// 父名称
+        /// </summary>
+        public string ParentName { get; set; }
+
+        /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
@@ -43,10 +48,5 @@ namespace Snow.Hcm.Web.ViewModel.Regions
         /// 英文名称
         /// </summary>
         public string EnglishName { get; set; }
-
-        /// <summary>
-        /// 父名称
-        /// </summary>
-        public int ParentId { get; set; }
     }
 }
