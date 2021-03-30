@@ -4,7 +4,8 @@
 
     var _regionAppService = snow.regionManagement.admin.regions.region;
     var _editModal = new abp.ModalManager(abp.appPath + 'Regions/EditModal');
-    var _createModal = new abp.ModalManager(abp.appPath + 'Regions/CreateModal');
+
+    var _createModal = new abp.ModalManager({ viewUrl: 'Regions/CreateModal', scriptUrl: '/Pages/Regions/CreateModal.js', });
 
     $(function () {
 
@@ -56,7 +57,6 @@
         }));
 
         _createModal.onResult(function () {
-            debugger
             _dataTable.ajax.reload();
         });
 

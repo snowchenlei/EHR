@@ -1,6 +1,8 @@
 ﻿$(function () {
     var l = abp.localization.getResource('Hcm');
-    var employeeAppService = snow.hcm.employeeManagement.employees.employee;
+    var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
+    var _createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal', scriptUrl: '/Pages/Employees/CreateModal.js', });
+    var _editModal = new abp.ModalManager({ viewUrl: '/Employees/EditModal', scriptUrl: '/Pages/Employees/EditModal.js', });
 
     var _dataTable = $('#EmployeesTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -9,7 +11,7 @@
             order: [[1, "asc"]],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(employeeAppService.getList),
+            ajax: abp.libs.datatables.createAjax(_employeeAppService.getList),
             columnDefs: [
                 {
                     title: l("Actions"),
@@ -38,7 +40,7 @@
                                     );
                                 },
                                 action: function (data) {
-                                    employeeAppService
+                                    _employeeAppService
                                         .delete(data.record.id)
                                         .then(function () {
                                             _dataTable.ajax.reload();
@@ -81,14 +83,13 @@
             ]
         })
     );
-    var createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal', scriptUrl: '/Pages/Employees/CreateModal.js', });
 
-    createModal.onResult(function () {
+    _createModal.onResult(function () {
         _dataTable.ajax.reload();
     });
 
     $('#NewEmployeeButton').click(function (e) {
         e.preventDefault();
-        createModal.open();
+        _createModal.open();
     });
 });

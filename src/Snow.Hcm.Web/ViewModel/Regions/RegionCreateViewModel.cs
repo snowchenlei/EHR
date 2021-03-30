@@ -12,7 +12,7 @@ namespace Snow.Hcm.Web.ViewModel.Regions
         /// <summary>
         /// 父名称
         /// </summary>
-        public string ParentName { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// 名称

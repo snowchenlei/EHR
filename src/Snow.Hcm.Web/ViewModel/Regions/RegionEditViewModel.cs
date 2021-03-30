@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace Snow.Hcm.Web.ViewModel.Regions
 {
@@ -13,6 +14,12 @@ namespace Snow.Hcm.Web.ViewModel.Regions
         /// 名称
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 父名称
+        /// </summary>
+        [DisabledInput]
+        public string ParentName { get; set; }
 
         /// <summary>
         /// 别名

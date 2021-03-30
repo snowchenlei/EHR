@@ -8,10 +8,16 @@
 @inject IAuthorizationService Authorization
 @inject IStringLocalizer<RegionManagementResource> L
 @{ }
-
+@section styles{ 
+<abp-style-bundle name="@typeof(IndexModel).FullName">
+    <abp-style src="/libs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+</abp-style-bundle>
+}
 @section scripts {
     <abp-script-bundle name="@typeof(IndexModel).FullName">
         <abp-script src="/Pages/Regions/Index.js" />
+        <abp-script src="/Pages/treeSelect.js" />
+        <abp-script src="/libs/ztree/js/jquery.ztree.all.min.js" />
     </abp-script-bundle>
 }
 

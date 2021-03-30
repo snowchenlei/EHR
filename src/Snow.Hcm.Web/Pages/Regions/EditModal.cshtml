@@ -2,16 +2,17 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
 @using Volo.Abp.Identity.Localization
-@model Snow.Hcm.Web.Pages.Regions.CreateModalModel
+@model Snow.Hcm.Web.Pages.Regions.EditModalModel
 @inject IHtmlLocalizer<IdentityResource> L
 @{
     Layout = null;
 }
 <form asp-page="/Regions/EditModal">
     <abp-modal>
-        <abp-modal-header title="@L["NewRole"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["Edit"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Region.Id" type="number" />
+            <abp-input asp-for="Region.ParentName" />
             <abp-input asp-for="Region.Name" />
             <abp-input asp-for="Region.Alias" />
             <abp-input asp-for="Region.AreaCode" />

@@ -23,10 +23,17 @@ namespace Snow.Hcm.Web.Pages.Regions
 
         public RegionEditViewModel Region { get; set; }
 
-        public async Task OnGetAsync(int regionId)
+        public async Task OnGetAsync(int id)
         {
-            var dto = await _regionAppService.GetEditorAsync(regionId);
+            var dto = await _regionAppService.GetEditorAsync(id);
             Region = ObjectMapper.Map<GetRegionForEditOutput, RegionEditViewModel>(dto);
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var dto = ObjectMapper.Map<RegionEditViewModel, RegionUpdateDto>(Region);
+            await _regionAppService.UpdateAsync(Region.Id, dto);
+            return NoContent();
         }
     }
 }

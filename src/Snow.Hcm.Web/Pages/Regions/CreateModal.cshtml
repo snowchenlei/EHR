@@ -9,11 +9,11 @@
 }
 <form asp-page="/Regions/CreateModal">
     <abp-modal>
-        <abp-modal-header title="@L["NewRole"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["NewRegion"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Region.Id" type="number" />
+            <abp-input asp-for="Region.ParentId"/>
             <abp-input asp-for="Region.Name" />
-            <abp-input asp-for="Region.ParentName"/>
             <abp-input asp-for="Region.Alias" />
             <abp-input asp-for="Region.AreaCode" />
             <abp-input asp-for="Region.PostCode" />
@@ -24,3 +24,4 @@
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
 </form>
+
