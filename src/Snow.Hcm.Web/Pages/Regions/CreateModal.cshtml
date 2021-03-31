@@ -12,7 +12,12 @@
         <abp-modal-header title="@L["NewRegion"].Value"></abp-modal-header>
         <abp-modal-body>
             <ul id="treeDemo" class="ztree"></ul>
-            <abp-input asp-for="Region.Id" type="number" />
+            <abp-input asp-for="Region.Id" type="number" />            
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input class="form-control" id="parent"/>
+                <span asp-validation-for="Region.ParentId" class="text-danger"></span>
+            </div>
             <abp-input asp-for="Region.ParentId" />
             <abp-input asp-for="Region.Name" />
             <abp-input asp-for="Region.Alias" />

@@ -15,6 +15,7 @@
             order: [[1, "asc"]],
             processing: true,
             serverSide: true,
+            searching: false,
             scrollX: true,
             paging: true,
             ajax: abp.libs.datatables.createAjax(_regionAppService.getList),
@@ -55,6 +56,10 @@
                 }
             ]
         }));
+
+        $('#btnSearch').click(function () {
+            _dataTable.ajax.reload();
+        });
 
         _createModal.onResult(function () {
             _dataTable.ajax.reload();
