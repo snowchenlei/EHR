@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <None Include="Pages\Regions\Index.cshtml" />
+    <None Include="wwwroot\js\treeSelect.js" />
   </ItemGroup>
 
   <ItemGroup>

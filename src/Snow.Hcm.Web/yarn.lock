@@ -190,6 +190,13 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.13.1.tgz#c53b4066edae16cd1fd669f687baf031b45fb9d6"
   integrity sha512-D819f34FLHeBN/4xvw0HR0u7U2G7RqjPSggXqf7LktsxWQ48VAfGwvMrhcVuaZV2fF069c/619RdgCCms0DHhw==
 
+"@ztree/ztree_v3@3.5.46":
+  version "3.5.46"
+  resolved "http://121.196.122.107:8081/repository/npm-group/@ztree/ztree_v3/-/ztree_v3-3.5.46.tgz#aedf2dcf3f999550ff7af6786f7dac9b80a00900"
+  integrity sha512-/W07Xj5YgBNtUdLD6q2kiE5u6Be5ZnrxALVx8h+GrujHwsGomBxO82EU4JQym7Rljy3tVm/QwwyLkthr1LRGuQ==
+  dependencies:
+    jquery ">=1.4.4"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -2531,6 +2538,11 @@ toastr@^2.1.4:
   dependencies:
     jquery ">=1.12.0"
 
+treeselect@1.1.1:
+  version "1.1.1"
+  resolved "http://121.196.122.107:8081/repository/npm-group/treeselect/-/treeselect-1.1.1.tgz#58af29675b033484e448fced1028c39e51cd697f"
+  integrity sha512-MvJAvDzcZeC7FFeHIJWyIqNJidWRX5PdOq8IwUN7lb69om207fnruGFe36qkrbF7MNAvZbtXR4TghJJv+6/qkg==
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
@@ -2761,10 +2773,3 @@ yarn@^1.22.10:
   version "1.22.10"
   resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
   integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
-
-ztree@3.5.24:
-  version "3.5.24"
-  resolved "https://registry.npm.taobao.org/ztree/download/ztree-3.5.24.tgz#b63fe52981fdf2c329675cfd2772f0d147521ff1"
-  integrity sha1-tj/lKYH98sMpZ1z9J3Lw0UdSH/E=
-  dependencies:
-    jquery ">=1.4.4"

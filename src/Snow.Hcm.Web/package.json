@@ -8,6 +8,6 @@
     "moment": "2.29.1",
     "select2-bootstrap4-theme": "^1.0.0",
     "yarn": "^1.22.10",
-    "ztree": "3.5.24"
+    "@ztree/ztree_v3": "3.5.46"
   }
 }

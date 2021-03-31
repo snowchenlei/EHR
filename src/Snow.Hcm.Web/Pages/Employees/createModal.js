@@ -1,5 +1,5 @@
 ﻿var $dateRangePicker = $('#Employee_BirthDay');
-var regionAppService = snow.regionManagement.admin.regions.region;
+var _regionAppService = snow.regionManagement.admin.regions.region;
 $(function () {
     $('#sel_area').change(function () {
         $('#Employee_AreaId').val(parseInt($(this).val()));

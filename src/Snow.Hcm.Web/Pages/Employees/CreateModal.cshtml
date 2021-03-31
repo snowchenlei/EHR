@@ -10,7 +10,7 @@
 <form method="post" action="@Url.Page("/Employees/CreateModal")">
     <abp-modal>
         <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
-        <abp-modal-body>
+        <abp-modal-body>            
             <abp-input asp-for="Employee.Name" />
             <abp-input asp-for="Employee.Age" />
             <abp-select asp-for="Employee.Gender" />

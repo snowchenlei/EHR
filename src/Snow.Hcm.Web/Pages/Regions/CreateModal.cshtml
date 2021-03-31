@@ -11,8 +11,9 @@
     <abp-modal>
         <abp-modal-header title="@L["NewRegion"].Value"></abp-modal-header>
         <abp-modal-body>
+            <ul id="treeDemo" class="ztree"></ul>
             <abp-input asp-for="Region.Id" type="number" />
-            <abp-input asp-for="Region.ParentId"/>
+            <abp-input asp-for="Region.ParentId" />
             <abp-input asp-for="Region.Name" />
             <abp-input asp-for="Region.Alias" />
             <abp-input asp-for="Region.AreaCode" />

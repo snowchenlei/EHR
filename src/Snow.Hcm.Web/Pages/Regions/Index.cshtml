@@ -9,15 +9,17 @@
 @inject IStringLocalizer<RegionManagementResource> L
 @{ }
 @section styles{ 
-<abp-style-bundle name="@typeof(IndexModel).FullName">
-    <abp-style src="/libs/ztree/css/zTreeStyle/zTreeStyle.css"/>
-</abp-style-bundle>
+    <abp-style-bundle name="@typeof(IndexModel).FullName">
+        <abp-style src="/libs/ztree/css/zTreeStyle/zTreeStyle.css" />
+        <abp-style src="/css/treeSelectStyle.css" />
+    </abp-style-bundle>
 }
 @section scripts {
     <abp-script-bundle name="@typeof(IndexModel).FullName">
         <abp-script src="/Pages/Regions/Index.js" />
-        <abp-script src="/Pages/treeSelect.js" />
-        <abp-script src="/libs/ztree/js/jquery.ztree.all.min.js" />
+        <abp-script src="/libs/ztree/js/jquery.ztree.core.min.js" />
+        <abp-script src="/js/treeSelect.js" />
+        @*<abp-script src="/libs/treeSelect/js/treeSelect.2.0.js"/>*@
     </abp-script-bundle>
 }
 
