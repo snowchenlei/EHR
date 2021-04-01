@@ -9,6 +9,8 @@
     "NewEmployee": "新员工",
     "UnKnown": "未知",
     "Man": "男",
-    "Woman": "女"
+    "Woman": "女",
+    "Placeholder": "请输入{0}",
+    "Name": "名称"
   }
 }

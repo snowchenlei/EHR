@@ -15,12 +15,12 @@
             order: [[1, "asc"]],
             processing: true,
             serverSide: true,
-            searching: false,
             scrollX: true,
             paging: true,
             ajax: abp.libs.datatables.createAjax(_regionAppService.getList),
             columnDefs: [
                 {
+                    title: l("Actions"),
                     rowAction: {
                         items:
                             [
@@ -49,15 +49,19 @@
                     }
                 },
                 {
+                    title: l('Name'),
                     data: "name"
                 },
                 {
+                    title: l('Level'),
                     data: "level"
                 }
             ]
         }));
 
         $('#btnSearch').click(function () {
+            debugger
+            var searchName = $('#txt_search_name').val();
             _dataTable.ajax.reload();
         });
 
