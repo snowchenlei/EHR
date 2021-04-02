@@ -31,6 +31,7 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Json;
 using Volo.Abp.Account.Web;
+using Snow.RegionManagement.Admin.Web;
 
 namespace Snow.Hcm.Web
 {
@@ -45,8 +46,8 @@ namespace Snow.Hcm.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
-        //typeof(SnowRegionManagementWebModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(SnowRegionManagementWebModule)
         )]
     public class HcmWebModule : AbpModule
     {

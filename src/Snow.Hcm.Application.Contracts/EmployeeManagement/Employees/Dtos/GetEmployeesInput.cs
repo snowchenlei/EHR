@@ -6,6 +6,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
     /// 查询条件
     /// </summary>
     public class GetEmployeesInput: PagedAndSortedResultRequestDto
-    {
+    {        
+        public string Name { get; set; }
     }
 }

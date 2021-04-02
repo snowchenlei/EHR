@@ -9,7 +9,7 @@
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
-            searching: false,
+            searching: true,
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(_employeeAppService.getList),
             columnDefs: [

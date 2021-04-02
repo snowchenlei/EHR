@@ -42,19 +42,19 @@ namespace Snow.Hcm.Web.Menus
                         )
                     )
             );
-            context.Menu.AddItem(
-                new ApplicationMenuItem(
-                    "Regions",
-                    l["Menu:RegionManagement"],
-                    icon: "fa fa-book"
-                    ).AddItem(
-                    new ApplicationMenuItem(
-                        "EmployeeManagement.Employees",
-                        l["Menu:Regions"],
-                        url: "/Regions"
-                        )
-                    )
-            );
+            //context.Menu.AddItem(
+            //    new ApplicationMenuItem(
+            //        "Regions",
+            //        l["Menu:RegionManagement"],
+            //        icon: "fa fa-book"
+            //        ).AddItem(
+            //        new ApplicationMenuItem(
+            //            "EmployeeManagement.Employees",
+            //            l["Menu:Regions"],
+            //            url: "/Regions"
+            //            )
+            //        )
+            //);
         }
     }
 }
