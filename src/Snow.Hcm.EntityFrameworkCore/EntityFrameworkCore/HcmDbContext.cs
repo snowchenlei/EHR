@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Snow.Hcm.DepartmentManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
+using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -26,6 +28,8 @@ namespace Snow.Hcm.EntityFrameworkCore
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmergencyContact> EmergencyContacts { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside HcmDbContextModelCreatingExtensions.ConfigureHcm

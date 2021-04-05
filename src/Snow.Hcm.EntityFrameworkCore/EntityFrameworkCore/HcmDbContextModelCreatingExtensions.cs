@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Snow.Hcm.DepartmentManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Volo.Abp;
@@ -36,6 +37,16 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.ConfigureCreationTime();
             });
 
+            #endregion
+
+            #region DepartmentManagement
+            builder.Entity<Department>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(Department), HcmConsts.DbSchema);
+                b.Property(e => e.Name).HasMaxLength(DepartmentConsts.MaxNameLength);
+
+                b.ConfigureCreationAudited();
+            });
             #endregion
         }
     }

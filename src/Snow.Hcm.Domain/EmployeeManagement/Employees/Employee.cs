@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Snow.Hcm.DepartmentManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
+using Snow.Hcm.EmployeeManagement.Salaries;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Snow.Hcm.EmployeeManagement.Employees
@@ -16,7 +18,9 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public Employee()
         {
             EmergencyContacts = new List<EmergencyContact>();
+            Salaries = new List<Salary>();
         }
+
         /// <summary>
         /// 员工编号
         /// </summary>
@@ -77,6 +81,19 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// </summary>
         public int AreaId { get; set; }
 
+        /// <summary>
+        /// 部门
+        /// </summary>
+        public Department Department { get; set; }
+
+        /// <summary>
+        /// 紧急联系人
+        /// </summary>
         public ICollection<EmergencyContact> EmergencyContacts { get; set; }
+
+        /// <summary>
+        /// 工资
+        /// </summary>
+        public ICollection<Salary> Salaries { get; set; }
     }
 }
