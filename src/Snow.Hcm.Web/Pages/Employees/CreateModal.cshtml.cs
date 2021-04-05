@@ -17,14 +17,14 @@ namespace Snow.Hcm.Web.Pages.Employees
     public class CreateModalModel : HcmPageModel
     {
         private readonly IEnumAppService _enumAppService;
-        private readonly IEmployeeAppService _bookAppService;
+        private readonly IEmployeeAppService _employeeAppService;
         private readonly IRegionAppService _regionAppService;
 
         public CreateModalModel([NotNull] IEmployeeAppService bookAppService,
             [NotNull] IRegionAppService regionAppService, 
             IEnumAppService enumAppService)
         {
-            _bookAppService = bookAppService ?? throw new ArgumentNullException(nameof(bookAppService));
+            _employeeAppService = bookAppService ?? throw new ArgumentNullException(nameof(bookAppService));
             _regionAppService = regionAppService ?? throw new ArgumentNullException(nameof(regionAppService));
             _enumAppService = enumAppService;
         }
@@ -59,7 +59,7 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _bookAppService.CreateAsync(ObjectMapper.Map<EmployeeCreateViewModel, EmployeeCreateDto>(Employee));
+            await _employeeAppService.CreateAsync(ObjectMapper.Map<EmployeeCreateViewModel, EmployeeCreateDto>(Employee));
             return NoContent();
         }
     }

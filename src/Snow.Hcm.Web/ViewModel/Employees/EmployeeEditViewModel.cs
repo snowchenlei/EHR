@@ -9,6 +9,9 @@ namespace Snow.Hcm.Web.ViewModel.Employees
 {
     public class EmployeeEditViewModel
     {
+        [HiddenInput]
+        public Guid Id { get; set; }
+
         /// <summary>
         /// 姓名
         /// </summary>

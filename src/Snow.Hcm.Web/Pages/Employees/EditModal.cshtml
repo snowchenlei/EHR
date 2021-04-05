@@ -10,15 +10,16 @@
     <abp-modal>
         <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-input asp-for="Employee.Name" />
-            <abp-input asp-for="Employee.Age" />
-            <abp-select asp-for="Employee.Gender" />
-            <abp-input asp-for="Employee.PhoneNumber" type="number" />
-            <abp-input asp-for="Employee.IdCardNumber" />
-            @await Component.InvokeAsync("Region", new { parentId = 100000, areaElementName = "areaId" })
-            <abp-input asp-for="Employee.AreaId" />
-            <abp-input asp-for="Employee.Address" />
-            <abp-input asp-for="Employee.BirthDay" />
+            <abp-input asp-for="Employee.Id"/>
+            <abp-input asp-for="Employee.Name"/>
+            <abp-input asp-for="Employee.Age"/>
+            <abp-select asp-for="Employee.Gender"/>
+            <abp-input asp-for="Employee.PhoneNumber" type="number"/>
+            <abp-input asp-for="Employee.IdCardNumber"/>
+            @await Component.InvokeAsync("Region", new {parentId = 100000, areaElementName = "areaId"})
+            <abp-input asp-for="Employee.AreaId"/>
+            <abp-input asp-for="Employee.Address"/>
+            <abp-input asp-for="Employee.BirthDay"/>
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>

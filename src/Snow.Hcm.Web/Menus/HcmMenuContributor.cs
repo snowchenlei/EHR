@@ -20,16 +20,16 @@ namespace Snow.Hcm.Web.Menus
 
         private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
+            var administration = context.Menu.GetAdministration();
             if (!MultiTenancyConsts.IsEnabled)
             {
-                var administration = context.Menu.GetAdministration();
                 administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
             }
 
             var l = context.GetLocalizer<HcmResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(HcmMenus.Home, l["Menu:Home"], "~/"));
-            context.Menu.AddItem(
+            administration.AddItem(
                 new ApplicationMenuItem(
                     "EmployeeManagement",
                     l["Menu:EmployeeManagement"],

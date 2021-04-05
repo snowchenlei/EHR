@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Snow.Hcm.EmployeeManagement.Employees;
+using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Web.ViewModel.Employees;
 
 namespace Snow.Hcm.Web.Pages.Employees
@@ -24,6 +25,12 @@ namespace Snow.Hcm.Web.Pages.Employees
         public async Task OnGetAsync(Guid employeeId)
         {
             await _employeeAppService.GetEditorAsync(employeeId);
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await _employeeAppService.UpdateAsync(Employee.Id,ObjectMapper.Map<EmployeeEditViewModel, EmployeeUpdateDto>(Employee));
+            return NoContent();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Snow.Hcm.Web
         public HcmWebAutoMapperProfile()
         {            
             CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
+            CreateMap<EmployeeEditViewModel, EmployeeUpdateDto>();
             CreateMap<GetRegionForEditOutput, RegionEditViewModel>();
             CreateMap<RegionCreateViewModel, RegionCreateDto>();
         }
