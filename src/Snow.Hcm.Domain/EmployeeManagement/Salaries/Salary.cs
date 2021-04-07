@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Snow.Hcm.EmployeeManagement.Employees;
+using Volo.Abp.Domain.Entities;
 
 namespace Snow.Hcm.EmployeeManagement.Salaries
 {
     /// <summary>
     /// 工资
     /// </summary>
-    public class Salary
+    public class Salary : Entity<Guid>
     {
         /// <summary>
         /// 基本工资
         /// </summary>
         public decimal BasicAmount { get; set; }
-        
+
         /// <summary>
         /// 社保基数
         /// </summary>
