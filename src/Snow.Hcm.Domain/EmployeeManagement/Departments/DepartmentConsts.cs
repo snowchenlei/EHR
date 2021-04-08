@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snow.Hcm.DepartmentManagement.Departments
+namespace Snow.Hcm.EmployeeManagement.Departments
 {
     public class DepartmentConsts
     {

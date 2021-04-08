@@ -40,7 +40,6 @@ namespace Snow.Hcm.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
-            builder.ConfigureRegionManagement();
 
             /* Configure your own tables/entities inside the ConfigureHcm method */
 

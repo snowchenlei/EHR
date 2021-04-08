@@ -1,4 +1,6 @@
-﻿using Snow.Hcm.EmployeeManagement.Employees;
+﻿using Snow.Hcm.EmployeeManagement.Departments;
+using Snow.Hcm.EmployeeManagement.Departments.Dtos;
+using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using AutoMapper;
 using Masuit.Tools.Systems;
@@ -26,6 +28,13 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<Employee, EmployeeDetailDto>();
             CreateMap<EmployeeCreateDto, Employee>();
             CreateMap<EmployeeUpdateDto, Employee>();
+            #endregion
+             #region 部门
+            CreateMap<Department, GetDepartmentForEditorOutput>();
+            CreateMap<Department, DepartmentListDto>();
+            CreateMap<Department, DepartmentDetailDto>();
+            CreateMap<DepartmentCreateDto, Department>();
+            CreateMap<DepartmentUpdateDto, Department>();
             #endregion
         }
     }

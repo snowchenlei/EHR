@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Snow.Hcm.DepartmentManagement.Departments;
+using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Volo.Abp.Domain.Entities.Auditing;

@@ -28,7 +28,7 @@ namespace Snow.Hcm.Web.Menus
 
             var l = context.GetLocalizer<HcmResource>();
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem(HcmMenus.Home, l["Menu:Home"], "~/"));
+            context.Menu.Items.Insert(0, new ApplicationMenuItem(HcmMenus.Home, l["Menu:Home"], "~/"));            
             administration.AddItem(
                 new ApplicationMenuItem(
                     "EmployeeManagement",
@@ -40,21 +40,14 @@ namespace Snow.Hcm.Web.Menus
                         l["Menu:Employees"],
                         url: "/Employees"
                         )
+                    ).AddItem(
+                    new ApplicationMenuItem(
+                        "EmployeeManagement.Departments",
+                        l["Menu:Departments"],
+                        url: "/Departments"
+                        )
                     )
             );
-            //context.Menu.AddItem(
-            //    new ApplicationMenuItem(
-            //        "Regions",
-            //        l["Menu:RegionManagement"],
-            //        icon: "fa fa-book"
-            //        ).AddItem(
-            //        new ApplicationMenuItem(
-            //            "EmployeeManagement.Employees",
-            //            l["Menu:Regions"],
-            //            url: "/Regions"
-            //            )
-            //        )
-            //);
         }
     }
 }

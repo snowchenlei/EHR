@@ -25,4 +25,8 @@
     <PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="4.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DepartmentManagement\" />
+  </ItemGroup>
+
 </Project>

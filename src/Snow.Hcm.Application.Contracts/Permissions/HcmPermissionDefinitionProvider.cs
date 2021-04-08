@@ -15,6 +15,12 @@ namespace Snow.Hcm.Permissions
             employees.AddChild(HcmPermissions.Employees.Update, L("Permission:Edit"));
             employees.AddChild(HcmPermissions.Employees.Delete, L("Permission:Delete"));
 
+
+var departments = hcmGroup.AddPermission(HcmPermissions.Departments.Default, L("Permission:Departments"));
+departments.AddChild(HcmPermissions.Departments.Create, L("Permission:Create"));
+departments.AddChild(HcmPermissions.Departments.Update, L("Permission:Edit"));
+departments.AddChild(HcmPermissions.Departments.Delete, L("Permission:Delete"));
+
         }
 
         private static LocalizableString L(string name)

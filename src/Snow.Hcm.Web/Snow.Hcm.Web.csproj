@@ -17,13 +17,16 @@
 
   <ItemGroup>
     <Compile Remove="Logs\**" />
+    <Compile Remove="Pages\Regions\**" />
     <Content Remove="Logs\**" />
+    <Content Remove="Pages\Regions\**" />
     <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="Pages\Regions\**" />
     <None Remove="Logs\**" />
+    <None Remove="Pages\Regions\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Regions\Index.cshtml" />
     <None Include="wwwroot\js\treeSelect.js" />
   </ItemGroup>
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Snow.Hcm.DepartmentManagement.Departments;
+using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Salaries;

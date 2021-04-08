@@ -7,12 +7,12 @@ using Snow.Hcm.EmployeeManagement.Employees;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace Snow.Hcm.DepartmentManagement.Departments
+namespace Snow.Hcm.EmployeeManagement.Departments
 {
     /// <summary>
     /// 部门
     /// </summary>
-    public class Department: CreationAuditedEntity<Guid>
+    public class Department : CreationAuditedEntity<Guid>
     {
         public Department()
         {
