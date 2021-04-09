@@ -19,14 +19,14 @@ namespace Snow.Hcm.EmployeeManagement.Departments
     [Authorize(HcmPermissions.Departments.Default)]
     public class DepartmentAppService : HcmAppService, IDepartmentAppService
     {
-        private readonly IRepository<Department, System.Guid> _departmentRepository;
+        private readonly IRepository<Department, Guid> _departmentRepository;
 
         /// <summary>
         /// .ctor
         /// </summary>
         /// <param name="departmentRepository"></param>
         public DepartmentAppService(
-            IRepository<Department, System.Guid> departmentRepository)
+            IRepository<Department, Guid> departmentRepository)
         {
             _departmentRepository = departmentRepository;
         }
@@ -36,13 +36,24 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        public virtual async Task<DepartmentDetailDto> GetAsync(System.Guid id)
+        public virtual async Task<DepartmentDetailDto> GetAsync(Guid id)
         {
             Department entity = await _departmentRepository.GetAsync(id);
 
             return ObjectMapper.Map<Department, DepartmentDetailDto>(entity);
         }
 
+        /// <summary>
+        /// 所有
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task<ListResultDto<DepartmentListDto>> GetAllListAsync()
+        {
+            var queryable = await _departmentRepository.GetQueryableAsync();
+            var departments = await AsyncExecuter.ToListAsync(queryable);
+            return new ListResultDto<DepartmentListDto>(ObjectMapper.Map<List<Department>, List<DepartmentListDto>>(departments));
+        }
+        
         /// <summary>
         /// 列表
         /// </summary>
@@ -71,7 +82,7 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        public virtual async Task<GetDepartmentForEditorOutput> GetEditorAsync(System.Guid id)
+        public virtual async Task<GetDepartmentForEditorOutput> GetEditorAsync(Guid id)
         {
             Department entity = await _departmentRepository.GetAsync(id);
 
@@ -98,7 +109,7 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(HcmPermissions.Departments.Update)]
-        public virtual async Task<DepartmentListDto> UpdateAsync(System.Guid id, DepartmentUpdateDto input)
+        public virtual async Task<DepartmentListDto> UpdateAsync(Guid id, DepartmentUpdateDto input)
         {
             Department entity = await _departmentRepository.GetAsync(id);
             entity = ObjectMapper.Map(input, entity);
@@ -112,12 +123,10 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// <param name="id">主键</param>
         /// <returns></returns>
         [Authorize(HcmPermissions.Departments.Delete)]
-        public virtual async Task DeleteAsync(System.Guid id)
+        public virtual async Task DeleteAsync(Guid id)
         {
             await _departmentRepository.DeleteAsync(s => s.Id == id);
         }
-
-        
 
         /// <summary>
         /// 规范最大记录数

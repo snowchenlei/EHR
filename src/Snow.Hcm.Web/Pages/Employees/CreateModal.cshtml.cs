@@ -7,6 +7,7 @@ using Lzez.Tendering.Admin.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Web.ViewModel.Employees;
@@ -17,16 +18,19 @@ namespace Snow.Hcm.Web.Pages.Employees
     public class CreateModalModel : HcmPageModel
     {
         private readonly IEnumAppService _enumAppService;
-        private readonly IEmployeeAppService _employeeAppService;
         private readonly IRegionAppService _regionAppService;
+        private readonly IEmployeeAppService _employeeAppService;
+        private readonly IDepartmentAppService _departmentAppService;
 
         public CreateModalModel([NotNull] IEmployeeAppService bookAppService,
-            [NotNull] IRegionAppService regionAppService, 
-            IEnumAppService enumAppService)
+            [NotNull] IRegionAppService regionAppService,
+            [NotNull] IEnumAppService enumAppService,
+            [NotNull] IDepartmentAppService departmentAppService)
         {
             _employeeAppService = bookAppService ?? throw new ArgumentNullException(nameof(bookAppService));
             _regionAppService = regionAppService ?? throw new ArgumentNullException(nameof(regionAppService));
-            _enumAppService = enumAppService;
+            _enumAppService = enumAppService ?? throw new ArgumentNullException(nameof(enumAppService));
+            _departmentAppService = departmentAppService ?? throw new ArgumentNullException(nameof(departmentAppService));
         }
 
         [BindProperty] public EmployeeCreateViewModel Employee { get; set; }
@@ -34,6 +38,7 @@ namespace Snow.Hcm.Web.Pages.Employees
         public List<SelectListItem> Provinces { get; set; }
         public List<SelectListItem> Cities { get; set; }
         public List<SelectListItem> Areas { get; set; }
+        public List<SelectListItem> Departments { get; set; }
 
         public List<SelectListItem> Genders { get; set; }
 
@@ -49,11 +54,15 @@ namespace Snow.Hcm.Web.Pages.Employees
                 .GetChildrenAsync(provinces.Items.First().Id);
             var areas = await _regionAppService
                 .GetChildrenAsync(cities.Items.First().Id);
+            var departments = await _departmentAppService
+                .GetAllListAsync();
             Provinces = provinces.Items.Select(r => 
                 new SelectListItem(r.Name, r.Id.ToString())).ToList();
             Cities = cities.Items.Select(r =>
                 new SelectListItem(r.Name, r.Id.ToString())).ToList();
             Areas = areas.Items.Select(r =>
+                new SelectListItem(r.Name, r.Id.ToString())).ToList();
+            Departments = departments.Items.Select(r =>
                 new SelectListItem(r.Name, r.Id.ToString())).ToList();
         }
 

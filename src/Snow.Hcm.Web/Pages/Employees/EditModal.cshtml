@@ -5,6 +5,7 @@
 @inject IStringLocalizer<HcmResource> L
 @model Snow.Hcm.Web.Pages.Employees.EditModalModel
 @{
+    Layout = null;
 }
 <form method="post" action="@Url.Page("/Employees/CreateModal")">
     <abp-modal>
@@ -16,7 +17,7 @@
             <abp-select asp-for="Employee.Gender"/>
             <abp-input asp-for="Employee.PhoneNumber" type="number"/>
             <abp-input asp-for="Employee.IdCardNumber"/>
-            @await Component.InvokeAsync("Region", new {parentId = 100000, areaElementName = "areaId"})
+            @*@await Component.InvokeAsync("Region", new {parentId = 100000, areaElementName = "areaId"})*@
             <abp-input asp-for="Employee.AreaId"/>
             <abp-input asp-for="Employee.Address"/>
             <abp-input asp-for="Employee.BirthDay"/>

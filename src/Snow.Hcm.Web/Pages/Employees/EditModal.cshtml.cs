@@ -22,9 +22,11 @@ namespace Snow.Hcm.Web.Pages.Employees
         [BindProperty]
         public EmployeeEditViewModel Employee { get; set; }
         
-        public async Task OnGetAsync(Guid employeeId)
+        public async Task OnGetAsync(Guid id)
         {
-            await _employeeAppService.GetEditorAsync(employeeId);
+            var dto = await _employeeAppService.GetEditorAsync(id);
+            Employee = ObjectMapper.Map<GetEmployeeForEditorOutput, EmployeeEditViewModel>(dto);
+            Employee.Id = id;
         }
 
         public async Task<IActionResult> OnPostAsync()

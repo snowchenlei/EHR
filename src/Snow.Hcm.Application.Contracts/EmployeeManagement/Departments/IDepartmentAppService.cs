@@ -2,6 +2,7 @@
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Snow.Hcm.EmployeeManagement.Departments.Dtos;
+using System;
 
 namespace Snow.Hcm.EmployeeManagement.Departments
 {
@@ -15,7 +16,13 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        Task<DepartmentDetailDto> GetAsync(System.Guid id);
+        Task<DepartmentDetailDto> GetAsync(Guid id);
+
+        /// <summary>
+        /// 所有
+        /// </summary>
+        /// <returns></returns>
+        Task<ListResultDto<DepartmentListDto>> GetAllListAsync();
 
         /// <summary>
         /// 列表
@@ -29,7 +36,7 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        Task<GetDepartmentForEditorOutput> GetEditorAsync(System.Guid id);
+        Task<GetDepartmentForEditorOutput> GetEditorAsync(Guid id);
 
         /// <summary>
         /// 创建
@@ -44,13 +51,13 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// <param name="id">主键</param>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<DepartmentListDto> UpdateAsync(System.Guid id, DepartmentUpdateDto input);
+        Task<DepartmentListDto> UpdateAsync(Guid id, DepartmentUpdateDto input);
 
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        Task DeleteAsync(System.Guid id);
+        Task DeleteAsync(Guid id);
     }
 }

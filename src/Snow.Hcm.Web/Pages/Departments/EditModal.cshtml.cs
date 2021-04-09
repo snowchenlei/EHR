@@ -11,24 +11,27 @@ using Snow.Hcm.Web.ViewModel.Departments;
 
 namespace Snow.Hcm.Web.Pages.Departments
 {
-    public class CreateModalModel : HcmPageModel
+    public class EditModalModel : HcmPageModel
     {
         private readonly IDepartmentAppService _departmentAppService;
 
-        public CreateModalModel([NotNull] IDepartmentAppService departmentAppService)
+        public EditModalModel([NotNull] IDepartmentAppService departmentAppService)
         {
             _departmentAppService = departmentAppService ?? throw new ArgumentNullException(nameof(departmentAppService));
         }
+        [BindProperty]
+        public DepartmentEditViewModel Department { get; set; }
 
-        [BindProperty] public DepartmentCreateViewModel Department { get; set; }
-        public void OnGet()
+        public async Task OnGetAsync(Guid id)
         {
-            Department = new DepartmentCreateViewModel();
+            var dto = await _departmentAppService.GetEditorAsync(id);
+            Department = ObjectMapper.Map<GetDepartmentForEditorOutput, DepartmentEditViewModel>(dto);
+            Department.Id = id;
         }
-
+        
         public async Task<IActionResult> OnPostAsync()
         {
-            await _departmentAppService.CreateAsync(ObjectMapper.Map<DepartmentCreateViewModel, DepartmentCreateDto>(Department));
+            await _departmentAppService.UpdateAsync(Department.Id, ObjectMapper.Map<DepartmentEditViewModel, DepartmentUpdateDto>(Department));
             return NoContent();
         }
     }

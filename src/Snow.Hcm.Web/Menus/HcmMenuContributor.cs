@@ -36,13 +36,13 @@ namespace Snow.Hcm.Web.Menus
                     icon: "fa fa-book"
                     ).AddItem(
                     new ApplicationMenuItem(
-                        "EmployeeManagement.Employees",
+                        HcmMenus.Employees,
                         l["Menu:Employees"],
                         url: "/Employees"
                         )
                     ).AddItem(
                     new ApplicationMenuItem(
-                        "EmployeeManagement.Departments",
+                        HcmMenus.Departments,
                         l["Menu:Departments"],
                         url: "/Departments"
                         )

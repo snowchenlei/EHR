@@ -6,11 +6,26 @@
     "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io.",
     "Menu:EmployeeManagement": "员工管理",
     "Menu:Employees": "员工",
+    "Menu:Departments": "部门",
     "NewEmployee": "新员工",
+    "NewDepartment": "新部门",
+    "Employees": "员工",
     "UnKnown": "未知",
     "Man": "男",
     "Woman": "女",
     "Placeholder": "请输入{0}",
-    "Name": "名称"
+    "Name": "名称",
+    "Gender": "性别",
+    "Age": "年龄",
+    "Province": "省",
+    "City": "市",
+    "Area": "区",
+    "EmployeeNumber": "员工编号",
+    "BirthDay": "生日",
+    "JoinDate": "入职日期",
+    "Address": "地址",
+    "IdCardNumber": "身份证号",
+    "PhoneNumber": "手机号",
+    "Department": "部门"
   }
 }
