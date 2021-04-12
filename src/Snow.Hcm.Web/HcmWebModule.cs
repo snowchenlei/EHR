@@ -32,6 +32,7 @@ using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Json;
 using Volo.Abp.Account.Web;
 using Snow.RegionManagement.Admin.Web;
+using Abp.AspNetCore.Mvc.UI.Theme.AdminLTE;
 
 namespace Snow.Hcm.Web
 {
@@ -43,6 +44,7 @@ namespace Snow.Hcm.Web
         typeof(AbpIdentityWebModule),
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        typeof(AbpAspNetCoreMvcUiAdminLTEThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
