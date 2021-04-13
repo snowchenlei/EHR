@@ -59,7 +59,12 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public DateTime Birthday { get; set; }
+
+        /// <summary>
+        /// 是否公历
+        /// </summary>
+        public bool IsGregorianCalendar { get; set; }
 
         /// <summary>
         /// 入职时间

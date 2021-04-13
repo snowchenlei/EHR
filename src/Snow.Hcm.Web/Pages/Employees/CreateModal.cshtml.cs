@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Lzez.Tendering.Admin.Enums;
+using Masuit.Tools.Systems;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,33 +36,17 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         [BindProperty] public EmployeeCreateViewModel Employee { get; set; }
 
-        public List<SelectListItem> Provinces { get; set; }
-        public List<SelectListItem> Cities { get; set; }
-        public List<SelectListItem> Areas { get; set; }
         public List<SelectListItem> Departments { get; set; }
 
-        public List<SelectListItem> Genders { get; set; }
+        public List<SelectListItem> Calendars { get; set; }
 
         public async Task OnGetAsync()
         {
-            Employee = new EmployeeCreateViewModel();
-            Genders = (await _enumAppService.GetGenderAsync())
+            Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>
                 new SelectListItem(r.Key, r.Value.ToString())).ToList();
-            var provinces = await _regionAppService
-                .GetChildrenAsync(100000);
-            var cities = await _regionAppService
-                .GetChildrenAsync(provinces.Items.First().Id);
-            var areas = await _regionAppService
-                .GetChildrenAsync(cities.Items.First().Id);
             var departments = await _departmentAppService
                 .GetAllListAsync();
-            Provinces = provinces.Items.Select(r => 
-                new SelectListItem(r.Name, r.Id.ToString())).ToList();
-            Cities = cities.Items.Select(r =>
-                new SelectListItem(r.Name, r.Id.ToString())).ToList();
-            Areas = areas.Items.Select(r =>
-                new SelectListItem(r.Name, r.Id.ToString())).ToList();
             Departments = departments.Items.Select(r =>
                 new SelectListItem(r.Name, r.Id.ToString())).ToList();
         }

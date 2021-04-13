@@ -7,20 +7,32 @@
 @{
     Layout = null;
 }
-<form method="post" action="@Url.Page("/Employees/CreateModal")">
+<form method="post" action="@Url.Page("/Employees/EditModal")">
     <abp-modal>
-        <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["Edit"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-input asp-for="Employee.Id"/>
-            <abp-input asp-for="Employee.Name"/>
-            <abp-input asp-for="Employee.Age"/>
-            <abp-select asp-for="Employee.Gender"/>
-            <abp-input asp-for="Employee.PhoneNumber" type="number"/>
-            <abp-input asp-for="Employee.IdCardNumber"/>
+            <abp-input asp-for="Employee.Id" />
+            <abp-input asp-for="Employee.Name" />
+            <abp-select asp-for="Employee.DepartmentId" asp-items="Model.Departments" />
+            <abp-input asp-for="Employee.PhoneNumber" type="number" />
+            <abp-input asp-for="Employee.IdCardNumber" />
+            <div class="form-row">
+                <div class="form-group col-md-9">
+                    <label asp-for="Employee.BirthDay" class="control-label"></label>
+                    <input asp-for="Employee.BirthDay" class="form-control" />
+                    <span asp-validation-for="Employee.BirthDay" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Employee.Calendar" class="control-label"></label>
+                    <select asp-for="Employee.Calendar" class="form-control custom-select" asp-items="Model.Calendars">
+                    </select>
+                </div>
+            </div>
+            <abp-select asp-for="Employee.Gender" />
+
             @*@await Component.InvokeAsync("Region", new {parentId = 100000, areaElementName = "areaId"})*@
-            <abp-input asp-for="Employee.AreaId"/>
-            <abp-input asp-for="Employee.Address"/>
-            <abp-input asp-for="Employee.BirthDay"/>
+            <abp-input asp-for="Employee.AreaId" />
+            <abp-input asp-for="Employee.Address" />
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>

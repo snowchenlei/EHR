@@ -18,12 +18,6 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public string Name { get; set; }
 
         /// <summary>
-        /// 年龄
-        /// </summary>
-        [Placeholder("Age")]
-        public int Age { get; set; }
-
-        /// <summary>
         /// 性别
         /// </summary>
         public Gender Gender { get; set; }
@@ -32,12 +26,14 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// 手机号
         /// </summary>
         [Placeholder("PhoneNumber")]
+        [RegularExpression("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$")]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// 身份证号
         /// </summary>
         [Placeholder("IdCardNumber")]
+        [RegularExpression("(^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$)|(^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{2}$)")]
         public string IdCardNumber { get; set; }
 
         /// <summary>
@@ -47,9 +43,20 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public string Address { get; set; }
 
         /// <summary>
+        /// 是否公历
+        /// </summary>
+        [Display(Name = "GregorianCalendar")]
+        public bool IsGregorianCalendar { get; set; }
+
+        /// <summary>
         /// 生日
         /// </summary>
         public DateTime BirthDay { get; set; }
+
+        /// <summary>
+        /// 历法
+        /// </summary>
+        public Calendar Calendar { get; set; }
 
         /// <summary>
         /// 部门

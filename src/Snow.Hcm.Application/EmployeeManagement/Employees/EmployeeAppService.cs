@@ -10,6 +10,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Permissions;
+using Snow.Hcm.Extension;
 
 namespace Snow.Hcm.EmployeeManagement.Employees
 {
@@ -36,7 +37,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        public virtual async Task<EmployeeDetailDto> GetAsync(System.Guid id)
+        public virtual async Task<EmployeeDetailDto> GetAsync(Guid id)
         {
             Employee entity = await _employeeRepository.GetAsync(id);
 
@@ -71,7 +72,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        public virtual async Task<GetEmployeeForEditorOutput> GetEditorAsync(System.Guid id)
+        public virtual async Task<GetEmployeeForEditorOutput> GetEditorAsync(Guid id)
         {
             Employee entity = await _employeeRepository.GetAsync(id);
 
@@ -86,7 +87,13 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         [Authorize(HcmPermissions.Employees.Create)]
         public virtual async Task<EmployeeListDto> CreateAsync(EmployeeCreateDto input)
         {
+            // TODO:计算农历生日并保存
+            if(await _employeeRepository.AnyAsync(e => e.IdCardNumber == input.IdCardNumber || e.PhoneNumber == input.PhoneNumber))
+            {
+                throw new UserFriendlyException(L["Existed", L["Employee"]]);
+            }
             var entity = ObjectMapper.Map<EmployeeCreateDto, Employee>(input);
+            entity.Age = input.Birthday.GetAgeByBirthday();
             entity.EmployeeNumber = GuidGenerator.Create().ToString("N");
             entity.JoinDate = DateTime.Now;
             entity = await _employeeRepository.InsertAsync(entity);
@@ -100,10 +107,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(HcmPermissions.Employees.Update)]
-        public virtual async Task<EmployeeListDto> UpdateAsync(System.Guid id, EmployeeUpdateDto input)
+        public virtual async Task<EmployeeListDto> UpdateAsync(Guid id, EmployeeUpdateDto input)
         {
             Employee entity = await _employeeRepository.GetAsync(id);
             entity = ObjectMapper.Map(input, entity);
+            entity.Age = input.Birthday.GetAgeByBirthday();
             entity = await _employeeRepository.UpdateAsync(entity);
             return ObjectMapper.Map<Employee, EmployeeListDto>(entity);
         }
@@ -114,7 +122,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// <param name="id">主键</param>
         /// <returns></returns>
         [Authorize(HcmPermissions.Employees.Delete)]
-        public virtual async Task DeleteAsync(System.Guid id)
+        public virtual async Task DeleteAsync(Guid id)
         {
             await _employeeRepository.DeleteAsync(s => s.Id == id);
         }

@@ -10,11 +10,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public string Name { get; set; }
 
         /// <summary>
-        /// 年龄
-        /// </summary>
-        public int Age { get; set; }
-
-        /// <summary>
         /// 性别
         /// </summary>
         public Gender Gender { get; set; }
@@ -37,7 +32,13 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public DateTime Birthday { get; set; }
+
+        /// <summary>
+        /// 是否公历
+        /// </summary>
+        public bool IsGregorianCalendar { get; set; }
+
         /// <summary>
         /// 部门
         /// </summary>

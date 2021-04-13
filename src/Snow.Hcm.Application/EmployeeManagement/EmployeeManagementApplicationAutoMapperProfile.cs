@@ -19,7 +19,11 @@ namespace Snow.Hcm.EmployeeManagement
         {
 
              #region 员工
-            CreateMap<Employee, GetEmployeeForEditorOutput>();
+            CreateMap<Employee, GetEmployeeForEditorOutput>()
+                .ForMember(entity => entity.Birthday,
+                    opt => opt
+                        .MapFrom(src =>
+                            src.Birthday.ToString("yyyy-MM-dd")));
             CreateMap<Employee, EmployeeListDto>()
                 .ForMember(entity => entity.Gender,
                     opt => opt

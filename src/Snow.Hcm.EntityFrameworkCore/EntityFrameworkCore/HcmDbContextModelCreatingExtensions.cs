@@ -26,6 +26,7 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.Property(e => e.PhoneNumber).HasMaxLength(EmployeeConsts.MaxPhoneNumberLength);
                 b.Property(e => e.IdCardNumber).HasMaxLength(EmployeeConsts.MaxIdCardNumberLength);
                 b.Property(e => e.Address).HasMaxLength(EmployeeConsts.MaxAddressLength);
+                b.Property(e => e.IsGregorianCalendar).IsRequired().HasDefaultValue(true);
                 b.ConfigureFullAudited();
             });
 

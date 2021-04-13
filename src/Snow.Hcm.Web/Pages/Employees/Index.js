@@ -2,6 +2,7 @@
         var l = abp.localization.getResource('Hcm');
         var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
         var _createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal', scriptUrl: '/Pages/Employees/CreateModal.js', });
+        //var _createModal = new abp.ModalManager('/Employees/CreateModal');
         var _editModal = new abp.ModalManager({ viewUrl: '/Employees/EditModal', scriptUrl: '/Pages/Employees/EditModal.js', });
 
     $(function () {
@@ -61,6 +62,14 @@
                     {
                         title: l('Name'),
                         data: "name"
+                    },
+                    {
+                        title: l('PhoneNumber'),
+                        data: "phoneNumber"
+                    },
+                    {
+                        title: l('IdCardNumber'),
+                        data: "idCardNumber"
                     },
                     {
                         title: l('Age'),

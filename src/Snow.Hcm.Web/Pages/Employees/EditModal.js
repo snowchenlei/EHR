@@ -9,6 +9,7 @@
             showDropdowns: true,
             drops: "up",
             locale: {
+                format: "YYYY-MM-DD",
                 separator: " - ",
                 applyLabel: '确定',
                 cancelLabel: '取消',
@@ -27,8 +28,6 @@
             maxDate: moment(),
             firstDay: moment.localeData()._week.dow
         }, function (start, end, label) {
-            $('#search_date_start').val(start.format('YYYY-MM-DD'));
-            $('#search_date_end').val(end.format('YYYY-MM-DD'));
         });
     });
 })(jQuery);
