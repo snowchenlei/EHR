@@ -20,11 +20,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// 身份证号
-        /// </summary>
-        public string IdCardNumber { get; set; }
-
-        /// <summary>
         /// 详细地址
         /// </summary>
         public string Address { get; set; }

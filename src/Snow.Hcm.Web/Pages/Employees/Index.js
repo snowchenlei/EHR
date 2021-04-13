@@ -1,9 +1,16 @@
 ﻿; (function ($) {
-        var l = abp.localization.getResource('Hcm');
-        var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
-        var _createModal = new abp.ModalManager({ viewUrl: '/Employees/CreateModal', scriptUrl: '/Pages/Employees/CreateModal.js', });
-        //var _createModal = new abp.ModalManager('/Employees/CreateModal');
-        var _editModal = new abp.ModalManager({ viewUrl: '/Employees/EditModal', scriptUrl: '/Pages/Employees/EditModal.js', });
+    var l = abp.localization.getResource('Hcm');
+    var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
+    var _createModal = new abp.ModalManager({
+        viewUrl: '/Employees/CreateModal',
+        modalClass: 'EmployeeCreateModal',
+        scriptUrl: '/Pages/Employees/CreateModal.js',
+    });
+    var _editModal = new abp.ModalManager({
+        viewUrl: '/Employees/EditModal',
+        modalClass: 'EmployeeEditModal',
+        scriptUrl: '/Pages/Employees/EditModal.js',
+    });
 
     $(function () {
         var _$wrapper = $('#EmployeesWrapper');

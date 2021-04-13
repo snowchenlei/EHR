@@ -36,7 +36,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 生日
         /// </summary>
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         /// <summary>
         /// 是否公历

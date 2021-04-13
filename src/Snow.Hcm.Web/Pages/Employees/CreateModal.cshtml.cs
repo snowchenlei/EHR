@@ -18,19 +18,13 @@ namespace Snow.Hcm.Web.Pages.Employees
 {
     public class CreateModalModel : HcmPageModel
     {
-        private readonly IEnumAppService _enumAppService;
-        private readonly IRegionAppService _regionAppService;
         private readonly IEmployeeAppService _employeeAppService;
         private readonly IDepartmentAppService _departmentAppService;
 
         public CreateModalModel([NotNull] IEmployeeAppService bookAppService,
-            [NotNull] IRegionAppService regionAppService,
-            [NotNull] IEnumAppService enumAppService,
             [NotNull] IDepartmentAppService departmentAppService)
         {
             _employeeAppService = bookAppService ?? throw new ArgumentNullException(nameof(bookAppService));
-            _regionAppService = regionAppService ?? throw new ArgumentNullException(nameof(regionAppService));
-            _enumAppService = enumAppService ?? throw new ArgumentNullException(nameof(enumAppService));
             _departmentAppService = departmentAppService ?? throw new ArgumentNullException(nameof(departmentAppService));
         }
 
@@ -42,6 +36,7 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         public async Task OnGetAsync()
         {
+            // TODO:省市区默认无法获取AreaId
             Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>
                 new SelectListItem(r.Key, r.Value.ToString())).ToList();
@@ -53,7 +48,9 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _employeeAppService.CreateAsync(ObjectMapper.Map<EmployeeCreateViewModel, EmployeeCreateDto>(Employee));
+            var dto = ObjectMapper.Map<EmployeeCreateViewModel, EmployeeCreateDto>(Employee);
+            dto.IsGregorianCalendar = Employee.Calendar == Calendar.GregorianCalendar ? true : false;
+            await _employeeAppService.CreateAsync(dto);
             return NoContent();
         }
     }

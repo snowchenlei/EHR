@@ -93,7 +93,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
                 throw new UserFriendlyException(L["Existed", L["Employee"]]);
             }
             var entity = ObjectMapper.Map<EmployeeCreateDto, Employee>(input);
-            entity.Age = input.Birthday.GetAgeByBirthday();
+            entity.Age = input.Birthday.GetAgeByBirthday();            
             entity.EmployeeNumber = GuidGenerator.Create().ToString("N");
             entity.JoinDate = DateTime.Now;
             entity = await _employeeRepository.InsertAsync(entity);
@@ -109,6 +109,10 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         [Authorize(HcmPermissions.Employees.Update)]
         public virtual async Task<EmployeeListDto> UpdateAsync(Guid id, EmployeeUpdateDto input)
         {
+            if (await _employeeRepository.AnyAsync(e => e.PhoneNumber == input.PhoneNumber))
+            {
+                throw new UserFriendlyException(L["Existed", L["Employee"]]);
+            }
             Employee entity = await _employeeRepository.GetAsync(id);
             entity = ObjectMapper.Map(input, entity);
             entity.Age = input.Birthday.GetAgeByBirthday();

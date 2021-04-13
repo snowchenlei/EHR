@@ -36,6 +36,7 @@ namespace Snow.Hcm.Web.Pages.Employees
             var dto = await _employeeAppService.GetEditorAsync(id);
             Employee = ObjectMapper.Map<GetEmployeeForEditorOutput, EmployeeEditViewModel>(dto);
             Employee.Id = id;
+            Employee.Calendar = dto.IsGregorianCalendar ? Calendar.GregorianCalendar : Calendar.ChineseCalendar;
 
             Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>

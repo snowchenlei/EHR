@@ -136,9 +136,7 @@ namespace Snow.Hcm.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<bool>("IsGregorianCalendar")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");

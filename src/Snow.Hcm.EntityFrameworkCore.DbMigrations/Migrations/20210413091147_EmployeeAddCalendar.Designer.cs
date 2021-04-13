@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Snow.Hcm.Migrations
 {
     [DbContext(typeof(HcmMigrationsDbContext))]
-    [Migration("20210413070207_EmployeeAddCalendar")]
+    [Migration("20210413091147_EmployeeAddCalendar")]
     partial class EmployeeAddCalendar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,9 +138,7 @@ namespace Snow.Hcm.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<bool>("IsGregorianCalendar")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");

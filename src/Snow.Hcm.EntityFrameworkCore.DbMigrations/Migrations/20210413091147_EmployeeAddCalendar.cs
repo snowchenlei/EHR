@@ -16,7 +16,7 @@ namespace Snow.Hcm.Migrations
                 table: "HcmEmployee",
                 type: "bit",
                 nullable: false,
-                defaultValue: true);
+                defaultValue: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,6 +1,6 @@
-﻿; (function ($) {
-    var $dateRangePicker = $('#Employee_BirthDay');
-    $(function () {
+﻿abp.modals.EmployeeCreateModal = function () {
+    function initModal(modalManager, args) {
+        var $dateRangePicker = $('#Employee_BirthDay');
         $('#sel_area').change(function () {
             $('#Employee_AreaId').val(parseInt($(this).val()));
         });
@@ -42,5 +42,9 @@
             firstDay: moment.localeData()._week.dow
         }, function (start, end, label) {
         });
-    });
-})(jQuery);
+    };
+
+    return {
+        initModal: initModal
+    };
+};
