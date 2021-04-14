@@ -36,7 +36,7 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         public async Task OnGetAsync()
         {
-            // TODO:省市区默认无法获取AreaId
+            Employee = new EmployeeCreateViewModel();
             Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>
                 new SelectListItem(r.Key, r.Value.ToString())).ToList();

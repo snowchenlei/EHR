@@ -78,7 +78,7 @@ namespace Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Pages.Account
 
         protected virtual string GetAppHomeUrl()
         {
-            return "~/"; //TODO: ???
+            return "~/";
         }
     }
 }

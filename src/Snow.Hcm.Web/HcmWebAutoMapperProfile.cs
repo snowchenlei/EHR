@@ -15,7 +15,11 @@ namespace Snow.Hcm.Web
             #region Employee
             CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
             CreateMap<EmployeeEditViewModel, EmployeeUpdateDto>();
-            CreateMap<GetEmployeeForEditorOutput, EmployeeEditViewModel>();
+            CreateMap<GetEmployeeForEditorOutput, EmployeeEditViewModel>()
+                .ForMember(entity => entity.Birthday,
+                    opt => opt
+                        .MapFrom(src =>
+                            src.Birthday.ToString("yyyy-MM-dd")));
             #endregion
 
             #region Department

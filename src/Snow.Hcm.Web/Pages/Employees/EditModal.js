@@ -1,12 +1,13 @@
 ﻿abp.modals.EmployeeEditModal = function () {
     function initModal(modalManager, args) {
-        var $dateRangePicker = $('#Employee_BirthDay');
+        var $dateRangePicker = $('#Employee_Birthday');
         $('#sel_area').change(function () {
             $('#Employee_AreaId').val(parseInt($(this).val()));
         });
         $dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
+            autoUpdateInput: false,
             drops: "up",
             autoApply: true,
             locale: {

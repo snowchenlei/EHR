@@ -1,6 +1,9 @@
 ﻿abp.modals.EmployeeCreateModal = function () {
     function initModal(modalManager, args) {
         var $dateRangePicker = $('#Employee_BirthDay');
+        if ($('#Employee_AreaId').val() === '') {
+            $('#Employee_AreaId').val($("#sel_area").val());
+        }
         $('#sel_area').change(function () {
             $('#Employee_AreaId').val(parseInt($(this).val()));
         });

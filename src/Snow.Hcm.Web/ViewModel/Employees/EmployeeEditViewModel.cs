@@ -53,7 +53,7 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public string Birthday { get; set; }
 
         /// <summary>
         /// 历法
