@@ -49,7 +49,17 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public Guid DepartmentId { get; set; }
 
         /// <summary>
-        /// 所在区域
+        /// 省
+        /// </summary>
+        public int ProvinceId { get; set; }
+
+        /// <summary>
+        /// 市
+        /// </summary>
+        public int CityId { get; set; }
+
+        /// <summary>
+        /// 区
         /// </summary>
         public int AreaId { get; set; }
     }

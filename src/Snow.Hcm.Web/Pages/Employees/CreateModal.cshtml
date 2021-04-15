@@ -17,9 +17,9 @@
             <abp-input asp-for="Employee.IdCardNumber" />
             <div class="form-row">
                 <div class="form-group col-md-9">
-                    <label asp-for="Employee.BirthDay" class="control-label"></label>
-                    <input asp-for="Employee.BirthDay" class="form-control" />
-                    <span asp-validation-for="Employee.BirthDay" class="text-danger"></span>
+                    <label asp-for="Employee.Birthday" class="control-label"></label>
+                    <input asp-for="Employee.Birthday" class="form-control" />
+                    <span asp-validation-for="Employee.Birthday" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-3">
                     <label asp-for="Employee.Calendar" class="control-label"></label>
@@ -28,7 +28,12 @@
                 </div>
             </div>
             <abp-select asp-for="Employee.Gender" />
-            @await Component.InvokeAsync("Region", new { parentId = 100000, areaElementName = "areaId" })
+            <abp-input asp-for="Employee.BankCardNumber" />
+            <abp-select asp-for="Employee.MaritalStatus" />
+            <abp-select asp-for="Employee.PoliticalStatus" />
+            @await Component.InvokeAsync("Region", new { parentId = 100000 })
+            <abp-input asp-for="Employee.ProvinceId" />
+            <abp-input asp-for="Employee.CityId" />
             <abp-input asp-for="Employee.AreaId" />
             <abp-input asp-for="Employee.Address" />
 

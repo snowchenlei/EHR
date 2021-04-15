@@ -13,5 +13,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public const int MaxPhoneNumberLength = 11;
         public const int MaxIdCardNumberLength = 20;
         public const int MaxAddressLength = 255;
+        public const int MaxBankCardNumberLength = 50;
     }
 }

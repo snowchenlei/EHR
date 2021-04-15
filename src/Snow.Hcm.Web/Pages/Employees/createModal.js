@@ -1,19 +1,24 @@
 ﻿abp.modals.EmployeeCreateModal = function () {
     function initModal(modalManager, args) {
-        var $dateRangePicker = $('#Employee_BirthDay');
-        if ($('#Employee_AreaId').val() === '') {
+        var $dateRangePicker = $('#Employee_Birthday');
+        if ($('#sel_area').val() !== '') {
+            $('#Employee_ProvinceId').val($("#sel_province").val());
+            $('#Employee_CityId').val($("#sel_city").val());
             $('#Employee_AreaId').val($("#sel_area").val());
         }
         $('#sel_area').change(function () {
-            $('#Employee_AreaId').val(parseInt($(this).val()));
+            $('#Employee_ProvinceId').val($("#sel_province").val());
+            $('#Employee_CityId').val($("#sel_city").val());
+            $('#Employee_AreaId').val($("#sel_area").val());
         });
         $('#Employee_IdCardNumber').change(function () {
             if ($('#Employee_IdCardNumber-error').length > 0) {
                 return;
             }
             var idCardNumber = $(this).val();
-            $dateRangePicker.data('daterangepicker').setStartDate(getBirthdayByIdCard(idCardNumber));
-            $dateRangePicker.change();
+            var birthday = getBirthdayByIdCard(idCardNumber);
+            $dateRangePicker.data('daterangepicker').setStartDate(birthday);
+            $dateRangePicker.data('daterangepicker').setEndDate(birthday);            
             var sex = getSexByIdCard(idCardNumber);
             if (sex !== '') {
                 $('#Employee_Gender').val(sex === '女' ? 'Woman' : 'Man');

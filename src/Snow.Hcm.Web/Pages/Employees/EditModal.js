@@ -2,12 +2,14 @@
     function initModal(modalManager, args) {
         var $dateRangePicker = $('#Employee_Birthday');
         $('#sel_area').change(function () {
-            $('#Employee_AreaId').val(parseInt($(this).val()));
-        });
+            $('#Employee_ProvinceId').val($("#sel_province").val());
+            $('#Employee_CityId').val($("#sel_city").val());
+            $('#Employee_AreaId').val($("#sel_area").val());
+        });        
         $dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
-            autoUpdateInput: false,
+            //autoUpdateInput: false,
             drops: "up",
             autoApply: true,
             locale: {
@@ -25,12 +27,17 @@
                     '七月', '八月', '九月', '十月', '十一月', '十二月'
                 ],
             },
-            startDate: moment(),
+            //startDate: moment(),
             minDate: moment().add(-100, 'years'),
             maxDate: moment(),
             firstDay: moment.localeData()._week.dow
         }, function (start, end, label) {
+            console.log(start)
         });
+        var birthday = moment($('#Employee_Birthday').val()).format('YYYY-MM-DD');
+        $('#Employee_Birthday').val(birthday);
+        $dateRangePicker.data('daterangepicker').setStartDate(birthday);
+        $dateRangePicker.data('daterangepicker').setEndDate(birthday);
     };
 
     return {

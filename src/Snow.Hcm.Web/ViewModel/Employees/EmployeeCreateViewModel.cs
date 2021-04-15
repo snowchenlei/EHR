@@ -51,12 +51,28 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public DateTime Birthday { get; set; }
 
         /// <summary>
         /// 历法
         /// </summary>
         public Calendar Calendar { get; set; }
+
+        /// <summary>
+        /// 银行卡号
+        /// </summary>
+        [DataType(DataType.CreditCard)]
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 婚姻状态
+        /// </summary>
+        public MaritalStatus MaritalStatus { get; set; }
+
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        public PoliticalStatus PoliticalStatus { get; set; }
 
         /// <summary>
         /// 部门
@@ -65,7 +81,19 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public Guid DepartmentId { get; set; }
 
         /// <summary>
-        /// 所在区域
+        /// 省
+        /// </summary>
+        [HiddenInput]
+        public int ProvinceId { get; set; }
+
+        /// <summary>
+        /// 市
+        /// </summary>
+        [HiddenInput]
+        public int CityId { get; set; }
+
+        /// <summary>
+        /// 区
         /// </summary>
         [HiddenInput]
         public int AreaId { get; set; }

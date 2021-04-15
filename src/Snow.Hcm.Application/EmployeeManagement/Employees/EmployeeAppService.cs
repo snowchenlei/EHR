@@ -109,7 +109,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         [Authorize(HcmPermissions.Employees.Update)]
         public virtual async Task<EmployeeListDto> UpdateAsync(Guid id, EmployeeUpdateDto input)
         {
-            if (await _employeeRepository.AnyAsync(e => e.PhoneNumber == input.PhoneNumber))
+            if (await _employeeRepository.AnyAsync(e => e.PhoneNumber == input.PhoneNumber && e.Id != id))
             {
                 throw new UserFriendlyException(L["Existed", L["Employee"]]);
             }

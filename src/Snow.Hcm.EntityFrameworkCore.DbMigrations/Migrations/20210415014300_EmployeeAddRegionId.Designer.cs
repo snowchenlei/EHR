@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Snow.Hcm.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Snow.Hcm.Migrations
 {
     [DbContext(typeof(HcmMigrationsDbContext))]
-    partial class HcmMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210415014300_EmployeeAddRegionId")]
+    partial class EmployeeAddRegionId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,10 +95,6 @@ namespace Snow.Hcm.Migrations
                     b.Property<int>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BankCardNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
@@ -156,9 +154,6 @@ namespace Snow.Hcm.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<int>("MaritalStatus")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -166,9 +161,6 @@ namespace Snow.Hcm.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
-
-                    b.Property<int>("PoliticalStatus")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProvinceId")
                         .HasColumnType("int");

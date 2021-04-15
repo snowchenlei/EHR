@@ -49,7 +49,9 @@ namespace Snow.Hcm.Web.Pages.Employees
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _employeeAppService.UpdateAsync(Employee.Id,ObjectMapper.Map<EmployeeEditViewModel, EmployeeUpdateDto>(Employee));
+            var dto = ObjectMapper.Map<EmployeeEditViewModel, EmployeeUpdateDto>(Employee);
+            dto.IsGregorianCalendar = Employee.Calendar == Calendar.GregorianCalendar ? true : false;
+            await _employeeAppService.UpdateAsync(Employee.Id, dto);
             return NoContent();
         }
     }

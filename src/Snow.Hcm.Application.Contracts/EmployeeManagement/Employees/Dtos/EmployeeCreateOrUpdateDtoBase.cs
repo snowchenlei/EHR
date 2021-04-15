@@ -30,6 +30,21 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public DateTime Birthday { get; set; }
 
         /// <summary>
+        /// 银行卡号
+        /// </summary>
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 婚姻状态
+        /// </summary>
+        public MaritalStatus MaritalStatus { get; set; }
+
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        public PoliticalStatus PoliticalStatus { get; set; }
+
+        /// <summary>
         /// 是否公历
         /// </summary>
         public bool IsGregorianCalendar { get; set; }
@@ -40,7 +55,17 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public Guid DepartmentId { get; set; }
 
         /// <summary>
-        /// 所在区域
+        /// 省
+        /// </summary>
+        public int ProvinceId { get; set; }
+
+        /// <summary>
+        /// 市
+        /// </summary>
+        public int CityId { get; set; }
+
+        /// <summary>
+        /// 区
         /// </summary>
         public int AreaId { get; set; }
     }
