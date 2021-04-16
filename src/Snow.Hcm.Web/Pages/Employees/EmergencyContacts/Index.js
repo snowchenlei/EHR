@@ -1,19 +1,19 @@
 ﻿; (function ($) {
     var l = abp.localization.getResource('Hcm');
-    var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
+    var _emergencyContactAppService = snow.hcm.employeeManagement.emergencyContacts.emergencyContact;
     var _createModal = new abp.ModalManager({
-        viewUrl: '/Employees/CreateModal',
-        modalClass: 'EmployeeCreateModal',
+        viewUrl: '/EmergencyContacts/CreateModal',
+        modalClass: 'EmergencyContactCreateModal',
         //scriptUrl: '/Pages/Employees/CreateModal.js',
     });
     var _editModal = new abp.ModalManager({
-        viewUrl: '/Employees/EditModal',
-        modalClass: 'EmployeeEditModal',
+        viewUrl: '/EmergencyContacts/EditModal',
+        modalClass: 'EmergencyContactEditModal',
         //scriptUrl: '/Pages/Employees/EditModal.js',
     });
 
     $(function () {
-        var _$wrapper = $('#EmployeesWrapper');
+        var _$wrapper = $('#EmergencyContactsWrapper');
         var _$table = _$wrapper.find('table');
 
         var _dataTable = _$table.DataTable(
@@ -23,7 +23,7 @@
                 order: [[1, "asc"]],
                 searching: true,
                 scrollX: true,
-                ajax: abp.libs.datatables.createAjax(_employeeAppService.getList),
+                ajax: abp.libs.datatables.createAjax(_emergencyContactAppService.getList),
                 columnDefs: [
                     {
                         title: l("Actions"),
@@ -32,19 +32,18 @@
                                 {
                                     text: l('Edit'),
                                     visible: abp.auth.isGranted(
-                                        'Hcm.Employee.Update'
+                                        'Hcm.EmergencyContact.Update'
                                     ),
                                     action: function (data) {
-                                        window.location.href = '/Employees/Edit/?id=' + data.record.id
-                                        //_editModal.open({
-                                        //    id: data.record.id,
-                                        //});
+                                        _editModal.open({
+                                            id: data.record.id,
+                                        });
                                     },
                                 },
                                 {
                                     text: l('Delete'),
                                     visible: abp.auth.isGranted(
-                                        'Hcm.Employee.Delete'
+                                        'Hcm.EmergencyContact.Delete'
                                     ),
                                     confirmMessage: function (data) {
                                         return l(
@@ -53,7 +52,7 @@
                                         );
                                     },
                                     action: function (data) {
-                                        _employeeAppService
+                                        _emergencyContactAppService
                                             .delete(data.record.id)
                                             .then(function () {
                                                 _dataTable.ajax.reload();
@@ -64,10 +63,6 @@
                         }
                     },
                     {
-                        title: l('EmployeeNumber'),
-                        data: "employeeNumber"
-                    },
-                    {
                         title: l('Name'),
                         data: "name"
                     },
@@ -76,30 +71,8 @@
                         data: "phoneNumber"
                     },
                     {
-                        title: l('IdCardNumber'),
-                        data: "idCardNumber"
-                    },
-                    {
-                        title: l('Age'),
-                        data: "age"
-                    },
-                    {
-                        title: l('Gender'),
-                        data: "gender"
-                    },
-                    {
-                        title: l('BirthDay'),
-                        data: "birthDay",
-                        render: function (data) {
-                            return data.substring(0, data.indexOf(' '));
-                        }
-                    },
-                    {
-                        title: l('JoinDate'),
-                        data: "joinDate",
-                        render: function (data) {
-                            return data.substring(0, data.indexOf(' '));
-                        }
+                        title: l('Relation'),
+                        data: "relation"
                     }
                 ]
             })
@@ -108,11 +81,11 @@
         _createModal.onResult(function () {
             _dataTable.ajax.reload();
         });
-        _editModal.onResult(function () {            
+        _editModal.onResult(function () {
             _dataTable.ajax.reload();
         });
 
-        _$wrapper.find('button[name=CreateEmployee]').click(function (e) {
+        _$wrapper.find('button[name=CreateEmergencyContact]').click(function (e) {
             e.preventDefault();
             _createModal.open();
         });

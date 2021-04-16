@@ -43,7 +43,7 @@
                 <abp-card-title>@L["Employees"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-right">
-                @if (await Authorization.IsGrantedAsync(HcmPermissions.Departments.Create))
+                @if (await Authorization.IsGrantedAsync(HcmPermissions.Employees.Create))
                 {
                     <abp-button name="CreateEmployee"
                                 text="@L["NewEmployee"].Value"

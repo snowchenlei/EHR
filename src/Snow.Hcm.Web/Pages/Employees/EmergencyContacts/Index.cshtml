@@ -1,0 +1,31 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Snow.Hcm.Localization;
+@using Microsoft.Extensions.Localization
+@using Snow.Hcm.Permissions
+@inject IStringLocalizer<HcmResource> L
+@inject IAuthorizationService Authorization
+@model Snow.Hcm.Web.Pages.Employees.EmergencyContacts.IndexModel
+@{
+}
+<abp-card id="EmergencyContactsWrapper">
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["EmergencyContacts"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                @if (await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Create))
+                {
+                    <abp-button name="CreateEmployee"
+                                text="@L["NewEmergencyContact"].Value"
+                                icon="plus"
+                                button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="EmergencyContactsTable"></abp-table>
+    </abp-card-body>
+</abp-card>

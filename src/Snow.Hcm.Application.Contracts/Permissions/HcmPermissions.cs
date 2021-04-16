@@ -11,12 +11,20 @@
             public const string Delete = Default + ".Delete";
         }
 
-public static class Departments
-{
-public const string Default = GroupName + ".Department";
-public const string Create = Default + ".Create";
-public const string Update = Default + ".Update";
-public const string Delete = Default + ".Delete";
-}
+        public static class Departments
+        {
+            public const string Default = GroupName + ".Department";
+            public const string Create = Default + ".Create";
+            public const string Update = Default + ".Update";
+            public const string Delete = Default + ".Delete";
+        }
+
+        public static class EmergencyContacts
+        {
+            public const string Default = GroupName + ".EmergencyContact";
+            public const string Create = Default + ".Create";
+            public const string Update = Default + ".Update";
+            public const string Delete = Default + ".Delete";
+        }
     }
 }

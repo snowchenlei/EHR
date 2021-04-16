@@ -21,6 +21,12 @@ departments.AddChild(HcmPermissions.Departments.Create, L("Permission:Create"));
 departments.AddChild(HcmPermissions.Departments.Update, L("Permission:Edit"));
 departments.AddChild(HcmPermissions.Departments.Delete, L("Permission:Delete"));
 
+
+var emergencyContacts = hcmGroup.AddPermission(HcmPermissions.EmergencyContacts.Default, L("Permission:EmergencyContacts"));
+emergencyContacts.AddChild(HcmPermissions.EmergencyContacts.Create, L("Permission:Create"));
+emergencyContacts.AddChild(HcmPermissions.EmergencyContacts.Update, L("Permission:Edit"));
+emergencyContacts.AddChild(HcmPermissions.EmergencyContacts.Delete, L("Permission:Delete"));
+
         }
 
         private static LocalizableString L(string name)

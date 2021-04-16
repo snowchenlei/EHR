@@ -11,7 +11,7 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
     /// <summary>
     /// 紧急联络人
     /// </summary>
-    public class EmergencyContact:Entity<int>,IHasCreationTime
+    public class EmergencyContact:Entity<Guid>,IHasCreationTime
     {
         /// <summary>
         /// 姓名
