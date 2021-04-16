@@ -4,12 +4,12 @@
     var _createModal = new abp.ModalManager({
         viewUrl: '/Employees/CreateModal',
         modalClass: 'EmployeeCreateModal',
-        scriptUrl: '/Pages/Employees/CreateModal.js',
+        //scriptUrl: '/Pages/Employees/CreateModal.js',
     });
     var _editModal = new abp.ModalManager({
         viewUrl: '/Employees/EditModal',
         modalClass: 'EmployeeEditModal',
-        scriptUrl: '/Pages/Employees/EditModal.js',
+        //scriptUrl: '/Pages/Employees/EditModal.js',
     });
 
     $(function () {

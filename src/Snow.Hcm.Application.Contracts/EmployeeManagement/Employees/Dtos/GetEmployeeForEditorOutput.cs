@@ -29,6 +29,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public string IdCardNumber { get; set; }
 
         /// <summary>
+        /// 银行卡号
+        /// </summary>
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
         /// 详细地址
         /// </summary>
         public string Address { get; set; }

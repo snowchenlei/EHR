@@ -27,17 +27,17 @@
                     '七月', '八月', '九月', '十月', '十一月', '十二月'
                 ],
             },
-            //startDate: moment(),
+            startDate: moment($('#Employee_Birthday').val()),//moment(),
             minDate: moment().add(-100, 'years'),
             maxDate: moment(),
             firstDay: moment.localeData()._week.dow
         }, function (start, end, label) {
             console.log(start)
         });
-        var birthday = moment($('#Employee_Birthday').val()).format('YYYY-MM-DD');
-        $('#Employee_Birthday').val(birthday);
-        $dateRangePicker.data('daterangepicker').setStartDate(birthday);
-        $dateRangePicker.data('daterangepicker').setEndDate(birthday);
+        //var birthday = moment($('#Employee_Birthday').val()).format('YYYY-MM-DD');
+        //$('#Employee_Birthday').val(birthday);
+        //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
+        //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
     };
 
     return {

@@ -14,17 +14,20 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// <summary>
         /// 姓名
         /// </summary>
+        [Required]
         [Placeholder("Name")]
         public string Name { get; set; }
 
         /// <summary>
         /// 性别
         /// </summary>
+        [Required]
         public Gender Gender { get; set; }
 
         /// <summary>
         /// 手机号
         /// </summary>
+        [Required]
         [Placeholder("PhoneNumber")]
         [RegularExpression("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$")]
         public string PhoneNumber { get; set; }
@@ -32,6 +35,7 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// <summary>
         /// 身份证号
         /// </summary>
+        [Required]
         [Placeholder("IdCardNumber")]
         [RegularExpression("(^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$)|(^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{2}$)")]
         public string IdCardNumber { get; set; }
@@ -77,6 +81,7 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         /// <summary>
         /// 部门
         /// </summary>
+        [Required]
         [Display(Name = "Department")]
         public Guid DepartmentId { get; set; }
 
