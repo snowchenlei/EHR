@@ -17,8 +17,9 @@
     </div>
 </div>
 <script type="text/javascript">
-    var regionAppService = snow.regionManagement.admin.regions.region;
-    $(function () {
+    var regionAppService;
+    window.onload = function () {
+        regionAppService = snow.regionManagement.admin.regions.region;
         $('#sel_province').change(function () {
             loadRegionChildren('sel_city', parseInt($(this).val()), function (parentId) {
                 loadArea(parentId);
@@ -27,7 +28,7 @@
         $('#sel_city').change(function () {
             loadArea(parseInt($(this).val()));
         })
-    });
+    }
     function loadArea(parentId) {
         loadRegionChildren('sel_area', parentId, function () {
             $("#sel_area").trigger("change");

@@ -9,8 +9,11 @@ namespace Snow.Hcm.Web.Pages.Employees.EmergencyContacts
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            var partialView = new PartialViewResult();
+            partialView.ViewName = "/Pages/Employees/EmergencyContacts/Index";
+            return partialView;
         }
     }
 }
