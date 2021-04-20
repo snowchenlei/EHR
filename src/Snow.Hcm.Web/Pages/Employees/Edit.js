@@ -44,12 +44,12 @@
         var l = abp.localization.getResource('Hcm');
         var _emergencyContactAppService = snow.hcm.employeeManagement.emergencyContacts.emergencyContact;
         var _createModal = new abp.ModalManager({
-            viewUrl: '/EmergencyContacts/CreateModal',
+            viewUrl: '/Employees/EmergencyContacts/CreateModal',
             modalClass: 'EmergencyContactCreateModal',
             //scriptUrl: '/Pages/Employees/CreateModal.js',
         });
         var _editModal = new abp.ModalManager({
-            viewUrl: '/EmergencyContacts/EditModal',
+            viewUrl: '/Employees/EmergencyContacts/EditModal',
             modalClass: 'EmergencyContactEditModal',
             //scriptUrl: '/Pages/Employees/EditModal.js',
         });
@@ -128,7 +128,9 @@
 
             _$wrapper.find('button[name=CreateEmergencyContact]').click(function (e) {
                 e.preventDefault();
-                _createModal.open();
+                _createModal.open({
+                    employeeId: $('#Employee_Id').val()
+                });
             });
         });
     }

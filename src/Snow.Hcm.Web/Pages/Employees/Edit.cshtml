@@ -82,7 +82,7 @@
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 @if (await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Create))
                 {
-                    <abp-button name="CreateEmployee"
+                    <abp-button name="CreateEmergencyContact"
                                 text="@L["NewEmergencyContact"].Value"
                                 icon="plus"
                                 button-type="Primary" />

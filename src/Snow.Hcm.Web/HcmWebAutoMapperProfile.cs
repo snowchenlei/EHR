@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Snow.Hcm.EmployeeManagement.Departments.Dtos;
+using Snow.Hcm.EmployeeManagement.EmergencyContacts.Dtos;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Web.ViewModel.Departments;
 using Snow.Hcm.Web.ViewModel.Employees;
+using Snow.Hcm.Web.ViewModel.Employees.EmergencyContacts;
 using Snow.Hcm.Web.ViewModel.Regions;
 using Snow.RegionManagement.Admin.Regions;
 
@@ -16,6 +18,11 @@ namespace Snow.Hcm.Web
             CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
             CreateMap<EmployeeEditViewModel, EmployeeUpdateDto>();
             CreateMap<GetEmployeeForEditorOutput, EmployeeEditViewModel>();
+
+            #region EmergencyContact
+            CreateMap<EmergencyContactCreateViewModel, EmergencyContactCreateDto>();
+
+            #endregion
             #endregion
 
             #region Department

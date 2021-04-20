@@ -34,11 +34,12 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <summary>
         /// 详情
         /// </summary>
-        /// <param name="id">主键</param>
+        /// <param name="employeeId">员工Id</param>
+        /// <param name="emergencyContactId">主键</param>
         /// <returns></returns>
-        public virtual async Task<EmergencyContactDetailDto> GetAsync(Guid id)
+        public virtual async Task<EmergencyContactDetailDto> GetAsync(Guid employeeId, Guid emergencyContactId)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(id);
+            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
 
             return ObjectMapper.Map<EmergencyContact, EmergencyContactDetailDto>(entity);
         }
@@ -46,9 +47,10 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <summary>
         /// 列表
         /// </summary>
+        /// <param name="employeeId">员工Id</param>
         /// <param name="input">查询条件</param>
         /// <returns>结果</returns>
-        public virtual async Task<PagedResultDto<EmergencyContactListDto>> GetListAsync(GetEmergencyContactsInput input)
+        public virtual async Task<PagedResultDto<EmergencyContactListDto>> GetListAsync(Guid employeeId, GetEmergencyContactsInput input)
         {
             await NormalizeMaxResultCountAsync(input);
 
@@ -69,24 +71,27 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <summary>
         /// 获取修改
         /// </summary>
-        /// <param name="id">主键</param>
+        /// <param name="employeeId">员工Id</param>
+        /// <param name="emergencyContactId">主键</param>
         /// <returns></returns>
-        public virtual async Task<GetEmergencyContactForEditorOutput> GetEditorAsync(Guid id)
+        public virtual async Task<GetEmergencyContactForEditorOutput> GetEditorAsync(Guid employeeId, Guid emergencyContactId)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(id);
+            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
 
             return ObjectMapper.Map<EmergencyContact, GetEmergencyContactForEditorOutput>(entity);
         }
-    
+
         /// <summary>
         /// 创建
         /// </summary>
+        /// <param name="employeeId">员工Id</param>
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(HcmPermissions.EmergencyContacts.Create)]
-        public virtual async Task<EmergencyContactListDto> CreateAsync(EmergencyContactCreateDto input)
+        public virtual async Task<EmergencyContactListDto> CreateAsync(Guid employeeId, EmergencyContactCreateDto input)
         {
             var entity = ObjectMapper.Map<EmergencyContactCreateDto, EmergencyContact>(input);
+            entity.EmployeeId = employeeId;
             entity = await _emergencyContactRepository.InsertAsync(entity, true);
             return ObjectMapper.Map<EmergencyContact, EmergencyContactListDto>(entity);
         }
@@ -94,13 +99,14 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <summary>
         /// 编辑
         /// </summary>
-        /// <param name="id">主键</param>
+        /// <param name="employeeId">员工Id</param>
+        /// <param name="emergencyContactId">主键</param>
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(HcmPermissions.EmergencyContacts.Update)]
-        public virtual async Task<EmergencyContactListDto> UpdateAsync(Guid id, EmergencyContactUpdateDto input)
+        public virtual async Task<EmergencyContactListDto> UpdateAsync(Guid employeeId, Guid emergencyContactId, EmergencyContactUpdateDto input)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(id);
+            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
             entity = ObjectMapper.Map(input, entity);
             entity = await _emergencyContactRepository.UpdateAsync(entity);
             return ObjectMapper.Map<EmergencyContact, EmergencyContactListDto>(entity);
@@ -109,15 +115,14 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="id">主键</param>
+        /// <param name="employeeId">员工Id</param>
+        /// <param name="emergencyContactId">主键</param>
         /// <returns></returns>
         [Authorize(HcmPermissions.EmergencyContacts.Delete)]
-        public virtual async Task DeleteAsync(Guid id)
+        public virtual async Task DeleteAsync(Guid employeeId, Guid emergencyContactId)
         {
-            await _emergencyContactRepository.DeleteAsync(s => s.Id == id);
+            await _emergencyContactRepository.DeleteAsync(s => s.Id == emergencyContactId);
         }
-
-        
 
         /// <summary>
         /// 规范最大记录数

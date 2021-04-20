@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Snow.Hcm.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Snow.Hcm.Migrations
 {
     [DbContext(typeof(HcmMigrationsDbContext))]
-    partial class HcmMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210420102155_RemoveEmergencyContact")]
+    partial class RemoveEmergencyContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,38 +44,6 @@ namespace Snow.Hcm.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HcmDepartment");
-                });
-
-            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("Relation")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("HcmEmergencyContact");
                 });
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Employees.Employee", b =>
@@ -2120,15 +2090,6 @@ namespace Snow.Hcm.Migrations
                     b.ToTable("AbpTenantConnectionStrings");
                 });
 
-            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>
-                {
-                    b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", null)
-                        .WithMany("EmergencyContacts")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Employees.Employee", b =>
                 {
                     b.HasOne("Snow.Hcm.EmployeeManagement.Departments.Department", "Department")
@@ -2433,8 +2394,6 @@ namespace Snow.Hcm.Migrations
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Employees.Employee", b =>
                 {
-                    b.Navigation("EmergencyContacts");
-
                     b.Navigation("Salaries");
                 });
 
