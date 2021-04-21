@@ -1,6 +1,6 @@
 ﻿; (function ($) {
     var l = abp.localization.getResource('Hcm');
-    var _emergencyContactAppService = snow.hcm.employeeManagement.emergencyContacts.emergencyContact;
+    var _emergencyContactAppService = snow.hcm.controllers.employees.emergencyContact;
     var _createModal = new abp.ModalManager({
         viewUrl: '/EmergencyContacts/CreateModal',
         modalClass: 'EmergencyContactCreateModal',

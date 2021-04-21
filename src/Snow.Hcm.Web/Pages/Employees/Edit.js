@@ -42,7 +42,7 @@
     });
     function loadTable() {
         var l = abp.localization.getResource('Hcm');
-        var _emergencyContactAppService = snow.hcm.employeeManagement.emergencyContacts.emergencyContact;
+        var _emergencyContactAppService = snow.hcm.controllers.employees.emergencyContact;
         var _createModal = new abp.ModalManager({
             viewUrl: '/Employees/EmergencyContacts/CreateModal',
             modalClass: 'EmergencyContactCreateModal',
@@ -64,7 +64,7 @@
                     order: [[1, "asc"]],
                     searching: true,
                     scrollX: true,
-                    ajax: abp.libs.datatables.createAjax(_emergencyContactAppService.getList),
+                    ajax: abp.libs.datatables.createAjax(_emergencyContactAppService.getList, inputAction),
                     columnDefs: [
                         {
                             title: l("Actions"),
@@ -133,5 +133,9 @@
                 });
             });
         });
+    }
+    function inputAction(requestData, settings) {
+        debugger
+        return { employeeId: $('#Employee_Id').val(), maxResultCount: 10, skipCount: 0, sorting: "name asc" }
     }
 })(jQuery);

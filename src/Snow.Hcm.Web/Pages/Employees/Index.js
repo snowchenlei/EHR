@@ -1,6 +1,6 @@
 ﻿; (function ($) {
     var l = abp.localization.getResource('Hcm');
-    var _employeeAppService = snow.hcm.employeeManagement.employees.employee;
+    var _employeeAppService = snow.hcm.controllers.employees.employee;
     var _createModal = new abp.ModalManager({
         viewUrl: '/Employees/CreateModal',
         modalClass: 'EmployeeCreateModal',

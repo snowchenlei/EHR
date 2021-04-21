@@ -1,6 +1,6 @@
 ﻿; (function ($) {
     var l = abp.localization.getResource('Hcm');
-    var _departmentAppService = snow.hcm.employeeManagement.departments.department;
+    var _departmentAppService = snow.hcm.controllers.departments.department;
     var _createModal = new abp.ModalManager('/Departments/CreateModal');
     var _editModal = new abp.ModalManager('/Departments/EditModal');
 

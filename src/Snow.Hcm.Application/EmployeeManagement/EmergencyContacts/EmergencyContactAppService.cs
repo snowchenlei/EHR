@@ -56,6 +56,8 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
 
             var queryable = await _emergencyContactRepository.GetQueryableAsync();
 
+            queryable = queryable.Where(q => q.EmployeeId == input.EmployeeId);
+
              long totalCount = await AsyncExecuter.CountAsync(queryable);
             
             var entities = await AsyncExecuter.ToListAsync(queryable

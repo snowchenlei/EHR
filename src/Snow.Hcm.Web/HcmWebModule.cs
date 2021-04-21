@@ -81,7 +81,7 @@ namespace Snow.Hcm.Web
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
-            ConfigureAutoApiControllers();
+            //ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
         }
         private void ConfigureJsonOptions()

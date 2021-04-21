@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 	  <OutputType>Library</OutputType>
 	  <StartupObject />
 	  <AssemblyName>Abp.AspNetCore.Mvc.UI.Theme.AdminLTE</AssemblyName>
@@ -27,11 +27,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="3.2.0" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="3.2.0" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="3.2.0" />
-		<PackageReference Include="Volo.Abp.Identity.Web" Version="3.2.0" />
-		<PackageReference Include="Volo.Abp.TenantManagement.Web" Version="3.2.0" />
+		<PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.2.1" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.2.1" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="4.2.1" />
+		<PackageReference Include="Volo.Abp.Identity.Web" Version="4.2.1" />
+		<PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>
