@@ -64,7 +64,9 @@
                     order: [[1, "asc"]],
                     searching: true,
                     scrollX: true,
-                    ajax: abp.libs.datatables.createAjax(_emergencyContactAppService.getList, inputAction),
+                    ajax: abp.libs.datatables.createAjax(function (input) {
+                        return _emergencyContactAppService.getList($('#Employee_Id').val(), input);
+                    }),
                     columnDefs: [
                         {
                             title: l("Actions"),
@@ -133,9 +135,5 @@
                 });
             });
         });
-    }
-    function inputAction(requestData, settings) {
-        debugger
-        return { employeeId: $('#Employee_Id').val(), maxResultCount: 10, skipCount: 0, sorting: "name asc" }
     }
 })(jQuery);
