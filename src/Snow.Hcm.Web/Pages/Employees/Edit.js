@@ -1,6 +1,8 @@
 ﻿; (function ($) {
+    var employeeId;
     $(function () {
         var $dateRangePicker = $('#Employee_Birthday');
+        employeeId = $('#Employee_Id').val();
         $('#sel_area').change(function () {
             $('#Employee_ProvinceId').val($("#sel_province").val());
             $('#Employee_CityId').val($("#sel_city").val());
@@ -65,7 +67,7 @@
                     searching: true,
                     scrollX: true,
                     ajax: abp.libs.datatables.createAjax(function (input) {
-                        return _emergencyContactAppService.getList($('#Employee_Id').val(), input);
+                        return _emergencyContactAppService.getList(employeeId, input);
                     }),
                     columnDefs: [
                         {
@@ -79,7 +81,8 @@
                                         ),
                                         action: function (data) {
                                             _editModal.open({
-                                                id: data.record.id,
+                                                employeeId: employeeId,
+                                                emergencyContactId: data.record.id
                                             });
                                         },
                                     },
@@ -131,7 +134,7 @@
             _$wrapper.find('button[name=CreateEmergencyContact]').click(function (e) {
                 e.preventDefault();
                 _createModal.open({
-                    employeeId: $('#Employee_Id').val()
+                    employeeId: employeeId
                 });
             });
         });

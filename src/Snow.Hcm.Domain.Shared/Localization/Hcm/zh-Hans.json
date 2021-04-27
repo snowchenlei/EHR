@@ -42,6 +42,7 @@
     "Address": "地址",
     "IdCardNumber": "身份证号",
     "PhoneNumber": "手机号",
-    "Department": "部门"
+    "Department": "部门",
+    "Relation": "关系" 
   }
 }

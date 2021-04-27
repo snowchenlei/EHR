@@ -3,6 +3,7 @@ using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Salaries;
+using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -36,6 +37,14 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.Property(e => e.Name).HasMaxLength(EmergencyContactConsts.MaxNameLength);
                 b.Property(e => e.PhoneNumber).HasMaxLength(EmergencyContactConsts.MaxPhoneNumberLength);
                 b.Property(e => e.Relation).HasMaxLength(EmergencyContactConsts.MaxRelationLength);
+                b.ConfigureCreationTime();
+            });
+
+            builder.Entity<WorkExperience>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(WorkExperienceConsts), HcmConsts.DbSchema);
+                b.Property(e => e.CompanyName).HasMaxLength(WorkExperienceConsts.MaxCompanyNameLength);
+                b.Property(e => e.Post).HasMaxLength(WorkExperienceConsts.MaxPostLength);
                 b.ConfigureCreationTime();
             });
 

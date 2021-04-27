@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp;
 using Volo.Abp.Linq;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts.Dtos;
+using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.Permissions;
 
 namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
@@ -19,16 +21,20 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
     [Authorize(HcmPermissions.EmergencyContacts.Default)]
     public class EmergencyContactAppService : HcmAppService, IEmergencyContactAppService
     {
+        private readonly IRepository<Employee, Guid> _employeeRepository;
         private readonly IRepository<EmergencyContact, Guid> _emergencyContactRepository;
 
         /// <summary>
         /// .ctor
         /// </summary>
         /// <param name="emergencyContactRepository"></param>
+        /// <param name="employeeRepository"></param>
         public EmergencyContactAppService(
-            IRepository<EmergencyContact, Guid> emergencyContactRepository)
+            [NotNull] IRepository<EmergencyContact, Guid> emergencyContactRepository,
+            [NotNull] IRepository<Employee, Guid> employeeRepository)
         {
-            _emergencyContactRepository = emergencyContactRepository;
+            _emergencyContactRepository = emergencyContactRepository ?? throw new ArgumentNullException(nameof(emergencyContactRepository));
+            _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
         }
 
         /// <summary>
@@ -39,7 +45,10 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <returns></returns>
         public virtual async Task<EmergencyContactDetailDto> GetAsync(Guid employeeId, Guid emergencyContactId)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
+            await _employeeRepository.GetAsync(employeeId);
+
+            EmergencyContact entity = await _emergencyContactRepository
+                .GetAsync(ec => ec.EmployeeId == employeeId && ec.Id == emergencyContactId);
 
             return ObjectMapper.Map<EmergencyContact, EmergencyContactDetailDto>(entity);
         }
@@ -78,7 +87,10 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         /// <returns></returns>
         public virtual async Task<GetEmergencyContactForEditorOutput> GetEditorAsync(Guid employeeId, Guid emergencyContactId)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
+            await _employeeRepository.GetAsync(employeeId);
+            
+            EmergencyContact entity = await _emergencyContactRepository
+                .GetAsync(ec => ec.EmployeeId == employeeId && ec.Id == emergencyContactId);
 
             return ObjectMapper.Map<EmergencyContact, GetEmergencyContactForEditorOutput>(entity);
         }
@@ -92,6 +104,8 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         [Authorize(HcmPermissions.EmergencyContacts.Create)]
         public virtual async Task<EmergencyContactListDto> CreateAsync(Guid employeeId, EmergencyContactCreateDto input)
         {
+            await _employeeRepository.GetAsync(employeeId);
+            
             var entity = ObjectMapper.Map<EmergencyContactCreateDto, EmergencyContact>(input);
             entity.EmployeeId = employeeId;
             entity = await _emergencyContactRepository.InsertAsync(entity, true);
@@ -108,7 +122,10 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         [Authorize(HcmPermissions.EmergencyContacts.Update)]
         public virtual async Task<EmergencyContactListDto> UpdateAsync(Guid employeeId, Guid emergencyContactId, EmergencyContactUpdateDto input)
         {
-            EmergencyContact entity = await _emergencyContactRepository.GetAsync(emergencyContactId);
+            await _employeeRepository.GetAsync(employeeId);
+
+            EmergencyContact entity = await _emergencyContactRepository
+                .GetAsync(ec=>ec.EmployeeId == employeeId && ec.Id == emergencyContactId);
             entity = ObjectMapper.Map(input, entity);
             entity = await _emergencyContactRepository.UpdateAsync(entity);
             return ObjectMapper.Map<EmergencyContact, EmergencyContactListDto>(entity);
@@ -123,7 +140,10 @@ namespace Snow.Hcm.EmployeeManagement.EmergencyContacts
         [Authorize(HcmPermissions.EmergencyContacts.Delete)]
         public virtual async Task DeleteAsync(Guid employeeId, Guid emergencyContactId)
         {
-            await _emergencyContactRepository.DeleteAsync(s => s.Id == emergencyContactId);
+            await _employeeRepository.GetAsync(employeeId);
+
+            await _emergencyContactRepository
+                .DeleteAsync(ec => ec.EmployeeId == employeeId && ec.Id == emergencyContactId);
         }
 
         /// <summary>

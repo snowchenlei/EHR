@@ -21,7 +21,8 @@ namespace Snow.Hcm.Web
 
             #region EmergencyContact
             CreateMap<EmergencyContactCreateViewModel, EmergencyContactCreateDto>();
-
+            CreateMap<GetEmergencyContactForEditorOutput, EmergencyContactEditViewModel>();
+            CreateMap<EmergencyContactEditViewModel, EmergencyContactUpdateDto>();
             #endregion
             #endregion
 

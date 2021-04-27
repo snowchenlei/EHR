@@ -3,6 +3,7 @@ using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Salaries;
+using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.Users;
 using Snow.RegionManagement.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -29,6 +30,7 @@ namespace Snow.Hcm.EntityFrameworkCore
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmergencyContact> EmergencyContacts { get; set; }
+        public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Salary> Salaries { get; set; }
 
