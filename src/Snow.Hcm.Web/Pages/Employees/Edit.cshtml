@@ -89,6 +89,16 @@
                 }
                 <abp-table striped-rows="true" id="EmergencyContactsTable"></abp-table>
             </div>
+            <div class="tab-pane fade" id="workExperience" role="tabpanel" aria-labelledby="contact-tab">
+                @if (await Authorization.IsGrantedAsync(HcmPermissions.WorkExperiences.Create))
+                {
+                    <abp-button name="CreateWorkExperience"
+                                text="@L["NewWorkExperience"].Value"
+                                icon="plus"
+                                button-type="Primary" />
+                }
+                <abp-table striped-rows="true" id="WorkExperienceTable"></abp-table>
+            </div>
         </div>
     </abp-card-body>
 </abp-card>

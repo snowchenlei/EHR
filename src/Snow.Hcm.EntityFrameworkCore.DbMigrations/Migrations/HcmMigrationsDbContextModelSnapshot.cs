@@ -44,6 +44,43 @@ namespace Snow.Hcm.Migrations
                     b.ToTable("HcmDepartment");
                 });
 
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EducationExperiences.EducationExperience", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<int>("Degree")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SchoolName")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<string>("Specialty")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("HcmEducationExperience");
+                });
+
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>
                 {
                     b.Property<Guid>("Id")
@@ -238,7 +275,7 @@ namespace Snow.Hcm.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("HcmWorkExperienceConsts");
+                    b.ToTable("HcmWorkExperience");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -2155,6 +2192,17 @@ namespace Snow.Hcm.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EducationExperiences.EducationExperience", b =>
+                {
+                    b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Snow.Hcm.EmployeeManagement.Departments;
+using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Salaries;
@@ -31,6 +32,7 @@ namespace Snow.Hcm.EntityFrameworkCore
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmergencyContact> EmergencyContacts { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
+        public DbSet<EducationExperience> EducationExperiences { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Salary> Salaries { get; set; }
 

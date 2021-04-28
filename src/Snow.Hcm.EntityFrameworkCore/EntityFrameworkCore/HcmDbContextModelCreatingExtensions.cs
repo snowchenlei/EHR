@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Snow.Hcm.EmployeeManagement.Departments;
+using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Salaries;
@@ -42,9 +43,17 @@ namespace Snow.Hcm.EntityFrameworkCore
 
             builder.Entity<WorkExperience>(b =>
             {
-                b.ToTable(HcmConsts.DbTablePrefix + nameof(WorkExperienceConsts), HcmConsts.DbSchema);
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(WorkExperience), HcmConsts.DbSchema);
                 b.Property(e => e.CompanyName).HasMaxLength(WorkExperienceConsts.MaxCompanyNameLength);
                 b.Property(e => e.Post).HasMaxLength(WorkExperienceConsts.MaxPostLength);
+                b.ConfigureCreationTime();
+            });
+
+            builder.Entity<EducationExperience>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(EducationExperience), HcmConsts.DbSchema);
+                b.Property(e => e.SchoolName).HasMaxLength(EducationExperienceConsts.MaxSchoolNameLength);
+                b.Property(e => e.Specialty).HasMaxLength(EducationExperienceConsts.MaxSpecialtyLength);
                 b.ConfigureCreationTime();
             });
 

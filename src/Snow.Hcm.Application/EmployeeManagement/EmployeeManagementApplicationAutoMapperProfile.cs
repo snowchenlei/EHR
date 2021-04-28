@@ -1,4 +1,6 @@
-﻿using Snow.Hcm.EmployeeManagement.EmergencyContacts;
+﻿using Snow.Hcm.EmployeeManagement.WorkExperiences;
+using Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos;
+using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts.Dtos;
 using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.Departments.Dtos;
@@ -48,6 +50,13 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<EmergencyContact, EmergencyContactDetailDto>();
             CreateMap<EmergencyContactCreateDto, EmergencyContact>();
             CreateMap<EmergencyContactUpdateDto, EmergencyContact>();
+            #endregion
+             #region 工作经历
+            CreateMap<WorkExperience, GetWorkExperienceForEditorOutput>();
+            CreateMap<WorkExperience, WorkExperienceListDto>();
+            CreateMap<WorkExperience, WorkExperienceDetailDto>();
+            CreateMap<WorkExperienceCreateDto, WorkExperience>();
+            CreateMap<WorkExperienceUpdateDto, WorkExperience>();
             #endregion
         }
     }

@@ -15,7 +15,7 @@ namespace Snow.Hcm.EmployeeManagement.EducationExperiences
     public class EducationExperience:Entity<Guid>,IHasCreationTime
     {
         /// <summary>
-        /// 公司名称
+        /// 学校名称
         /// </summary>
         public string SchoolName { get; set; }
 
@@ -27,7 +27,7 @@ namespace Snow.Hcm.EmployeeManagement.EducationExperiences
         /// <summary>
         /// 学历
         /// </summary>
-        public string EducationalBackground { get; set; }
+        public Degree Degree { get; set; }
 
         /// <summary>
         /// 开始时间
@@ -38,11 +38,6 @@ namespace Snow.Hcm.EmployeeManagement.EducationExperiences
         /// 结束时间
         /// </summary>
         public DateTime EndTime { get; set; }
-
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public string Description { get; set; }
 
         public DateTime CreationTime { get; }
 
