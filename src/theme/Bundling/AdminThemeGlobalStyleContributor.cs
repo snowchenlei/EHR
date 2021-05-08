@@ -1,4 +1,5 @@
-﻿using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+﻿using System.Collections.Generic;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 
 namespace Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Bundling
 {
@@ -15,6 +16,10 @@ namespace Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Bundling
             ////context.Files.Insert(1, "/libs/bootstrap/css/bootstrap.min.css");
             ////context.Files.Insert(2, "/libs/font-awesome/css/font-awesome.css");
             //context.Files.Add("/plugins/fontawesome-free/css/all.min.css");
+            
+            var selectScript = context.Files.Find(t => t.Contains("/libs/select2/css/select2.min.css"));
+            context.Files.InsertAfter(selectScript, "/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css");
+            
             context.Files.Add("/libs/Ionicons/css/ionicons.min.css");
             context.Files.Add("/plugins/overlayScrollbars/css/OverlayScrollbars.min.css");
             context.Files.Add("/themes/adminlte/css/adminlte.min.css");
