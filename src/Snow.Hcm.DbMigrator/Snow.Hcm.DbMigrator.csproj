@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Autofac" Version="4.2.1" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="4.3.0" />
     <ProjectReference Include="..\Snow.Hcm.Application.Contracts\Snow.Hcm.Application.Contracts.csproj" />
     <ProjectReference Include="..\Snow.Hcm.EntityFrameworkCore.DbMigrations\Snow.Hcm.EntityFrameworkCore.DbMigrations.csproj" />
   </ItemGroup>

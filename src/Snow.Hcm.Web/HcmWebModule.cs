@@ -32,6 +32,7 @@ using Volo.Abp.Account.Web;
 using Snow.RegionManagement.Admin.Web;
 using Abp.AspNetCore.Mvc.UI.Theme.AdminLTE;
 using Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Bundling;
+using Volo.Abp.SettingManagement.Web;
 
 namespace Snow.Hcm.Web
 {
@@ -41,13 +42,14 @@ namespace Snow.Hcm.Web
         typeof(HcmEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
+        typeof(AbpSettingManagementWebModule),
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreMvcUiAdminLTEThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule),
-        typeof(SnowRegionManagementWebModule)
+        typeof(AbpSwashbuckleModule)
+        //typeof(SnowRegionManagementWebModule)
         )]
     public class HcmWebModule : AbpModule
     {
@@ -212,7 +214,7 @@ namespace Snow.Hcm.Web
             }
 
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
