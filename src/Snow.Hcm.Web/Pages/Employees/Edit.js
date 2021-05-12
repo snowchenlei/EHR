@@ -16,12 +16,12 @@
     var _createWorkExperienceModal = new abp.ModalManager({
         viewUrl: '/Employees/WorkExperiences/CreateModal',
         modalClass: 'WorkExperienceCreateModal',
-        scriptUrl: '/Pages/WorkExperiences/CreateModal.js',
+        scriptUrl: '/Pages/Employees/WorkExperiences/CreateModal.js',
     });
     var _editWorkExperienceModal = new abp.ModalManager({
         viewUrl: '/Employees/WorkExperiences/EditModal',
         modalClass: 'WorkExperienceEditModal',
-        scriptUrl: '/Pages/WorkExperience/EditModal.js',
+        //scriptUrl: '/Pages/WorkExperience/EditModal.js',
     });
     $(function () {
         var $dateRangePicker = $('#Employee_Birthday');
@@ -63,17 +63,21 @@
         //$('#Employee_Birthday').val(birthday);
         //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
         //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
-        loadEmergencyContactTable();
-        loadWorkExperienceTable();
+        if (abp.auth.isGranted('Hcm.EmergencyContact')) {
+            loadEmergencyContactTable();
+        }
+        if (abp.auth.isGranted('Hcm.WorkExperience')) {
+            loadWorkExperienceTable();
+        }
     });
     /**
      * Load EmergencyContact Table
      */
     function loadEmergencyContactTable() {
-        var _$emergencyContactWrapper = $('#contact');
-        var _$emergencyContactTable = _$emergencyContactWrapper.find('table');
+        var _$wrapper = $('#emergencyContact');
+        var _$table = _$wrapper.find('table');
 
-        var _emergencyContactTable = _$emergencyContactTable.DataTable(
+        var _dataTable = _$table.DataTable(
             abp.libs.datatables.normalizeConfiguration({
                 serverSide: true,
                 paging: true,
@@ -115,92 +119,6 @@
                                         _emergencyContactAppService
                                             .delete(data.record.id)
                                             .then(function () {
-                                                _emergencyContactTable.ajax.reload();
-                                            });
-                                    },
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title: l('Name'),
-                        data: "name"
-                    },
-                    {
-                        title: l('PhoneNumber'),
-                        data: "phoneNumber"
-                    },
-                    {
-                        title: l('Relation'),
-                        data: "relation"
-                    }
-                ]
-            })
-        );
-
-        _createEmergencyContactModal.onResult(function () {
-            _emergencyContactTable.ajax.reload();
-        });
-        _editEmergencyContactModal.onResult(function () {
-            _emergencyContactTable.ajax.reload();
-        });
-
-        _$emergencyContactWrapper.find('button[name=CreateEmergencyContact]').click(function (e) {
-            e.preventDefault();
-            _createEmergencyContactModal.open({
-                employeeId: employeeId
-            });
-        });
-    }
-    /**
-     * Load EmergencyContact Table
-     */
-    function loadWorkExperienceTable() {
-        var _$wrapper = $('#contact');
-        var _$table = _$wrapper.find('table');
-
-        var _dataTable = _$table.DataTable(
-            abp.libs.datatables.normalizeConfiguration({
-                serverSide: true,
-                paging: true,
-                order: [[1, "asc"]],
-                searching: true,
-                scrollX: true,
-                ajax: abp.libs.datatables.createAjax(function (input) {
-                    return _emergencyContactAppService.getList(employeeId, input);
-                }),
-                columnDefs: [
-                    {
-                        title: l("Actions"),
-                        rowAction: {
-                            items: [
-                                {
-                                    text: l('Edit'),
-                                    visible: abp.auth.isGranted(
-                                        'Hcm.EmergencyContact.Update'
-                                    ),
-                                    action: function (data) {
-                                        _editWorkExperienceModal.open({
-                                            employeeId: employeeId,
-                                            workExperienceId: data.record.id
-                                        });
-                                    },
-                                },
-                                {
-                                    text: l('Delete'),
-                                    visible: abp.auth.isGranted(
-                                        'Hcm.EmergencyContact.Delete'
-                                    ),
-                                    confirmMessage: function (data) {
-                                        return l(
-                                            'AreYouSure',
-                                            data.record.employeeNumber
-                                        );
-                                    },
-                                    action: function (data) {
-                                        _workExperienceAppService
-                                            .delete(data.record.id)
-                                            .then(function () {
                                                 _dataTable.ajax.reload();
                                             });
                                     },
@@ -224,6 +142,92 @@
             })
         );
 
+        _createEmergencyContactModal.onResult(function () {
+            _dataTable.ajax.reload();
+        });
+        _editEmergencyContactModal.onResult(function () {
+            _dataTable.ajax.reload();
+        });
+
+        _$wrapper.find('button[name=CreateEmergencyContact]').click(function (e) {
+            e.preventDefault();
+            _createEmergencyContactModal.open({
+                employeeId: employeeId
+            });
+        });
+    }
+    /**
+     * Load EmergencyContact Table
+     */
+    function loadWorkExperienceTable() {
+        var _$wrapper = $('#workExperience');
+        var _$table = _$wrapper.find('table');
+
+        var _dataTable = _$table.DataTable(
+            abp.libs.datatables.normalizeConfiguration({
+                serverSide: true,
+                paging: true,
+                order: [[1, "asc"]],
+                searching: true,
+                scrollX: true,
+                ajax: abp.libs.datatables.createAjax(function (input) {
+                    return _workExperienceAppService.getList(employeeId, input);
+                }),
+                columnDefs: [
+                    {
+                        title: l("Actions"),
+                        rowAction: {
+                            items: [
+                                {
+                                    text: l('Edit'),
+                                    visible: abp.auth.isGranted(
+                                        'Hcm.WorkExperience.Update'
+                                    ),
+                                    action: function (data) {
+                                        _editWorkExperienceModal.open({
+                                            employeeId: employeeId,
+                                            workExperienceId: data.record.id
+                                        });
+                                    },
+                                },
+                                {
+                                    text: l('Delete'),
+                                    visible: abp.auth.isGranted(
+                                        'Hcm.WorkExperience.Delete'
+                                    ),
+                                    confirmMessage: function (data) {
+                                        return l(
+                                            'AreYouSure',
+                                            data.record.employeeNumber
+                                        );
+                                    },
+                                    action: function (data) {
+                                        _workExperienceAppService
+                                            .delete(data.record.id)
+                                            .then(function () {
+                                                _dataTable.ajax.reload();
+                                            });
+                                    },
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title: l('CompanyName'),
+                        data: "CompanyName"
+                    },
+                    {
+                        title: l('PhoneNumber'),
+                        data: "phoneNumber"
+                    },
+                    {
+                        title: l('Relation'),
+                        data: "relation"
+                    }
+                ]
+            })
+        );
+
         _createWorkExperienceModal.onResult(function () {
             _dataTable.ajax.reload();
         });
@@ -231,7 +235,7 @@
             _dataTable.ajax.reload();
         });
 
-        _$workExperienceWrapper.find('button[name=CreateWorkExperience]').click(function (e) {
+        _$wrapper.find('button[name=CreateWorkExperience]').click(function (e) {
             e.preventDefault();
             _createWorkExperienceModal.open({
                 employeeId: employeeId

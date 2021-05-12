@@ -48,8 +48,8 @@ namespace Snow.Hcm.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
-        //typeof(SnowRegionManagementWebModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(SnowRegionManagementWebModule)
         )]
     public class HcmWebModule : AbpModule
     {

@@ -17,6 +17,7 @@ namespace Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Bundling
 
             var selectScript = context.Files.Find(t => t.Contains("/libs/select2/js/select2.min.js"));
             context.Files.InsertBefore(selectScript, "/libs/select2/js/select2.full.min.js");
+            context.Files.InsertBefore(selectScript, "/libs/select2/js/i18n/zh-CN.js");
             context.Files.InsertBefore(selectScript, "/libs/select2/js/select2-bootstrap-modal-patch.js");
             context.Files.Remove(selectScript);
             

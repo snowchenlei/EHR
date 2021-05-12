@@ -5,10 +5,11 @@
 @inject IStringLocalizer<HcmResource> L
 @model Snow.Hcm.Web.Pages.Employees.WorkExperiences.CreateModalModel
 @{
+    Layout = null;
 }
-<form method="post" action="@Url.Page("/Employees/EmergencyContacts/CreateModal")">
+<form method="post" action="@Url.Page("/Employees/WorkExperiences/CreateModal")">
     <abp-modal>
-        <abp-modal-header title="@L["NewEmergencyContact"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["NewWorkExperience"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="WorkExperience.EmployeeId" />
             <abp-input asp-for="WorkExperience.CompanyName" />
