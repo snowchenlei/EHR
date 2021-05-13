@@ -33,6 +33,9 @@ using Snow.RegionManagement.Admin.Web;
 using Abp.AspNetCore.Mvc.UI.Theme.AdminLTE;
 using Abp.AspNetCore.Mvc.UI.Theme.AdminLTE.Bundling;
 using Volo.Abp.SettingManagement.Web;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+using System.Linq;
 
 namespace Snow.Hcm.Web
 {
@@ -205,6 +208,23 @@ namespace Snow.Hcm.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var supportedCultures = new CultureInfo[]
+            {
+                new CultureInfo("en"),
+                new CultureInfo("zh-hans")
+            };
+            app.UseAbpRequestLocalization(a =>
+            {
+                // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-5.0
+                // By default, it has 3 providers, remove this one and keep QueryString and Cookie.
+                a.RequestCultureProviders = a.RequestCultureProviders
+                    .Where(b => !(b is AcceptLanguageHeaderRequestCultureProvider)).ToList();
+                a.DefaultRequestCulture = new RequestCulture(LocalizationConsts.DefaultCultureName);
+                a.SetDefaultCulture(LocalizationConsts.DefaultCultureName);
+                a.SupportedCultures = supportedCultures;
+                a.SupportedUICultures = supportedCultures;
+            });
 
             app.UseAbpRequestLocalization();
 
