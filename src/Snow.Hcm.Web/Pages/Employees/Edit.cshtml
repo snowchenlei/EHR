@@ -85,7 +85,7 @@
                     <abp-input asp-for="Employee.AreaId" />
                     <abp-input asp-for="Employee.Address" />
 
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button id="submit" type="button" class="btn btn-primary">@L["Save"]</button>
                 </form>
             </div>
             @if(await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Default))

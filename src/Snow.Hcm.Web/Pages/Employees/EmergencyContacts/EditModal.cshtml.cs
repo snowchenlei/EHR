@@ -20,13 +20,15 @@ namespace Snow.Hcm.Web.Pages.Employees.EmergencyContacts
             _emergencyContactAppService = emergencyContactAppService ?? throw new ArgumentNullException(nameof(emergencyContactAppService));
         }
 
+        [BindProperty]
         public EmergencyContactEditViewModel EmergencyContact { get; set; }
         
         public async Task OnGetAsync(Guid employeeId, Guid emergencyContactId)
         {
             var dto = await _emergencyContactAppService.GetEditorAsync(employeeId, emergencyContactId);
             EmergencyContact = ObjectMapper.Map<GetEmergencyContactForEditorOutput, EmergencyContactEditViewModel>(dto);
-            EmergencyContact.Id = employeeId;
+            EmergencyContact.EmployeeId = employeeId;
+            EmergencyContact.Id = emergencyContactId;
         }
 
         public async Task<IActionResult> OnPostAsync()

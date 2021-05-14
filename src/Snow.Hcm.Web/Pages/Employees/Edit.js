@@ -24,9 +24,11 @@
         //scriptUrl: '/Pages/WorkExperience/EditModal.js',
     });
     $(function () {
-        var $dateRangePicker = $('#Employee_Birthday');
-        employeeId = $('#Employee_Id').val();
-        $('#sel_area').change(function () {
+        var _wrapper = $('#EmployeesWrapper');
+
+        var $dateRangePicker = _wrapper.find('#Employee_Birthday');
+        employeeId = _wrapper.find('#Employee_Id').val();
+        _wrapper.find('#sel_area').change(function () {
             $('#Employee_ProvinceId').val($("#sel_province").val());
             $('#Employee_CityId').val($("#sel_city").val());
             $('#Employee_AreaId').val($("#sel_area").val());
@@ -63,6 +65,11 @@
         //$('#Employee_Birthday').val(birthday);
         //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
         //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
+
+        _wrapper.find('#submit').click(function () {
+
+        });
+
         if (abp.auth.isGranted('Hcm.EmergencyContact')) {
             loadEmergencyContactTable();
         }

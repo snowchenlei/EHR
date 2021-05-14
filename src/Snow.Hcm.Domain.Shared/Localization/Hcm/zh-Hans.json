@@ -9,6 +9,11 @@
     "Menu:Departments": "部门",
     "NewEmployee": "新员工",
     "NewDepartment": "新部门",
+    "NewEmergencyContact": "新紧急联络人",
+    "NewWorkExperience": "新工作经验",
+    "BasicInfo": "基本信息",
+    "EmergencyContact": "紧急联络人",
+    "WorkExperience": "工作经验",
     "Employees": "员工",
     "Employee": "员工",
     "Existed": "{0}已存在",
@@ -28,6 +33,7 @@
     "Gender": "性别",
     "Age": "年龄",
     "BankCardNumber": "银行卡号",
+    "CompanyName": "公司名称",
     "MaritalStatus": "婚姻状况",
     "PoliticalStatus": "政治面貌",
     "Province": "省",
@@ -43,6 +49,6 @@
     "IdCardNumber": "身份证号",
     "PhoneNumber": "手机号",
     "Department": "部门",
-    "Relation": "关系" 
+    "Relation": "关系"
   }
 }
