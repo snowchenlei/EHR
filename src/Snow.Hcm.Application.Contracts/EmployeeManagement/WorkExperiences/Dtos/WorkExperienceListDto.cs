@@ -6,7 +6,7 @@ namespace Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos
     /// <summary>
     /// 列表
     /// </summary>
-    public class WorkExperienceListDto: EntityDto<System.Guid>
+    public class WorkExperienceListDto: EntityDto<Guid>
     {
         /// <summary>
         /// 公司名称
@@ -19,9 +19,14 @@ namespace Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos
         public string Post { get; set; }
 
         /// <summary>
-        /// 工作时间
+        /// 开始时间
         /// </summary>
-        public string WorkTime { get; set; }
+        public DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime EndTime { get; set; }
 
         public System.DateTime CreationTime { get; set; }
     }

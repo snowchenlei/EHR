@@ -17,26 +17,39 @@ namespace Snow.Hcm.Web
         public HcmWebAutoMapperProfile()
         {
             #region Employee
+
             CreateMap<EmployeeCreateViewModel, EmployeeCreateDto>();
             CreateMap<EmployeeEditViewModel, EmployeeUpdateDto>();
             CreateMap<GetEmployeeForEditorOutput, EmployeeEditViewModel>();
 
+            #endregion
+
             #region EmergencyContact
+
             CreateMap<EmergencyContactCreateViewModel, EmergencyContactCreateDto>();
             CreateMap<GetEmergencyContactForEditorOutput, EmergencyContactEditViewModel>();
             CreateMap<EmergencyContactEditViewModel, EmergencyContactUpdateDto>();
+
             #endregion
 
             #region WorkExperience
 
             CreateMap<WorkExperienceCreateViewModel, WorkExperienceCreateDto>();
-            #endregion
+            CreateMap<GetWorkExperienceForEditorOutput, WorkExperienceUpdateViewModel>()
+                .ForMember(entity => entity.WorkTime,
+                    opt => opt
+                        .MapFrom(src =>
+                            $"{src.StartTime:yyyy-MM-dd} ~ {src.EndTime:yyyy-MM-dd}"));
+            CreateMap<WorkExperienceUpdateViewModel, WorkExperienceUpdateDto>();
+
             #endregion
 
             #region Department
+
             CreateMap<DepartmentCreateViewModel, DepartmentCreateDto>();
+            CreateMap<GetDepartmentForEditorOutput, DepartmentEditViewModel>();
             CreateMap<DepartmentEditViewModel, DepartmentUpdateDto>();
-            CreateMap<GetDepartmentForEditorOutput, DepartmentEditViewModel>(); 
+
             #endregion
         }
     }

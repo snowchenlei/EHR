@@ -62,11 +62,7 @@ namespace Snow.Hcm.EmployeeManagement
             #region 工作经历
 
             CreateMap<WorkExperience, GetWorkExperienceForEditorOutput>();
-            CreateMap<WorkExperience, WorkExperienceListDto>()
-                .ForMember(entity => entity.WorkTime,
-                    opt => opt
-                        .MapFrom(src =>
-                            $"{src.StartTime:yyyy-MM-dd} ~ {src.EndTime:yyyy-MM-dd}"));
+            CreateMap<WorkExperience, WorkExperienceListDto>();
             CreateMap<WorkExperience, WorkExperienceDetailDto>();
             CreateMap<WorkExperienceCreateDto, WorkExperience>();
             CreateMap<WorkExperienceUpdateDto, WorkExperience>();

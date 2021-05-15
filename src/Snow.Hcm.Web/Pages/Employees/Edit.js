@@ -16,12 +16,12 @@
     var _createWorkExperienceModal = new abp.ModalManager({
         viewUrl: '/Employees/WorkExperiences/CreateModal',
         modalClass: 'WorkExperienceCreateModal',
-        scriptUrl: '/Pages/Employees/WorkExperiences/CreateModal.js',
+        scriptUrl: '/Pages/Employees/WorkExperiences/CreateModal.js'
     });
     var _editWorkExperienceModal = new abp.ModalManager({
         viewUrl: '/Employees/WorkExperiences/EditModal',
         modalClass: 'WorkExperienceEditModal',
-        //scriptUrl: '/Pages/WorkExperience/EditModal.js',
+        scriptUrl: '/Pages/Employees/WorkExperiences/EditModal.js'
     });
     $(function () {
         var _wrapper = $('#EmployeesWrapper');
@@ -214,9 +214,10 @@
                                     },
                                     action: function (data) {
                                         _workExperienceAppService
-                                            .delete(data.record.id)
+                                            .delete(employeeId, data.record.id)
                                             .then(function () {
                                                 _dataTable.ajax.reload();
+                                                abp.notify.success(l('Deleted'));
                                             });
                                     },
                                 }
@@ -233,7 +234,9 @@
                     },
                     {
                         title: l('WorkTime'),
-                        data: "workTime"
+                        render: function(data, type, row) {
+                            return moment(row.startTime).format('YYYY-MM-DD') + ' ~ ' + moment(row.endTime).format('YYYY-MM-DD');
+                        }
                     }
                 ]
             })
@@ -242,7 +245,7 @@
         _createWorkExperienceModal.onResult(function () {
             _dataTable.ajax.reload();
         });
-        _editEmergencyContactModal.onResult(function () {
+        _editWorkExperienceModal.onResult(function () {
             _dataTable.ajax.reload();
         });
 
