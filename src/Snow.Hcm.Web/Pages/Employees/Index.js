@@ -31,18 +31,17 @@
                             items: [
                                 {
                                     text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
                                     visible: abp.auth.isGranted(
                                         'Hcm.Employee.Update'
                                     ),
                                     action: function (data) {
-                                        window.location.href = '/Employees/Edit/?id=' + data.record.id
-                                        //_editModal.open({
-                                        //    id: data.record.id,
-                                        //});
+                                        window.location.href = '/Employees/Edit/?id=' + data.record.id;
                                     },
                                 },
                                 {
                                     text: l('Delete'),
+                                    iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(
                                         'Hcm.Employee.Delete'
                                     ),

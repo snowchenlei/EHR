@@ -1,15 +1,13 @@
-﻿abp.modals.EmployeeEditModal = function() {
+﻿abp.modals.WorkExperienceCreateModal = function() {
     function initModal(modalManager, args) {
-        var $dateRangePicker = $('#Employee_WorkTime');
+        var $dateRangePicker = $('#WorkExperience_WorkTime');
         $dateRangePicker.daterangepicker({
-            singleDatePicker: true,
             showDropdowns: true,
-            //autoUpdateInput: false,
             drops: "up",
             autoApply: true,
             locale: {
-                format: "YYYY-MM-DD HH:mm",
-                separator: " - ",
+                format: "YYYY-MM-DD",
+                separator: " ~ ",
                 applyLabel: '确定',
                 cancelLabel: '取消',
                 fromLabel: '从',
@@ -22,11 +20,13 @@
                     '七月', '八月', '九月', '十月', '十一月', '十二月'
                 ],
             },
-            startDate: moment($dateRangePicker.val()),//moment(),
             minDate: moment().add(-100, 'years'),
             maxDate: moment(),
             firstDay: moment.localeData()._week.dow
         }, function (start, end, label) {
         });
     }
+    return {
+        initModal: initModal
+    };
 }

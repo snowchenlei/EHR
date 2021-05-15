@@ -23,6 +23,7 @@
                             items: [
                                 {
                                     text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
                                     visible: abp.auth.isGranted(
                                         'Hcm.Department.Update'
                                     ),
@@ -34,6 +35,7 @@
                                 },
                                 {
                                     text: l('Delete'),
+                                    iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(
                                         'Hcm.Department.Delete'
                                     ),

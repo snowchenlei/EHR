@@ -21,8 +21,8 @@ namespace Snow.Hcm.EmployeeManagement
         /// </summary>
         public EmployeeManagementApplicationAutoMapperProfile()
         {
+            #region 员工
 
-             #region 员工
             CreateMap<Employee, GetEmployeeForEditorOutput>()
                 .ForMember(entity => entity.Birthday,
                     opt => opt
@@ -36,27 +36,41 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<Employee, EmployeeDetailDto>();
             CreateMap<EmployeeCreateDto, Employee>();
             CreateMap<EmployeeUpdateDto, Employee>();
+
             #endregion
-             #region 部门
+
+            #region 部门
+
             CreateMap<Department, GetDepartmentForEditorOutput>();
             CreateMap<Department, DepartmentListDto>();
             CreateMap<Department, DepartmentDetailDto>();
             CreateMap<DepartmentCreateDto, Department>();
             CreateMap<DepartmentUpdateDto, Department>();
+
             #endregion
-             #region 紧急联络人
+
+            #region 紧急联络人
+
             CreateMap<EmergencyContact, GetEmergencyContactForEditorOutput>();
             CreateMap<EmergencyContact, EmergencyContactListDto>();
             CreateMap<EmergencyContact, EmergencyContactDetailDto>();
             CreateMap<EmergencyContactCreateDto, EmergencyContact>();
             CreateMap<EmergencyContactUpdateDto, EmergencyContact>();
+
             #endregion
-             #region 工作经历
+
+            #region 工作经历
+
             CreateMap<WorkExperience, GetWorkExperienceForEditorOutput>();
-            CreateMap<WorkExperience, WorkExperienceListDto>();
+            CreateMap<WorkExperience, WorkExperienceListDto>()
+                .ForMember(entity => entity.WorkTime,
+                    opt => opt
+                        .MapFrom(src =>
+                            $"{src.StartTime:yyyy-MM-dd} ~ {src.EndTime:yyyy-MM-dd}"));
             CreateMap<WorkExperience, WorkExperienceDetailDto>();
             CreateMap<WorkExperienceCreateDto, WorkExperience>();
             CreateMap<WorkExperienceUpdateDto, WorkExperience>();
+
             #endregion
         }
     }

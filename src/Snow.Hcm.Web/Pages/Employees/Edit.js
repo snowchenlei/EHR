@@ -101,6 +101,7 @@
                             items: [
                                 {
                                     text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
                                     visible: abp.auth.isGranted(
                                         'Hcm.EmergencyContact.Update'
                                     ),
@@ -113,6 +114,7 @@
                                 },
                                 {
                                     text: l('Delete'),
+                                    iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(
                                         'Hcm.EmergencyContact.Delete'
                                     ),
@@ -187,6 +189,7 @@
                             items: [
                                 {
                                     text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
                                     visible: abp.auth.isGranted(
                                         'Hcm.WorkExperience.Update'
                                     ),
@@ -199,6 +202,7 @@
                                 },
                                 {
                                     text: l('Delete'),
+                                    iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(
                                         'Hcm.WorkExperience.Delete'
                                     ),
@@ -221,15 +225,15 @@
                     },
                     {
                         title: l('CompanyName'),
-                        data: "CompanyName"
+                        data: "companyName"
                     },
                     {
-                        title: l('PhoneNumber'),
-                        data: "phoneNumber"
+                        title: l('Post'),
+                        data: "post"
                     },
                     {
-                        title: l('Relation'),
-                        data: "relation"
+                        title: l('WorkTime'),
+                        data: "workTime"
                     }
                 ]
             })

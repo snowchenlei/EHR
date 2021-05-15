@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace Snow.Hcm.Web.ViewModel.Employees.WorkExperiences
         /// <summary>
         /// 公司名称
         /// </summary>
+        [Required]
         public string CompanyName { get; set; }
 
         /// <summary>
@@ -28,6 +30,7 @@ namespace Snow.Hcm.Web.ViewModel.Employees.WorkExperiences
         /// <summary>
         /// 工作时间
         /// </summary>
+        [Required]
         public string WorkTime { get; set; }
         
         /// <summary>
