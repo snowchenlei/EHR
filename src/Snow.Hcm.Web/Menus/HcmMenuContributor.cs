@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Snow.Hcm.Localization;
 using Snow.Hcm.MultiTenancy;
+using Snow.Hcm.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -56,13 +57,15 @@ namespace Snow.Hcm.Web.Menus
                     new ApplicationMenuItem(
                         HcmMenus.Employees,
                         l["Menu:Employees"],
-                        url: "/Employees"
+                        url: "/Employees",
+                        requiredPermissionName: HcmPermissions.Employees.Default
                         )
                     ).AddItem(
                     new ApplicationMenuItem(
                         HcmMenus.Departments,
                         l["Menu:Departments"],
-                        url: "/Departments"
+                        url: "/Departments",
+                        requiredPermissionName: HcmPermissions.Departments.Default
                         )
                     )
             );

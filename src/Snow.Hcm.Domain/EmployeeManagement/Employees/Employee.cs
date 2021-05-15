@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Salaries;
+using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Snow.Hcm.EmployeeManagement.Employees
@@ -18,6 +19,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public Employee()
         {
             EmergencyContacts = new List<EmergencyContact>();
+            WorkExperiences = new List<WorkExperience>();
             Salaries = new List<Salary>();
         }
 
@@ -120,6 +122,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// 紧急联系人
         /// </summary>
         public ICollection<EmergencyContact> EmergencyContacts { get; set; }
+
+        /// <summary>
+        /// 工作经历
+        /// </summary>
+        public ICollection<WorkExperience> WorkExperiences { get; set; }
 
         /// <summary>
         /// 工资
