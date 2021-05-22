@@ -33,6 +33,12 @@ workExperiences.AddChild(HcmPermissions.WorkExperiences.Create, L("Permission:Cr
 workExperiences.AddChild(HcmPermissions.WorkExperiences.Update, L("Permission:Edit"));
 workExperiences.AddChild(HcmPermissions.WorkExperiences.Delete, L("Permission:Delete"));
 
+
+var educationExperiences = hcmGroup.AddPermission(HcmPermissions.EducationExperiences.Default, L("Permission:EducationExperiences"));
+educationExperiences.AddChild(HcmPermissions.EducationExperiences.Create, L("Permission:Create"));
+educationExperiences.AddChild(HcmPermissions.EducationExperiences.Update, L("Permission:Edit"));
+educationExperiences.AddChild(HcmPermissions.EducationExperiences.Delete, L("Permission:Delete"));
+
         }
 
         private static LocalizableString L(string name)

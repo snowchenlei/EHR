@@ -10,5 +10,6 @@ namespace Snow.Hcm.EmployeeManagement.WorkExperiences
     {
         public const int MaxCompanyNameLength = 125;
         public const int MaxPostLength = 50;
+        public const int MaxDescriptionLength = 500;
     }
 }

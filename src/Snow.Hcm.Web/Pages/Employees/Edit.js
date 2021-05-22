@@ -3,6 +3,7 @@
     var l = abp.localization.getResource('Hcm');
     var _emergencyContactAppService = snow.hcm.controllers.employees.emergencyContact;
     var _workExperienceAppService = snow.hcm.controllers.employees.workExperience;
+    var _educationExperienceAppService = snow.hcm.controllers.employees.educationExperience;
     var _createEmergencyContactModal = new abp.ModalManager({
         viewUrl: '/Employees/EmergencyContacts/CreateModal',
         modalClass: 'EmergencyContactCreateModal',
@@ -22,6 +23,16 @@
         viewUrl: '/Employees/WorkExperiences/EditModal',
         modalClass: 'WorkExperienceEditModal',
         scriptUrl: '/Pages/Employees/WorkExperiences/EditModal.js'
+    });
+    var _createEducationExperienceModal = new abp.ModalManager({
+        viewUrl: '/Employees/EducationExperiences/CreateModal',
+        modalClass: 'EducationExperienceCreateModal',
+        scriptUrl: '/Pages/Employees/EducationExperiences/CreateModal.js'
+    });
+    var _editEducationExperienceModal = new abp.ModalManager({
+        viewUrl: '/Employees/EducationExperiences/EditModal',
+        modalClass: 'EducationExperienceEditModal',
+        scriptUrl: '/Pages/Employees/EducationExperiences/EditModal.js'
     });
     $(function () {
         var _wrapper = $('#EmployeesWrapper');
@@ -65,16 +76,45 @@
         //$('#Employee_Birthday').val(birthday);
         //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
         //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
+        var _$form = _wrapper.find('#basic').find('form');
+        _$form.abpAjaxForm();
+        //$form.on("submit", function (event) {
+        //    event.preventDefault();
 
-        _wrapper.find('#submit').click(function () {
+        //    var $btn = $(this).find('button');
+        //    $btn.attr('disabled', 'disabled');
+        //    var url = $(this).attr("action");
 
-        });
+        //    var formData = $(this).serialize();
+        //    abp.ajax({
+        //        type: 'POST',
+        //        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        //        headers: {
+        //            'X-Requested-With': 'XMLHttpRequest'
+        //        },
+        //        url: url,
+        //        data: formData,
+        //        beforeSend: function (xhr) { //<--- This is important              
+        //            $btn.attr('disabled', 'true');
+        //            $btn.html("Please wait");
+        //            xhr.setRequestHeader("RequestVerificationToken",
+        //                $('input:hidden[name="__RequestVerificationToken"]').val());
+        //        },
+        //    }).then(function (data) {
+        //        abp.notify.success('Success');
+        //    }).catch(function (ex) {
+        //        abp.notify.error(ex);
+        //    });
+        //});
 
         if (abp.auth.isGranted('Hcm.EmergencyContact')) {
             loadEmergencyContactTable();
         }
         if (abp.auth.isGranted('Hcm.WorkExperience')) {
             loadWorkExperienceTable();
+        }
+        if (abp.auth.isGranted('Hcm.EducationExperience')) {
+            loadEducationExperienceTable();
         }
     });
     /**
@@ -88,7 +128,6 @@
             abp.libs.datatables.normalizeConfiguration({
                 serverSide: true,
                 paging: true,
-                order: [[1, "asc"]],
                 searching: true,
                 scrollX: true,
                 ajax: abp.libs.datatables.createAjax(function (input) {
@@ -166,7 +205,7 @@
         });
     }
     /**
-     * Load EmergencyContact Table
+     * Load WorkExperience Table
      */
     function loadWorkExperienceTable() {
         var _$wrapper = $('#workExperience');
@@ -176,7 +215,6 @@
             abp.libs.datatables.normalizeConfiguration({
                 serverSide: true,
                 paging: true,
-                order: [[1, "asc"]],
                 searching: true,
                 scrollX: true,
                 ajax: abp.libs.datatables.createAjax(function (input) {
@@ -256,5 +294,98 @@
             });
         });
     }
+    /**
+     * Load EducationExperience Table
+     */
+    function loadEducationExperienceTable() {
+        var _$wrapper = $('#educationExperience');
+        var _$table = _$wrapper.find('table');
 
+        var _dataTable = _$table.DataTable(
+            abp.libs.datatables.normalizeConfiguration({
+                serverSide: true,
+                paging: true,
+                searching: true,
+                scrollX: true,
+                ajax: abp.libs.datatables.createAjax(function (input) {
+                    return _educationExperienceAppService.getList(employeeId, input);
+                }),
+                columnDefs: [
+                    {
+                        title: l("Actions"),
+                        rowAction: {
+                            items: [
+                                {
+                                    text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
+                                    visible: abp.auth.isGranted(
+                                        'Hcm.EducationExperience.Update'
+                                    ),
+                                    action: function (data) {
+                                        _editEducationExperienceModal.open({
+                                            employeeId: employeeId,
+                                            educationExperienceId: data.record.id
+                                        });
+                                    },
+                                },
+                                {
+                                    text: l('Delete'),
+                                    iconClass: 'fas fa-trash',
+                                    visible: abp.auth.isGranted(
+                                        'Hcm.EducationExperience.Delete'
+                                    ),
+                                    confirmMessage: function (data) {
+                                        return l(
+                                            'AreYouSure',
+                                            data.record.employeeNumber
+                                        );
+                                    },
+                                    action: function (data) {
+                                        _educationExperienceAppService
+                                            .delete(employeeId, data.record.id)
+                                            .then(function () {
+                                                _dataTable.ajax.reload();
+                                                abp.notify.success(l('Deleted'));
+                                            });
+                                    },
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title: l('SchoolName'),
+                        data: "schoolName"
+                    },
+                    {
+                        title: l('Specialty'),
+                        data: "specialty"
+                    },
+                    {
+                        title: l('Degree'),
+                        data: "degree"
+                    },
+                    {
+                        title: l('WorkTime'),
+                        render: function (data, type, row) {
+                            return moment(row.startTime).format('YYYY-MM-DD') + ' ~ ' + moment(row.endTime).format('YYYY-MM-DD');
+                        }
+                    }
+                ]
+            })
+        );
+
+        _createEducationExperienceModal.onResult(function () {
+            _dataTable.ajax.reload();
+        });
+        _editEducationExperienceModal.onResult(function () {
+            _dataTable.ajax.reload();
+        });
+
+        _$wrapper.find('button[name=CreateEducationExperience]').click(function (e) {
+            e.preventDefault();
+            _createEducationExperienceModal.open({
+                employeeId: employeeId
+            });
+        });
+    }
 })(jQuery);
