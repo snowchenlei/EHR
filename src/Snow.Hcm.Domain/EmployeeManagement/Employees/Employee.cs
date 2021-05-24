@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
+using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Volo.Abp.Domain.Entities.Auditing;
@@ -117,6 +118,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// 部门
         /// </summary>
         public Department Department { get; set; }
+
+        /// <summary>
+        /// 岗位
+        /// </summary>
+        public Position Position { get; set; }
 
         /// <summary>
         /// 紧急联系人

@@ -3,6 +3,7 @@ using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
+using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Volo.Abp;
@@ -64,11 +65,21 @@ namespace Snow.Hcm.EntityFrameworkCore
 
             #endregion
 
-            #region DepartmentManagement
+            #region Department
             builder.Entity<Department>(b =>
             {
                 b.ToTable(HcmConsts.DbTablePrefix + nameof(Department), HcmConsts.DbSchema);
                 b.Property(e => e.Name).HasMaxLength(DepartmentConsts.MaxNameLength);
+
+                b.ConfigureCreationAudited();
+            });
+            #endregion
+
+            #region Position
+            builder.Entity<Position>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(Position), HcmConsts.DbSchema);
+                b.Property(e => e.Name).HasMaxLength(PositionConsts.MaxNameLength);
 
                 b.ConfigureCreationAudited();
             });

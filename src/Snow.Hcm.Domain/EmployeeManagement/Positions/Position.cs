@@ -1,32 +1,30 @@
-﻿using System;
+﻿using Snow.Hcm.EmployeeManagement.Employees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Snow.Hcm.EmployeeManagement.Employees;
-using Snow.Hcm.EmployeeManagement.Positions;
-using Volo.Abp.Domain.Entities;
+using Snow.Hcm.EmployeeManagement.Departments;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace Snow.Hcm.EmployeeManagement.Departments
+namespace Snow.Hcm.EmployeeManagement.Positions
 {
     /// <summary>
-    /// 部门
+    /// 岗位
     /// </summary>
-    public class Department : CreationAuditedEntity<Guid>
+    public class Position : CreationAuditedEntity<Guid>
     {
-        public Department()
+        public Position()
         {
             Employees = new List<Employee>();
-            Positions = new List<Position>();
         }
-
         /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
 
+        public Department Department { get; set; }
+        
         public ICollection<Employee> Employees { get; set; }
-        public ICollection<Position> Positions { get; set; }
     }
 }
