@@ -25,6 +25,11 @@ namespace Snow.Hcm.EmployeeManagement.EducationExperiences
         public string Specialty { get; set; }
 
         /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// 学历
         /// </summary>
         public Degree Degree { get; set; }

@@ -49,6 +49,12 @@
                     <a class="nav-link" id="workExperience-tab" data-toggle="tab" href="#workExperience" role="tab" aria-controls="workExperience" aria-selected="false">@L["WorkExperience"]</a>
                 </li>
             }
+            @if (await Authorization.IsGrantedAsync(HcmPermissions.EducationExperiences.Default))
+            {
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="educationExperience-tab" data-toggle="tab" href="#educationExperience" role="tab" aria-controls="educationExperience" aria-selected="false">@L["EducationExperience"]</a>
+                </li>
+            }
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
@@ -85,12 +91,15 @@
                     <abp-input asp-for="Employee.CityId" />
                     <abp-input asp-for="Employee.AreaId" />
                     <abp-input asp-for="Employee.Address" />
-
-                    <button id="submit" type="button" class="btn btn-primary">@L["Save"]</button>
+                    
+                    <button type="submit" class="btn btn-primary" data-busy-text="@L["SavingWithThreeDot"]">
+                        <i class="fa-check fa"></i>
+                        <span>@L["Save"]</span>
+                    </button>
                 </form>
             </div>
-            @if(await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Default))
-            { 
+            @if (await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Default))
+            {
                 <div class="tab-pane fade" id="emergencyContact" role="tabpanel" aria-labelledby="emergencyContact-tab">
                     @if (await Authorization.IsGrantedAsync(HcmPermissions.EmergencyContacts.Create))
                     {
@@ -109,6 +118,19 @@
                     {
                         <abp-button name="CreateWorkExperience"
                                     text="@L["NewWorkExperience"].Value"
+                                    icon="plus"
+                                    button-type="Primary" />
+                    }
+                    <abp-table striped-rows="true"></abp-table>
+                </div>
+            }
+            @if (await Authorization.IsGrantedAsync(HcmPermissions.EducationExperiences.Default))
+            {
+                <div class="tab-pane fade" id="educationExperience" role="tabpanel" aria-labelledby="educationExperience-tab">
+                    @if (await Authorization.IsGrantedAsync(HcmPermissions.EducationExperiences.Create))
+                    {
+                        <abp-button name="CreateEducationExperience"
+                                    text="@L["NewEducationExperience"].Value"
                                     icon="plus"
                                     button-type="Primary" />
                     }

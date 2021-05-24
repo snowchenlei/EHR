@@ -10,5 +10,6 @@ namespace Snow.Hcm.EmployeeManagement.EducationExperiences
     {
         public const int MaxSchoolNameLength = 125;
         public const int MaxSpecialtyLength = 50;
+        public const int MaxDescriptionLength = 500;
     }
 }

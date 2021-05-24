@@ -47,6 +47,7 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.ToTable(HcmConsts.DbTablePrefix + nameof(WorkExperience), HcmConsts.DbSchema);
                 b.Property(e => e.CompanyName).HasMaxLength(WorkExperienceConsts.MaxCompanyNameLength);
                 b.Property(e => e.Post).HasMaxLength(WorkExperienceConsts.MaxPostLength);
+                b.Property(e => e.Description).HasMaxLength(WorkExperienceConsts.MaxDescriptionLength);
                 b.ConfigureCreationTime();
             });
 
@@ -55,6 +56,7 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.ToTable(HcmConsts.DbTablePrefix + nameof(EducationExperience), HcmConsts.DbSchema);
                 b.Property(e => e.SchoolName).HasMaxLength(EducationExperienceConsts.MaxSchoolNameLength);
                 b.Property(e => e.Specialty).HasMaxLength(EducationExperienceConsts.MaxSpecialtyLength);
+                b.Property(e => e.Description).HasMaxLength(EducationExperienceConsts.MaxDescriptionLength);
                 b.ConfigureCreationTime();
             });
 
