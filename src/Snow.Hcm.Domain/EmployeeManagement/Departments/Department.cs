@@ -17,7 +17,6 @@ namespace Snow.Hcm.EmployeeManagement.Departments
     {
         public Department()
         {
-            Employees = new List<Employee>();
             Positions = new List<Position>();
         }
 
@@ -25,8 +24,7 @@ namespace Snow.Hcm.EmployeeManagement.Departments
         /// 名称
         /// </summary>
         public string Name { get; set; }
-
-        public ICollection<Employee> Employees { get; set; }
+        
         public ICollection<Position> Positions { get; set; }
     }
 }

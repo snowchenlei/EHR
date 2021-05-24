@@ -50,9 +50,9 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public bool IsGregorianCalendar { get; set; }
 
         /// <summary>
-        /// 部门
+        /// 岗位
         /// </summary>
-        public Guid DepartmentId { get; set; }
+        public Guid PositionId { get; set; }
 
         /// <summary>
         /// 省

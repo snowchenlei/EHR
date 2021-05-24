@@ -8,5 +8,6 @@
         //Add your menu items here...
         public const string Departments = Prefix + ".Departments";
         public const string Employees = Prefix + ".Employees";
+        public const string Positions = Prefix + ".Positions";
     }
 }

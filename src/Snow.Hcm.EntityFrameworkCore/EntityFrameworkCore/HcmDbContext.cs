@@ -3,6 +3,7 @@ using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
+using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.Users;
@@ -35,6 +36,8 @@ namespace Snow.Hcm.EntityFrameworkCore
         public DbSet<EducationExperience> EducationExperiences { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+
+        public DbSet<Position> Positions { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside HcmDbContextModelCreatingExtensions.ConfigureHcm

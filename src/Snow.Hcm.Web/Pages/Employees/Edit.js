@@ -35,15 +35,18 @@
         scriptUrl: '/Pages/Employees/EducationExperiences/EditModal.js'
     });
     $(function () {
-        var _wrapper = $('#EmployeesWrapper');
+        var _$wrapper = $('#EmployeesWrapper');
 
-        var $dateRangePicker = _wrapper.find('#Employee_Birthday');
-        employeeId = _wrapper.find('#Employee_Id').val();
-        _wrapper.find('#sel_area').change(function () {
+        var $dateRangePicker = _$wrapper.find('#Employee_Birthday');
+        employeeId = _$wrapper.find('#Employee_Id').val();
+        _$wrapper.find('#sel_area').change(function () {
             $('#Employee_ProvinceId').val($("#sel_province").val());
             $('#Employee_CityId').val($("#sel_city").val());
             $('#Employee_AreaId').val($("#sel_area").val());
         });
+        _$wrapper.find('#sel_position').change(function () {
+            $('#Employee_PositionId').val($(this).val());
+        })
         $dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -76,7 +79,7 @@
         //$('#Employee_Birthday').val(birthday);
         //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
         //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
-        var _$form = _wrapper.find('#basic').find('form');
+        var _$form = _$wrapper.find('#basic').find('form');
         _$form.abpAjaxForm();
         //$form.on("submit", function (event) {
         //    event.preventDefault();

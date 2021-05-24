@@ -95,9 +95,9 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public DateTime ConfirmationDate { get; set; }
 
         /// <summary>
-        /// 部门
+        /// 岗位
         /// </summary>
-        public Guid DepartmentId { get; set; }
+        public Guid PositionId { get; set; }
 
         /// <summary>
         /// 省
@@ -113,11 +113,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// 区
         /// </summary>
         public int AreaId { get; set; }
-
-        /// <summary>
-        /// 部门
-        /// </summary>
-        public Department Department { get; set; }
 
         /// <summary>
         /// 岗位

@@ -61,7 +61,8 @@
                 <form method="post" action="@Url.Page("/Employees/Edit")">
                     <abp-input asp-for="Employee.Id" />
                     <abp-input asp-for="Employee.Name" />
-                    <abp-select asp-for="Employee.DepartmentId" asp-items="Model.Departments" />
+                    @await Component.InvokeAsync("Position", Model.Employee.PositionId)
+                    <abp-input asp-for="Employee.PositionId" />
                     <abp-input asp-for="Employee.PhoneNumber" type="number" />
                     <abp-input asp-for="Employee.IdCardNumber" />
                     <div class="form-row">
@@ -91,7 +92,7 @@
                     <abp-input asp-for="Employee.CityId" />
                     <abp-input asp-for="Employee.AreaId" />
                     <abp-input asp-for="Employee.Address" />
-                    
+
                     <button type="submit" class="btn btn-primary" data-busy-text="@L["SavingWithThreeDot"]">
                         <i class="fa-check fa"></i>
                         <span>@L["Save"]</span>

@@ -12,7 +12,7 @@
             $('#Employee_AreaId').val($("#sel_area").val());
         });
         $('#Employee_IdCardNumber').change(function () {
-            if ($('#Employee_IdCardNumber-error').length > 0) {
+            if ($('#Employee_IdCardNumber_error').length > 0) {
                 return;
             }
             var idCardNumber = $(this).val();
@@ -24,6 +24,10 @@
                 $('#Employee_Gender').val(sex === '女' ? 'Woman' : 'Man');
             }
         })
+        $('#sel_position').change(function () {
+            $('#Employee_PositionId').val($(this).val());
+        })
+        $("#sel_position").trigger("change");
         $dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,

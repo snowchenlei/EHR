@@ -12,7 +12,18 @@
         <abp-modal-header title="@L["NewEmployee"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Employee.Name" />
-            <abp-select asp-for="Employee.DepartmentId" asp-items="Model.Departments" />
+            @*<div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">@L["Department"]</label>
+                    <select id="sel_department" class="custom-select form-control" asp-items="Model.Departments"></select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">@L["Position"]</label>
+                    <select id="sel_position" class="custom-select form-control" asp-items="Model.Positions"></select>
+                </div>
+            </div>*@
+            @await Component.InvokeAsync("Position")
+            <abp-input asp-for="Employee.PositionId" />
             <abp-input asp-for="Employee.PhoneNumber" type="number" />
             <abp-input asp-for="Employee.IdCardNumber" />
             <div class="form-row">

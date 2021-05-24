@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
+using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.Web.ViewModel.Employees;
 using Snow.RegionManagement.Admin.Regions;
 
@@ -20,18 +21,22 @@ namespace Snow.Hcm.Web.Pages.Employees
     {
         private readonly IEmployeeAppService _employeeAppService;
         private readonly IDepartmentAppService _departmentAppService;
+        private readonly IPositionAppService _positionAppService;
 
         public CreateModalModel([NotNull] IEmployeeAppService bookAppService,
-            [NotNull] IDepartmentAppService departmentAppService)
+            [NotNull] IDepartmentAppService departmentAppService,
+            [NotNull] IPositionAppService positionAppService)
         {
             _employeeAppService = bookAppService ?? throw new ArgumentNullException(nameof(bookAppService));
             _departmentAppService = departmentAppService ?? throw new ArgumentNullException(nameof(departmentAppService));
+            _positionAppService = positionAppService ?? throw new ArgumentNullException(nameof(positionAppService));
         }
 
         [BindProperty] public EmployeeCreateViewModel Employee { get; set; }
+        
+        //public List<SelectListItem> Positions { get; set; }
 
-        public List<SelectListItem> Departments { get; set; }
-
+        //public List<SelectListItem> Departments { get; set; }
         public List<SelectListItem> Calendars { get; set; }
 
         public async Task OnGetAsync()
@@ -40,10 +45,15 @@ namespace Snow.Hcm.Web.Pages.Employees
             Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>
                 new SelectListItem(r.Key, r.Value.ToString())).ToList();
-            var departments = await _departmentAppService
-                .GetAllListAsync();
-            Departments = departments.Items.Select(r =>
-                new SelectListItem(r.Name, r.Id.ToString())).ToList();
+            
+            //var departments = await _departmentAppService
+            //    .GetAllListAsync();
+            //Departments = departments.Items.Select(r =>
+            //    new SelectListItem(r.Name, r.Id.ToString())).ToList();
+
+            //var positions =  await _positionAppService.GetListAsync(departments.Items.First().Id);
+            //Positions = positions.Items.Select(r =>
+            //    new SelectListItem(r.Name, r.Id.ToString())).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()

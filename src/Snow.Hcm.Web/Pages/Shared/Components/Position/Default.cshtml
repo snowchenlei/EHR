@@ -1,0 +1,30 @@
+﻿@using Snow.Hcm.Localization;
+@using Microsoft.Extensions.Localization
+@model Snow.Hcm.Web.ViewModel.Components.Positions.PositionComponentModel
+@inject IStringLocalizer<HcmResource> L
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label class="control-label">@L["Department"]</label>
+        <select id="sel_department" class="custom-select form-control" asp-items="@Model.Departments"></select>
+    </div>
+    <div class="form-group col-md-6">
+        <label class="control-label">@L["Position"]</label>
+        <select id="sel_position" class="custom-select form-control" asp-items="@Model.Positions"></select>
+    </div>
+</div>
+<script src="~/libs/jquery/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        debugger
+        $('#sel_department').change(function () {
+            var _positionAppService = snow.hcm.controllers.positions.position;
+            _positionAppService
+                .getListAsyncByDepartmentId($(this).val())
+                .then(result => {
+                    $('#sel_position').empty();
+                    $('#sel_position').append(result.items.map(r => `<option value="${r.id}">${r.name}</option>`));
+                    $("#sel_position").trigger("change");
+                });
+        });
+    });
+</script>

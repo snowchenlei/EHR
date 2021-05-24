@@ -34,6 +34,16 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public string BankCardNumber { get; set; }
 
         /// <summary>
+        /// 婚姻状态
+        /// </summary>
+        public MaritalStatus MaritalStatus { get; set; }
+
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        public PoliticalStatus PoliticalStatus { get; set; }
+
+        /// <summary>
         /// 详细地址
         /// </summary>
         public string Address { get; set; }
@@ -51,7 +61,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         /// <summary>
         /// 部门
         /// </summary>
-        public Guid DepartmentId { get; set; }
+        public Guid PositionId { get; set; }
 
         /// <summary>
         /// 省

@@ -28,6 +28,8 @@ namespace Snow.Hcm.EmployeeManagement.Salaries
         /// </summary>
         public bool IsCurrent { get; set; }
 
+        public Guid EmployeeId { get; set; }
+        
         /// <summary>
         /// 员工
         /// </summary>

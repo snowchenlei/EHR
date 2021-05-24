@@ -18,11 +18,14 @@ namespace Snow.Hcm.EmployeeManagement.Positions
         {
             Employees = new List<Employee>();
         }
+        
         /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
 
+        public Guid DepartmentId { get; set; }
+        
         public Department Department { get; set; }
         
         public ICollection<Employee> Employees { get; set; }

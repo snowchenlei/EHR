@@ -11,8 +11,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Snow.Hcm.Migrations
 {
     [DbContext(typeof(HcmMigrationsDbContext))]
-    [Migration("20210420102253_AddEmergencyContact")]
-    partial class AddEmergencyContact
+    [Migration("20210524081239_EmployeeRemoveDepartmentId")]
+    partial class EmployeeRemoveDepartmentId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace Snow.Hcm.Migrations
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.SqlServer)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Departments.Department", b =>
@@ -44,6 +44,47 @@ namespace Snow.Hcm.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HcmDepartment");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EducationExperiences.EducationExperience", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<int>("Degree")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SchoolName")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<string>("Specialty")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("HcmEducationExperience");
                 });
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>
@@ -123,9 +164,6 @@ namespace Snow.Hcm.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("EmployeeNumber")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -171,14 +209,45 @@ namespace Snow.Hcm.Migrations
                     b.Property<int>("PoliticalStatus")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("PositionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("ProvinceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("PositionId");
 
                     b.ToTable("HcmEmployee");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Positions.Position", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid>("DepartmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("HcmPosition");
                 });
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Salaries.Salary", b =>
@@ -190,7 +259,7 @@ namespace Snow.Hcm.Migrations
                     b.Property<decimal>("BasicAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid?>("EmployeeId")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsCurrent")
@@ -204,6 +273,44 @@ namespace Snow.Hcm.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("HcmSalary");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.WorkExperiences.WorkExperience", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Post")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("HcmWorkExperience");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -2122,6 +2229,17 @@ namespace Snow.Hcm.Migrations
                     b.ToTable("AbpTenantConnectionStrings");
                 });
 
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EducationExperiences.EducationExperience", b =>
+                {
+                    b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.EmergencyContacts.EmergencyContact", b =>
                 {
                     b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", null)
@@ -2133,8 +2251,19 @@ namespace Snow.Hcm.Migrations
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Employees.Employee", b =>
                 {
-                    b.HasOne("Snow.Hcm.EmployeeManagement.Departments.Department", "Department")
+                    b.HasOne("Snow.Hcm.EmployeeManagement.Positions.Position", "Position")
                         .WithMany("Employees")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Positions.Position", b =>
+                {
+                    b.HasOne("Snow.Hcm.EmployeeManagement.Departments.Department", "Department")
+                        .WithMany("Positions")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2146,7 +2275,20 @@ namespace Snow.Hcm.Migrations
                 {
                     b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", "Employee")
                         .WithMany("Salaries")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.WorkExperiences.WorkExperience", b =>
+                {
+                    b.HasOne("Snow.Hcm.EmployeeManagement.Employees.Employee", "Employee")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Employee");
                 });
@@ -2430,7 +2572,7 @@ namespace Snow.Hcm.Migrations
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Departments.Department", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("Positions");
                 });
 
             modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Employees.Employee", b =>
@@ -2438,6 +2580,13 @@ namespace Snow.Hcm.Migrations
                     b.Navigation("EmergencyContacts");
 
                     b.Navigation("Salaries");
+
+                    b.Navigation("WorkExperiences");
+                });
+
+            modelBuilder.Entity("Snow.Hcm.EmployeeManagement.Positions.Position", b =>
+                {
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

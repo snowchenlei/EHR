@@ -3,12 +3,14 @@ using Snow.Hcm.EmployeeManagement.Departments.Dtos;
 using Snow.Hcm.EmployeeManagement.EducationExperiences.Dtos;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts.Dtos;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
+using Snow.Hcm.EmployeeManagement.Positions.Dtos;
 using Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos;
 using Snow.Hcm.Web.ViewModel.Departments;
 using Snow.Hcm.Web.ViewModel.Employees;
 using Snow.Hcm.Web.ViewModel.Employees.EducationExperiences;
 using Snow.Hcm.Web.ViewModel.Employees.EmergencyContacts;
 using Snow.Hcm.Web.ViewModel.Employees.WorkExperiences;
+using Snow.Hcm.Web.ViewModel.Positions;
 using Snow.Hcm.Web.ViewModel.Regions;
 using Snow.RegionManagement.Admin.Regions;
 
@@ -62,6 +64,12 @@ namespace Snow.Hcm.Web
             CreateMap<GetDepartmentForEditorOutput, DepartmentEditViewModel>();
             CreateMap<DepartmentEditViewModel, DepartmentUpdateDto>();
 
+            #endregion
+
+            #region Position
+            CreateMap<PositionCreateViewModel, PositionCreateDto>();
+            CreateMap<GetPositionForEditorOutput, PositionEditViewModel>();
+            CreateMap<PositionEditViewModel, PositionUpdateDto>();
             #endregion
         }
     }

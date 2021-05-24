@@ -17,7 +17,8 @@ namespace Snow.Hcm.Web.Pages.Departments
 
         public CreateModalModel([NotNull] IDepartmentAppService departmentAppService)
         {
-            _departmentAppService = departmentAppService ?? throw new ArgumentNullException(nameof(departmentAppService));
+            _departmentAppService = departmentAppService 
+                                    ?? throw new ArgumentNullException(nameof(departmentAppService));
         }
 
         [BindProperty] public DepartmentCreateViewModel Department { get; set; }

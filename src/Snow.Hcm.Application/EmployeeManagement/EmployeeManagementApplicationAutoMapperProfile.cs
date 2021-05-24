@@ -1,4 +1,6 @@
-﻿using Snow.Hcm.EmployeeManagement.EducationExperiences;
+﻿using Snow.Hcm.EmployeeManagement.Positions;
+using Snow.Hcm.EmployeeManagement.Positions.Dtos;
+using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EducationExperiences.Dtos;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos;
@@ -76,6 +78,17 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<EducationExperience, EducationExperienceDetailDto>();
             CreateMap<EducationExperienceCreateDto, EducationExperience>();
             CreateMap<EducationExperienceUpdateDto, EducationExperience>();
+            #endregion
+             #region 岗位
+            CreateMap<Position, GetPositionForEditorOutput>();
+            CreateMap<Position, PositionListDto>()
+                .ForMember(entity => entity.Department,
+                    opt => opt
+                        .MapFrom(src =>
+                            src.Department.Name));
+            CreateMap<Position, PositionDetailDto>();
+            CreateMap<PositionCreateDto, Position>();
+            CreateMap<PositionUpdateDto, Position>();
             #endregion
         }
     }

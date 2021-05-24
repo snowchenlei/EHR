@@ -43,5 +43,13 @@ public const string Create = Default + ".Create";
 public const string Update = Default + ".Update";
 public const string Delete = Default + ".Delete";
 }
+
+public static class Positions
+{
+public const string Default = GroupName + ".Position";
+public const string Create = Default + ".Create";
+public const string Update = Default + ".Update";
+public const string Delete = Default + ".Delete";
+}
     }
 }

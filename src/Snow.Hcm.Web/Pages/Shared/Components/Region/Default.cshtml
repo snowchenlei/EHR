@@ -16,26 +16,30 @@
         <select id="sel_area" class="custom-select form-control" asp-items="@Model.Areas"></select>
     </div>
 </div>
+<script src="~/libs/jquery/jquery.js"></script>
+
 <script type="text/javascript">
-    var regionAppService;
-    window.onload = function () {
-        regionAppService = snow.regionManagement.admin.regions.region;
+    var _regionAppService;
+    $(function () {
+        _regionAppService = snow.regionManagement.admin.regions.region;
         $('#sel_province').change(function () {
-            loadRegionChildren('sel_city', parseInt($(this).val()), function (parentId) {
-                loadArea(parentId);
-            });
-        })
+            loadRegionChildren('sel_city',
+                parseInt($(this).val()),
+                function (parentId) {
+                    loadArea(parentId);
+                });
+        });
         $('#sel_city').change(function () {
             loadArea(parseInt($(this).val()));
-        })
-    }
+        });
+    });
     function loadArea(parentId) {
         loadRegionChildren('sel_area', parentId, function () {
             $("#sel_area").trigger("change");
         });
     }
     function loadRegionChildren(elementId, parentId, callback) {
-        regionAppService.getChildren(parentId)
+        _regionAppService.getChildren(parentId)
             .then(function (result) {
                 $('#' + elementId).empty();
                 $('#' + elementId).append(result.items.map(r => `<option value="${r.id}">${r.name}</option>`))

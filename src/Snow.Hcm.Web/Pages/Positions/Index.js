@@ -1,19 +1,11 @@
 ﻿; (function ($) {
     var l = abp.localization.getResource('Hcm');
-    var _employeeAppService = snow.hcm.controllers.employees.employee;
-    var _createModal = new abp.ModalManager({
-        viewUrl: '/Employees/CreateModal',
-        modalClass: 'EmployeeCreateModal',
-        scriptUrl: '/Pages/Employees/CreateModal.js',
-    });
-    var _editModal = new abp.ModalManager({
-        viewUrl: '/Employees/EditModal',
-        modalClass: 'EmployeeEditModal',
-        //scriptUrl: '/Pages/Employees/EditModal.js',
-    });
+    var _positionAppService = snow.hcm.controllers.positions.position;
+    var _createModal = new abp.ModalManager('/Positions/CreateModal');
+    var _editModal = new abp.ModalManager('/Positions/EditModal');
 
     $(function () {
-        var _$wrapper = $('#EmployeesWrapper');
+        var _$wrapper = $('#PositionsWrapper');
         var _$table = _$wrapper.find('table');
 
         var _dataTable = _$table.DataTable(
@@ -23,7 +15,7 @@
                 order: [[1, "asc"]],
                 searching: true,
                 scrollX: true,
-                ajax: abp.libs.datatables.createAjax(_employeeAppService.getList),
+                ajax: abp.libs.datatables.createAjax(_positionAppService.getList),
                 columnDefs: [
                     {
                         title: l("Actions"),
@@ -33,17 +25,19 @@
                                     text: l('Edit'),
                                     iconClass: 'fas fa-edit',
                                     visible: abp.auth.isGranted(
-                                        'Hcm.Employee.Update'
+                                        'Hcm.Position.Update'
                                     ),
                                     action: function (data) {
-                                        window.location.href = '/Employees/Edit/?id=' + data.record.id;
+                                        _editModal.open({
+                                            id: data.record.id,
+                                        });
                                     },
                                 },
                                 {
                                     text: l('Delete'),
                                     iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(
-                                        'Hcm.Employee.Delete'
+                                        'Hcm.Position.Delete'
                                     ),
                                     confirmMessage: function (data) {
                                         return l(
@@ -52,7 +46,7 @@
                                         );
                                     },
                                     action: function (data) {
-                                        _employeeAppService
+                                        _positionAppService
                                             .delete(data.record.id)
                                             .then(function () {
                                                 _dataTable.ajax.reload();
@@ -63,42 +57,12 @@
                         }
                     },
                     {
-                        title: l('EmployeeNumber'),
-                        data: "employeeNumber"
-                    },
-                    {
                         title: l('Name'),
                         data: "name"
                     },
                     {
-                        title: l('PhoneNumber'),
-                        data: "phoneNumber"
-                    },
-                    {
-                        title: l('IdCardNumber'),
-                        data: "idCardNumber"
-                    },
-                    {
-                        title: l('Age'),
-                        data: "age"
-                    },
-                    {
-                        title: l('Gender'),
-                        data: "gender"
-                    },
-                    {
-                        title: l('BirthDay'),
-                        data: "birthDay",
-                        render: function (data) {
-                            return data.substring(0, data.indexOf(' '));
-                        }
-                    },
-                    {
-                        title: l('JoinDate'),
-                        data: "joinDate",
-                        render: function (data) {
-                            return data.substring(0, data.indexOf(' '));
-                        }
+                        title: l('Department'),
+                        data: "department"
                     }
                 ]
             })
@@ -107,16 +71,12 @@
         _createModal.onResult(function () {
             _dataTable.ajax.reload();
         });
-        _createModal.onOpen(function () {
-            abp.ui.clearBusy();
-        });
-        _editModal.onResult(function () {            
+        _editModal.onResult(function () {
             _dataTable.ajax.reload();
         });
 
-        _$wrapper.find('button[name=CreateEmployee]').click(function (e) {
+        _$wrapper.find('button[name=CreatePosition]').click(function (e) {
             e.preventDefault();
-            abp.ui.setBusy('#EmployeesWrapper');
             _createModal.open();
         });
     });
