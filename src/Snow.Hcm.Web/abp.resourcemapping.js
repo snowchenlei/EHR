@@ -1,6 +1,8 @@
 ﻿module.exports = {
     aliases: {
-        "@SourceLib": "./lib"
+        "@SourceLib": "./lib",
+        "@node_modules": "./node_modules",
+        "@libs": "./wwwroot/libs"
     },
     mappings: {
         "@node_modules/daterangepicker/daterangepicker.js": "@libs/daterangepicker/",

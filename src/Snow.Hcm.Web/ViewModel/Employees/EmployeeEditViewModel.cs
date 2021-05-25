@@ -14,6 +14,8 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         [HiddenInput]
         public Guid Id { get; set; }
 
+        public Guid? CoverImageMediaId { get; set; }
+        
         /// <summary>
         /// 姓名
         /// </summary>

@@ -4,6 +4,8 @@ using Snow.Hcm.MultiTenancy;
 using Snow.RegionManagement;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.FileSystem;
 using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -28,6 +30,8 @@ namespace Snow.Hcm
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
+        typeof(AbpBlobStoringModule),
+        typeof(AbpBlobStoringFileSystemModule),
         typeof(AbpEmailingModule),
         typeof(SnowRegionManagementDomainModule)
     )]

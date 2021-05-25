@@ -6,6 +6,7 @@ using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
+using Snow.Hcm.MediaDescriptors;
 using Snow.Hcm.Users;
 using Snow.RegionManagement.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -38,6 +39,8 @@ namespace Snow.Hcm.EntityFrameworkCore
         public DbSet<Salary> Salaries { get; set; }
 
         public DbSet<Position> Positions { get; set; }
+        
+        public DbSet<MediaDescriptor> MediaDescriptors { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside HcmDbContextModelCreatingExtensions.ConfigureHcm

@@ -1,7 +1,9 @@
 ﻿using Localization.Resources.AbpUi;
 using Snow.Hcm.Localization;
+using Snow.Hcm.MediaDescriptors;
 using Snow.RegionManagement.Admin;
 using Volo.Abp.Account;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Localization;
@@ -25,6 +27,10 @@ namespace Snow.Hcm
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             ConfigureLocalization();
+            Configure<AbpAspNetCoreMvcOptions>(options =>
+            {
+                options.ConventionalControllers.FormBodyBindingIgnoredTypes.Add(typeof(CreateMediaInputWithStream));
+            });
         }
 
         private void ConfigureLocalization()

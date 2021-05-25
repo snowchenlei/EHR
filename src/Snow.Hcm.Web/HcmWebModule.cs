@@ -36,6 +36,9 @@ using Volo.Abp.SettingManagement.Web;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Linq;
+using Snow.Hcm.MediaDescriptors;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.FileSystem;
 
 namespace Snow.Hcm.Web
 {
@@ -75,7 +78,8 @@ namespace Snow.Hcm.Web
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-            
+
+            ConfigureBlobStoring(configuration);
             ConfigureJsonOptions();
             ConfigureUrls(configuration);
             ConfigureBundles();
@@ -84,9 +88,23 @@ namespace Snow.Hcm.Web
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
-            //ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
         }
+
+        private void ConfigureBlobStoring(IConfiguration configuration)
+        {
+            Configure<AbpBlobStoringOptions>(options =>
+            {
+                options.Containers.Configure<MediaContainer>(container =>
+                {
+                    container.UseFileSystem(fileSystem =>
+                    {
+                        fileSystem.BasePath = configuration["App:BlobBasePath"];
+                    });
+                });
+            });
+        }
+
         private void ConfigureJsonOptions()
         {
             Configure<AbpJsonOptions>(options =>

@@ -6,6 +6,7 @@ using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
+using Snow.Hcm.MediaDescriptors;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -18,6 +19,20 @@ namespace Snow.Hcm.EntityFrameworkCore
             Check.NotNull(builder, nameof(builder));
 
             /* Configure your own tables/entities inside here */
+
+            builder.Entity<MediaDescriptor>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(MediaDescriptor), HcmConsts.DbSchema);
+
+                b.ConfigureByConvention();
+
+                b.Property(x => x.EntityType).IsRequired().HasMaxLength(MediaDescriptorConsts.MaxEntityTypeLength);
+                b.Property(x => x.Name).IsRequired().HasMaxLength(MediaDescriptorConsts.MaxNameLength);
+                b.Property(x => x.MimeType).IsRequired().HasMaxLength(MediaDescriptorConsts.MaxMimeTypeLength);
+                b.Property(x => x.Size).HasMaxLength(MediaDescriptorConsts.MaxSizeLength);
+                
+                b.ConfigureFullAuditedAggregateRoot();
+            });
 
             #region EmployeeManagement
 

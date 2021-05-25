@@ -4,6 +4,11 @@
     var _emergencyContactAppService = snow.hcm.controllers.employees.emergencyContact;
     var _workExperienceAppService = snow.hcm.controllers.employees.workExperience;
     var _educationExperienceAppService = snow.hcm.controllers.employees.educationExperience;
+    var $formCreate = $('#form-employee-edit');
+    var $buttonSubmit = $('#button-employee-edit');
+    var $coverImage = $('#Employee_CoverImageMediaId');
+    var $fileInput = $('#CoverImage');
+    var UPPY_FILE_ID = "uppy-upload-file";
     var _createEmergencyContactModal = new abp.ModalManager({
         viewUrl: '/Employees/EmergencyContacts/CreateModal',
         modalClass: 'EmergencyContactCreateModal',
@@ -79,36 +84,33 @@
         //$('#Employee_Birthday').val(birthday);
         //$dateRangePicker.data('daterangepicker').setStartDate(birthday);
         //$dateRangePicker.data('daterangepicker').setEndDate(birthday);
-        var _$form = _$wrapper.find('#basic').find('form');
-        _$form.abpAjaxForm();
-        //$form.on("submit", function (event) {
-        //    event.preventDefault();
 
-        //    var $btn = $(this).find('button');
-        //    $btn.attr('disabled', 'disabled');
-        //    var url = $(this).attr("action");
+        $formCreate.on('submit', function (e) {
+            e.preventDefault();
 
-        //    var formData = $(this).serialize();
-        //    abp.ajax({
-        //        type: 'POST',
-        //        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        //        headers: {
-        //            'X-Requested-With': 'XMLHttpRequest'
-        //        },
-        //        url: url,
-        //        data: formData,
-        //        beforeSend: function (xhr) { //<--- This is important              
-        //            $btn.attr('disabled', 'true');
-        //            $btn.html("Please wait");
-        //            xhr.setRequestHeader("RequestVerificationToken",
-        //                $('input:hidden[name="__RequestVerificationToken"]').val());
-        //        },
-        //    }).then(function (data) {
-        //        abp.notify.success('Success');
-        //    }).catch(function (ex) {
-        //        abp.notify.error(ex);
-        //    });
-        //});
+            if ($formCreate.valid()) {
+                abp.ui.setBusy();
+
+                $formCreate.ajaxSubmit({
+                    success: function (result) {
+                        finishSaving(result);
+                    },
+                    error: function (result) {
+                        abp.notify.error(result.responseJSON.error.message);
+                        abp.ui.clearBusy();
+                    }
+                });
+            }
+            else {
+                abp.ui.clearBusy();
+            }
+        });
+
+        $buttonSubmit.click(function (e) {
+            e.preventDefault();
+            submitCoverImage();
+        });
+        //_$form.abpAjaxForm();
 
         if (abp.auth.isGranted('Hcm.EmergencyContact')) {
             loadEmergencyContactTable();
@@ -120,6 +122,57 @@
             loadEducationExperienceTable();
         }
     });
+    function getUppyHeaders() {
+        var headers = {};
+        headers[abp.security.antiForgery.tokenHeaderName] = abp.security.antiForgery.getToken();
+
+        return headers;
+    }
+    function submitCoverImage() {
+        abp.ui.setBusy();
+
+        var UPPY_OPTIONS = {
+            endpoint: '/api/hcm/media/employee',
+            formData: true,
+            fieldName: "file",
+            method: "post",
+            headers: getUppyHeaders()
+        };
+
+        var UPPY = Uppy.Core().use(Uppy.XHRUpload, UPPY_OPTIONS);
+
+        UPPY.reset();
+
+        var file = $fileInput[0].files[0];
+
+        if (file) {
+
+            UPPY.addFile({
+                id: UPPY_FILE_ID,
+                name: file.name, // file name
+                type: file.type, // file type
+                data: file, // file
+            });
+
+            UPPY.upload().then((result) => {
+                if (result.failed.length > 0) {
+                    abp.message.error(l("UploadFailedMessage"));
+                } else {
+                    $coverImage.val(result.successful[0].response.body.id);
+
+                    $formCreate.submit();
+                }
+            });
+        }
+        else {
+            $formCreate.submit();
+        }
+    }
+    function finishSaving() {
+        abp.notify.success(l('SuccessfullySaved'));
+        abp.ui.clearBusy();
+    }
+
     /**
      * Load EmergencyContact Table
      */

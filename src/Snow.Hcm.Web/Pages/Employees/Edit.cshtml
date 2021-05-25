@@ -8,6 +8,7 @@
 @model EditModel
 @using Snow.Hcm.Web.Menus
 @using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Volo.Abp.AspNetCore.Mvc.UI.Packages.Uppy
 @inject IAuthorizationService Authorization
 @inject IPageLayout PageLayout
 @{
@@ -27,7 +28,8 @@
     <abp-script-bundle name="@typeof(EditModel).FullName">
         <abp-script src="/libs/moment/min/moment.min.js" />
         <abp-script src="/libs/daterangepicker/daterangepicker.js" />
-        <abp-script src="/js/bootstrapNavLink.js"/>
+        <abp-script src="/js/bootstrapNavLink.js" />
+        <abp-script type="typeof(UppyScriptContributor)" />
         <abp-script src="/Pages/Employees/Edit.js" />
     </abp-script-bundle>
 }
@@ -58,8 +60,17 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
-                <form method="post" action="@Url.Page("/Employees/Edit")">
+                <form method="post" action="@Url.Page("/Employees/Edit")" id="form-employee-edit">
                     <abp-input asp-for="Employee.Id" />
+                    <div class="form-group">
+                        @if (Model.Employee.CoverImageMediaId != null)
+                        {
+                            <img height="120" src="/api/hcm/media/@Model.Employee.CoverImageMediaId" />
+                            <br />
+                        }
+                        <label>@L["CoverImage"]</label>
+                        <input type="file" id="CoverImage" class="form-control"/>
+                    </div>
                     <abp-input asp-for="Employee.Name" />
                     @await Component.InvokeAsync("Position", Model.Employee.PositionId)
                     <abp-input asp-for="Employee.PositionId" />
@@ -93,7 +104,7 @@
                     <abp-input asp-for="Employee.AreaId" />
                     <abp-input asp-for="Employee.Address" />
 
-                    <button type="submit" class="btn btn-primary" data-busy-text="@L["SavingWithThreeDot"]">
+                    <button type="button" class="btn btn-primary" id="button-employee-edit" data-busy-text="@L["SavingWithThreeDot"]">
                         <i class="fa-check fa"></i>
                         <span>@L["Save"]</span>
                     </button>
