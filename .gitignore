@@ -259,3 +259,4 @@ src/Snow.Hcm.HttpApi.Host/Logs/*
 src/Snow.Hcm.HttpApi.Host/Logs/*
 src/Snow.Hcm.DbMigrator/Logs/*
 /src/Snow.Hcm.Web/appsettings.Development.json
+/src/Snow.Hcm.Web/wwwroot/Upload

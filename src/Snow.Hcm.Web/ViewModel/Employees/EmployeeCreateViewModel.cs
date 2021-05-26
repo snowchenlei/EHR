@@ -12,6 +12,11 @@ namespace Snow.Hcm.Web.ViewModel.Employees
     public class EmployeeCreateViewModel
     {
         /// <summary>
+        /// 头像Id
+        /// </summary>
+        public Guid? CoverImageMediaId { get; set; }
+
+        /// <summary>
         /// 姓名
         /// </summary>
         [Required]

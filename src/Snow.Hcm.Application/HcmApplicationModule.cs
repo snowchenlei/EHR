@@ -1,4 +1,8 @@
-﻿using Snow.RegionManagement.Admin;
+﻿using System.Collections.Generic;
+using Snow.Hcm.EmployeeManagement.Employees;
+using Snow.Hcm.MediaDescriptors;
+using Snow.Hcm.Permissions;
+using Snow.RegionManagement.Admin;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
@@ -26,6 +30,24 @@ namespace Snow.Hcm
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddMaps<HcmApplicationModule>();
+            });
+
+            Configure<HcmMediaOptions>(options =>
+            {
+                options.EntityTypes.AddIfNotContains(
+                    new MediaDescriptorDefinition(
+                        EmployeeConsts.EntityType,
+                        createPolicies: new[]
+                        {
+                            HcmPermissions.Employees.Create,
+                            HcmPermissions.Employees.Update
+                        },
+                        deletePolicies: new[]
+                        {
+                            HcmPermissions.Employees.Create,
+                            HcmPermissions.Employees.Update,
+                            HcmPermissions.Employees.Delete
+                        }));
             });
         }
     }

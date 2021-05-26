@@ -115,6 +115,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public int AreaId { get; set; }
 
         /// <summary>
+        /// 头像Id
+        /// </summary>
+        public Guid? CoverImageMediaId { get; set; }
+
+        /// <summary>
         /// 岗位
         /// </summary>
         public Position Position { get; set; }

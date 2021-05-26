@@ -156,6 +156,7 @@
 
             UPPY.upload().then((result) => {
                 if (result.failed.length > 0) {
+                    abp.ui.clearBusy();
                     abp.message.error(l("UploadFailedMessage"));
                 } else {
                     $coverImage.val(result.successful[0].response.body.id);
