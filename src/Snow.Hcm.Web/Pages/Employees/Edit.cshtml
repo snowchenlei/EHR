@@ -62,6 +62,7 @@
             <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
                 <form method="post" action="@Url.Page("/Employees/Edit")" id="form-employee-edit">
                     <abp-input asp-for="Employee.Id" />
+                    <abp-input asp-for="Employee.CoverImageMediaId" />
                     <div class="form-group">
                         @if (Model.Employee.CoverImageMediaId != null)
                         {
@@ -69,7 +70,7 @@
                             <br />
                         }
                         <label>@L["CoverImage"]</label>
-                        <input type="file" id="CoverImage" class="form-control"/>
+                        <input type="file" id="CoverImage" class="form-control" />
                     </div>
                     <abp-input asp-for="Employee.Name" />
                     @await Component.InvokeAsync("Position", Model.Employee.PositionId)

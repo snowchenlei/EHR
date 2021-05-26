@@ -50,6 +50,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public bool IsGregorianCalendar { get; set; }
 
         /// <summary>
+        /// 头像Id
+        /// </summary>
+        public Guid? CoverImageMediaId { get; set; }
+
+        /// <summary>
         /// 岗位
         /// </summary>
         public Guid PositionId { get; set; }

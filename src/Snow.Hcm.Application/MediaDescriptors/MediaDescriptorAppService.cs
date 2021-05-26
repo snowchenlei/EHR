@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Volo.Abp;
 using Volo.Abp.Authorization;
 using Volo.Abp.BlobStoring;
+using Volo.Abp.Content;
 
 namespace Snow.Hcm.MediaDescriptors
 {
@@ -28,7 +29,18 @@ namespace Snow.Hcm.MediaDescriptors
         protected IMediaDescriptorRepository MediaDescriptorRepository { get; }
         protected MediaDescriptorManager MediaDescriptorManager { get; }
         protected IMediaDescriptorDefinitionStore MediaDescriptorDefinitionStore { get; }
-        
+
+        public virtual async Task<RemoteStreamContent> DownloadAsync(Guid id)
+        {
+            var entity = await MediaDescriptorRepository.GetAsync(id);
+            var stream = await MediaContainer.GetAsync(id.ToString());
+
+            return new RemoteStreamContent(stream)
+            {
+                ContentType = entity.MimeType
+            };
+        }
+
         public virtual async Task<MediaDescriptorDto> CreateAsync(string entityType, CreateMediaInputWithStream inputStream)
         {
             var definition = await MediaDescriptorDefinitionStore.GetAsync(entityType);
