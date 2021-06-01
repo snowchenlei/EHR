@@ -10,5 +10,7 @@ namespace Snow.Hcm.OrganizationUnitManagement
         public string Code { get; set; }
 
         public string DisplayName { get; set; }
+
+        public bool IsParent { get; set; } = true;
     }
 }

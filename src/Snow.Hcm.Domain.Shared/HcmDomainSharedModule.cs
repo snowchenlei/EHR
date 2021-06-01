@@ -4,6 +4,7 @@ using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
@@ -48,6 +49,10 @@ namespace Snow.Hcm
                     .Add<HcmResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/Hcm");
+                
+                    options.Resources
+                        .Get<IdentityResource>()
+                        .AddVirtualJson("/Localization/Resources/Test/Extensions");
 
                 options.DefaultResourceType = typeof(HcmResource);
             });

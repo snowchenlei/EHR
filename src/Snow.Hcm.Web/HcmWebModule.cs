@@ -132,6 +132,14 @@ namespace Snow.Hcm.Web
                         bundle.AddFiles("/global-styles.css");
                     }
                 );
+                options.ScriptBundles.Configure(
+                    typeof(Volo.Abp.Identity.Web.Pages.Identity.Roles.IndexModel).FullName,
+                    bundleConfiguration =>
+                    {
+                        bundleConfiguration.AddFiles(
+                            "/Pages/Identity/Roles/role-extensions.js"
+                        );
+                    });
             });
         }
 

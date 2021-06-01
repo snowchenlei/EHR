@@ -1,0 +1,59 @@
+﻿@page
+@inject IStringLocalizer<HcmResource> L
+@using Microsoft.Extensions.Localization
+@using Snow.Hcm.Localization
+@model Snow.Hcm.Web.Pages.OrganizationUnitManagement.OrganizationUnitManagementModalModel
+@{
+    Layout = null;
+}
+
+<abp-style-bundle>
+    @*<abp-style src="/libs/ztree/css/demo.css" rel="stylesheet" />*@
+    <abp-style src="/libs/ztree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+</abp-style-bundle>
+
+    <abp-modal>
+        <abp-modal-header title="@L["OrganizationUnits"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <ul id="organizationUnitTree" class="ztree"></ul>
+        </abp-modal-body>
+    </abp-modal>
+
+<abp-script-bundle>
+    <abp-script src="/libs/ztree/js/jquery.ztree.core.min.js" />
+    <abp-script src="/libs/ztree/js/jquery.ztree.excheck.min.js" />
+    <abp-script src="/libs/ztree/js/jquery.ztree.exedit.min.js" />
+</abp-script-bundle>
+<script type="text/javascript">
+    var treeEleId = 'organizationUnitTree';
+    var setting = {
+        async: {
+            enable: true,
+            type: "get",
+            url: "/api/organization-unit-management",
+            autoParam: ["id=parentId"],
+            dataFilter: filter
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+
+    function filter(treeId, parentNode, childNodes) {
+        if (!childNodes) return null;
+        childNodes = childNodes.items;
+        for (var i = 0, l = childNodes.length; i < l; i++) {
+            childNodes[i].name = childNodes[i].displayName.replace(/\.n/g, '.');
+        }
+        return childNodes;
+    }
+
+    $(document).ready(function () {
+        $.fn.zTree.init($("#" + treeEleId), setting);
+    });
+</script>

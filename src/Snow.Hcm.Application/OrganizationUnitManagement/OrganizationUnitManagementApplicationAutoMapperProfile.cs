@@ -13,6 +13,8 @@ namespace Snow.Hcm.OrganizationUnitManagement
         public OrganizationUnitManagementApplicationAutoMapperProfile()
         {
             CreateMap<OrganizationUnit, OrganizationUnitListDto>();
+            CreateMap<OrganizationUnitCreateDto, OrganizationUnit>();
+            CreateMap<OrganizationUnitUpdateDto, OrganizationUnit>();
         }
 
     }

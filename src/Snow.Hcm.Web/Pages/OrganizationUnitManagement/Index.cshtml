@@ -1,0 +1,167 @@
+﻿@page
+@inject IStringLocalizer<HcmResource> L
+@using Microsoft.Extensions.Localization
+@using Snow.Hcm.Localization
+@using Snow.Hcm.Web.Pages.OrganizationUnitManagement
+@model IndexModel
+@{
+}
+@section styles
+{
+    <abp-style-bundle name="@typeof(IndexModel).FullName">
+        @*<abp-style src="/libs/ztree/css/demo.css" rel="stylesheet"/>*@
+        <abp-style src="/libs/ztree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    </abp-style-bundle>
+}
+@section scripts
+{
+    <abp-script-bundle name="@typeof(IndexModel).FullName">
+        <abp-script src="/libs/bootbox/bootbox.min.js"/>
+        <abp-script src="/libs/bootbox/bootbox.locales.min.js"/>
+        <abp-script src="/libs/ztree/js/jquery.ztree.core.min.js"/>
+        <abp-script src="/libs/ztree/js/jquery.ztree.excheck.min.js"/>
+        <abp-script src="/libs/ztree/js/jquery.ztree.exedit.min.js"/>
+    </abp-script-bundle>
+    <script type="text/javascript">
+        var treeEleId = 'organizationUnitTree';
+        var l = abp.localization.getResource('Hcm');
+        var _organizationUnitAppService = snow.hcm.controllers.organizationUnitManagement.organizationUnit;
+        var setting = {
+            async: {
+                enable: true,
+                type: "get",
+                url: "/api/organization-unit-management",
+                autoParam: ["id=parentId", "name=n", "level=lv"],
+                otherParam: { "otherParam": "zTreeAsyncTest" },
+                dataFilter: filter
+            },
+            view: {
+                expandSpeed: "",
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            edit: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeRemove: beforeRemove,
+                beforeRename: beforeRename,
+                onRename: onRename,
+                //beforeDrop: beforeDrop
+                onDrop: onDrop
+            }
+        };
+
+        function filter(treeId, parentNode, childNodes) {
+            if (!childNodes) return null;
+            childNodes = childNodes.items;
+            for (var i = 0, l = childNodes.length; i < l; i++) {
+                childNodes[i].name = childNodes[i].displayName.replace(/\.n/g, '.');
+            }
+            return childNodes;
+        }
+
+        function beforeRemove(treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj(treeEleId);
+            zTree.selectNode(treeNode);
+            abp.message.confirm("确认删除 节点 -- " + treeNode.name + " 吗？")
+                .then(function(confirmed) {
+                    if (confirmed) {
+                        _organizationUnitAppService
+                            .delete(treeNode.id)
+                            .then(res => {
+                                var zTree = $.fn.zTree.getZTreeObj(treeEleId);
+                                zTree.removeNode(treeNode);
+                            });
+                    }
+                });
+            return false;
+        }
+
+        function beforeRename(treeId, treeNode, newName) {
+            if (newName.length === 0) {
+                return false;
+            }
+            return true;
+        }
+
+        function onRename(event, treeId, treeNode, isCancel) {
+            if (!isCancel) {
+                _organizationUnitAppService
+                    .update(treeNode.id,
+                        {
+                            parentId: treeNode.pId,
+                            displayName: treeNode.name
+                        })
+                    .then(res => {});
+            }
+        }
+
+        function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+            if (!isCopy) {
+                if (targetNode === null || targetNode === undefined) {
+                    _organizationUnitAppService
+                        .move(treeNodes[0].id)
+                        .then(res => {
+                            abp.notify.success('Success');
+                        });
+                } else {
+                    _organizationUnitAppService
+                        .move(treeNodes[0].id, targetNode.id)
+                        .then(res => {
+                            abp.notify.success('Success');
+                        });
+                }
+            }
+        };
+
+        var newCount = 1;
+
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId + "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_" + treeNode.tId);
+            if (btn)
+                btn.bind("click",
+                    function() {
+                        bootbox.prompt({
+                            locale: 'zh_CN',
+                            title: "请输入节点名称!",
+                            centerVertical: true,
+                            callback: function(result) {
+                                if (result != null && result.length > 0) {
+                                    _organizationUnitAppService
+                                        .create({
+                                            parentId: treeNode.id,
+                                            displayName: result
+                                        })
+                                        .then(res => {
+                                            var zTree = $.fn.zTree.getZTreeObj(treeEleId);
+                                            zTree.addNodes(treeNode, { id: res.id, pId: treeNode.id, name: result });
+                                            return false;
+                                        });
+                                }
+                            }
+                        });
+                    });
+        };
+
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_" + treeNode.tId).unbind().remove();
+        };
+
+        $(document).ready(function() {
+            $.fn.zTree.init($("#" + treeEleId), setting);
+        });
+    </script>
+}
+
+<ul id="organizationUnitTree" class="ztree"></ul>
