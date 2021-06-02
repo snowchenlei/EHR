@@ -46,11 +46,11 @@ namespace Snow.Hcm.OrganizationUnitManagement
             await _organizationUnitManager.MoveAsync(id, parentId);
         }
 
-        //public virtual async Task SetRole(Guid roleId, List<Guid> ouIds)
-        //{
-        //    //await _organizationUnitManager.AddRoleToOrganizationUnitAsync(roleId, ouId);
-        //}
-        
+        public virtual async Task SetRole(Guid roleId, List<Guid> ouIds)
+        {
+            //await _organizationUnitManager.AddRoleToOrganizationUnitAsync(roleId, ouId);
+        }
+
         public virtual async Task DeleteAsync(Guid id)
         {
             await _organizationUnitManager.DeleteAsync(id);
