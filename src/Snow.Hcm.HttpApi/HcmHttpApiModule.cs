@@ -1,6 +1,7 @@
 ﻿using Localization.Resources.AbpUi;
 using Snow.Hcm.Localization;
 using Snow.Hcm.MediaDescriptors;
+using Snow.OrganizationUnitManagement;
 using Snow.RegionManagement.Admin;
 using Volo.Abp.Account;
 using Volo.Abp.AspNetCore.Mvc;
@@ -20,7 +21,8 @@ namespace Snow.Hcm
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
-        typeof(SnowRegionManagementHttpApiModule)
+        typeof(SnowRegionManagementHttpApiModule),
+        typeof(OrganizationUnitManagementHttpApiModule)
         )]
     public class HcmHttpApiModule : AbpModule
     {

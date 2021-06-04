@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Snow.OrganizationUnitManagement.EntityFrameworkCore;
 using Snow.RegionManagement.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -25,7 +26,8 @@ namespace Snow.Hcm.EntityFrameworkCore
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(SnowRegionManagementEntityFrameworkCoreModule)
+        typeof(SnowRegionManagementEntityFrameworkCoreModule),
+        typeof(OrganizationUnitManagementEntityFrameworkCoreModule)
         )]
     public class HcmEntityFrameworkCoreModule : AbpModule
     {

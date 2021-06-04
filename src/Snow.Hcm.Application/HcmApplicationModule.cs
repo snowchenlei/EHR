@@ -2,6 +2,7 @@
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.MediaDescriptors;
 using Snow.Hcm.Permissions;
+using Snow.OrganizationUnitManagement;
 using Snow.RegionManagement.Admin;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
@@ -21,7 +22,8 @@ namespace Snow.Hcm
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
-        typeof(SnowRegionManagementApplicationModule)
+        typeof(SnowRegionManagementApplicationModule),
+        typeof(OrganizationUnitManagementApplicationModule)
         )]
     public class HcmApplicationModule : AbpModule
     {

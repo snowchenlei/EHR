@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Snow.Hcm.MultiTenancy;
+using Snow.OrganizationUnitManagement;
 using Snow.RegionManagement;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -33,7 +34,8 @@ namespace Snow.Hcm
         typeof(AbpBlobStoringModule),
         typeof(AbpBlobStoringFileSystemModule),
         typeof(AbpEmailingModule),
-        typeof(SnowRegionManagementDomainModule)
+        typeof(SnowRegionManagementDomainModule),
+        typeof(OrganizationUnitManagementDomainModule)
     )]
     public class HcmDomainModule : AbpModule
     {

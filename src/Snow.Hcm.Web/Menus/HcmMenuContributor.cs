@@ -70,13 +70,6 @@ namespace Snow.Hcm.Web.Menus
                         )
                     ).AddItem(
                     new ApplicationMenuItem(
-                        HcmMenus.OrganizationUnits,
-                        l["Menu:OrganizationUnits"],
-                        url: "/OrganizationUnitManagement",
-                        requiredPermissionName: HcmPermissions.OrganizationUnits.Default
-                    )
-                ).AddItem(
-                    new ApplicationMenuItem(
                         HcmMenus.Positions,
                         l["Menu:Positions"],
                         url: "/Positions",

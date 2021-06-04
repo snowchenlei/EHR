@@ -39,6 +39,7 @@ using System.Linq;
 using Snow.Hcm.MediaDescriptors;
 using Volo.Abp.BlobStoring;
 using Volo.Abp.BlobStoring.FileSystem;
+using Snow.OrganizationUnitManagement.Web;
 
 namespace Snow.Hcm.Web
 {
@@ -47,6 +48,7 @@ namespace Snow.Hcm.Web
         typeof(HcmApplicationModule),
         typeof(HcmEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAutofacModule),
+        typeof(OrganizationUnitManagementWebModule),
         typeof(AbpIdentityWebModule),
         typeof(AbpSettingManagementWebModule),
         typeof(AbpAccountWebIdentityServerModule),
