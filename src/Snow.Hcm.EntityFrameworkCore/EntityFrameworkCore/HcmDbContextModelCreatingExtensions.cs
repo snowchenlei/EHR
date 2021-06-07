@@ -43,6 +43,7 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.Property(e => e.IdCardNumber).HasMaxLength(EmployeeConsts.MaxIdCardNumberLength);
                 b.Property(e => e.Address).HasMaxLength(EmployeeConsts.MaxAddressLength);
                 b.Property(e => e.BankCardNumber).HasMaxLength(EmployeeConsts.MaxBankCardNumberLength);
+                b.Property(e => e.BankOfDeposit).HasMaxLength(EmployeeConsts.MaxBankOfDepositLength);
                 b.ConfigureFullAudited();
             });
 

@@ -68,12 +68,6 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public Calendar Calendar { get; set; }
 
         /// <summary>
-        /// 银行卡号
-        /// </summary>
-        [DataType(DataType.CreditCard)]
-        public string BankCardNumber { get; set; }
-
-        /// <summary>
         /// 婚姻状态
         /// </summary>
         public MaritalStatus MaritalStatus { get; set; }

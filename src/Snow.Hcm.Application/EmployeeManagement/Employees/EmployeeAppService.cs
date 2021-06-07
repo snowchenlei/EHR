@@ -11,6 +11,7 @@ using Volo.Abp.Domain.Repositories;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Permissions;
 using Snow.Hcm.Extension;
+using Volo.Abp.Identity;
 
 namespace Snow.Hcm.EmployeeManagement.Employees
 {

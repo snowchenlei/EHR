@@ -40,21 +40,21 @@
                                     },
                                 },
                                 {
-                                    text: l('Edit'),
+                                    text: l('Formal'),
                                     iconClass: 'fas fa-edit',
                                     action: function (data) {
                                         // TODO:转正
                                     },
                                 },
                                 {
-                                    text: l('Edit'),
+                                    text: l('Up'),
                                     iconClass: 'fas fa-edit',
                                     action: function (data) {
                                         // TODO:升职
                                     },
                                 },
                                 {
-                                    text: l('Edit'),
+                                    text: l('Leave'),
                                     iconClass: 'fas fa-edit',
                                     action: function (data) {
                                         // TODO:离职
@@ -108,7 +108,7 @@
                         data: "gender"
                     },
                     {
-                        title: l('BirthDay'),
+                        title: l('Birthday'),
                         data: "birthDay",
                         render: function (data) {
                             return data.substring(0, data.indexOf(' '));

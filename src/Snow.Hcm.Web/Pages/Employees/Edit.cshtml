@@ -73,8 +73,6 @@
                         <input type="file" id="CoverImage" class="form-control" />
                     </div>
                     <abp-input asp-for="Employee.Name" />
-                    @*@await Component.InvokeAsync("Position", Model.Employee.PositionId)
-                    <abp-input asp-for="Employee.PositionId" />*@
                     <abp-input asp-for="Employee.PhoneNumber" type="number" />
                     <abp-input asp-for="Employee.IdCardNumber" />
                     <div class="form-row">
@@ -90,7 +88,18 @@
                         </div>
                     </div>
                     <abp-select asp-for="Employee.Gender" />
-                    <abp-input asp-for="Employee.BankCardNumber" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Employee.BankCardNumber" class="control-label"></label>
+                            <input asp-for="Employee.BankCardNumber" class="form-control" />
+                            <span asp-validation-for="Employee.BankCardNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Employee.BankOfDeposit" class="control-label"></label>
+                            <input asp-for="Employee.BankOfDeposit" class="form-control" />
+                            <span asp-validation-for="Employee.BankOfDeposit" class="text-danger"></span>
+                        </div>
+                    </div>
                     <abp-select asp-for="Employee.MaritalStatus" />
                     <abp-select asp-for="Employee.PoliticalStatus" />
                     @await Component.InvokeAsync("Region", new
@@ -100,9 +109,9 @@
                         cityId = Model.Employee.CityId,
                         areaId = Model.Employee.AreaId
                     })
-                    <abp-input asp-for="Employee.ProvinceId" />
-                    <abp-input asp-for="Employee.CityId" />
-                    <abp-input asp-for="Employee.AreaId" />
+                    <input asp-for="Employee.ProvinceId" />
+                    <input asp-for="Employee.CityId" />
+                    <input asp-for="Employee.AreaId" />
                     <abp-input asp-for="Employee.Address" />
 
                     <button type="button" class="btn btn-primary" id="button-employee-edit" data-busy-text="@L["SavingWithThreeDot"]">

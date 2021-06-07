@@ -40,6 +40,7 @@
     "Gender": "性别",
     "Age": "年龄",
     "BankCardNumber": "银行卡号",
+    "BankOfDeposit": "开户行",
     "CompanyName": "公司名称",
     "Post": "职位",
     "WorkTime": "工作时间",

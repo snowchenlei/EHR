@@ -35,6 +35,11 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public string BankCardNumber { get; set; }
 
         /// <summary>
+        /// 开户行
+        /// </summary>
+        public string BankOfDeposit { get; set; }
+
+        /// <summary>
         /// 婚姻状态
         /// </summary>
         public MaritalStatus MaritalStatus { get; set; }

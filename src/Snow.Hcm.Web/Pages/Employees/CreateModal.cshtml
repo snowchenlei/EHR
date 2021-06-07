@@ -13,7 +13,7 @@
         <abp-modal-body>
             <abp-input asp-for="Employee.Name" />
             @*@await Component.InvokeAsync("Position")
-            <abp-input asp-for="Employee.PositionId" />*@
+        <abp-input asp-for="Employee.PositionId" />*@
             <abp-input asp-for="Employee.PhoneNumber" type="number" />
             <abp-input asp-for="Employee.IdCardNumber" />
             <div class="form-row">
@@ -29,7 +29,6 @@
                 </div>
             </div>
             <abp-select asp-for="Employee.Gender" />
-            <abp-input asp-for="Employee.BankCardNumber" />
             <abp-select asp-for="Employee.MaritalStatus" />
             <abp-select asp-for="Employee.PoliticalStatus" />
             @await Component.InvokeAsync("Region", new { parentId = 100000 })

@@ -1,4 +1,6 @@
-﻿using Snow.Hcm.EmployeeManagement.EducationExperiences;
+﻿using Snow.Hcm.EmployeeManagement.Salaries;
+using Snow.Hcm.EmployeeManagement.Salaries.Dtos;
+using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EducationExperiences.Dtos;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos;
@@ -64,6 +66,13 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<EducationExperience, EducationExperienceDetailDto>();
             CreateMap<EducationExperienceCreateDto, EducationExperience>();
             CreateMap<EducationExperienceUpdateDto, EducationExperience>();
+            #endregion
+             #region 工资
+            CreateMap<Salary, GetSalaryForEditorOutput>();
+            CreateMap<Salary, SalaryListDto>();
+            CreateMap<Salary, SalaryDetailDto>();
+            CreateMap<SalaryCreateDto, Salary>();
+            CreateMap<SalaryUpdateDto, Salary>();
             #endregion
         }
     }
