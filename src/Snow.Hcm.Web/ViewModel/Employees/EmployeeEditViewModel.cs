@@ -84,14 +84,6 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public PoliticalStatus PoliticalStatus { get; set; }
 
         /// <summary>
-        /// 岗位
-        /// </summary>
-        [Required]
-        [HiddenInput]
-        [Display(Name = "Position")]
-        public Guid PositionId { get; set; }
-
-        /// <summary>
         /// 省
         /// </summary>
         [HiddenInput]

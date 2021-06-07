@@ -55,11 +55,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public Guid? CoverImageMediaId { get; set; }
 
         /// <summary>
-        /// 岗位
-        /// </summary>
-        public Guid PositionId { get; set; }
-
-        /// <summary>
         /// 省
         /// </summary>
         public int ProvinceId { get; set; }

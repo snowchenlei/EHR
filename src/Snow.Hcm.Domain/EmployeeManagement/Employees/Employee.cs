@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
-using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Volo.Abp.Domain.Entities.Auditing;
@@ -95,11 +90,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public DateTime ConfirmationDate { get; set; }
 
         /// <summary>
-        /// 岗位
-        /// </summary>
-        public Guid PositionId { get; set; }
-
-        /// <summary>
         /// 省
         /// </summary>
         public int ProvinceId { get; set; }
@@ -118,11 +108,6 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         /// 头像Id
         /// </summary>
         public Guid? CoverImageMediaId { get; set; }
-
-        /// <summary>
-        /// 岗位
-        /// </summary>
-        public Position Position { get; set; }
 
         /// <summary>
         /// 紧急联系人

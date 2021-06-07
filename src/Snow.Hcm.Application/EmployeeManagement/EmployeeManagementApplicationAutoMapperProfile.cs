@@ -1,13 +1,9 @@
-﻿using Snow.Hcm.EmployeeManagement.Positions;
-using Snow.Hcm.EmployeeManagement.Positions.Dtos;
-using Snow.Hcm.EmployeeManagement.EducationExperiences;
+﻿using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EducationExperiences.Dtos;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.EmployeeManagement.WorkExperiences.Dtos;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts.Dtos;
-using Snow.Hcm.EmployeeManagement.Departments;
-using Snow.Hcm.EmployeeManagement.Departments.Dtos;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using AutoMapper;
@@ -43,16 +39,6 @@ namespace Snow.Hcm.EmployeeManagement
 
             #endregion
 
-            #region 部门
-
-            CreateMap<Department, GetDepartmentForEditorOutput>();
-            CreateMap<Department, DepartmentListDto>();
-            CreateMap<Department, DepartmentDetailDto>();
-            CreateMap<DepartmentCreateDto, Department>();
-            CreateMap<DepartmentUpdateDto, Department>();
-
-            #endregion
-
             #region 紧急联络人
 
             CreateMap<EmergencyContact, GetEmergencyContactForEditorOutput>();
@@ -78,17 +64,6 @@ namespace Snow.Hcm.EmployeeManagement
             CreateMap<EducationExperience, EducationExperienceDetailDto>();
             CreateMap<EducationExperienceCreateDto, EducationExperience>();
             CreateMap<EducationExperienceUpdateDto, EducationExperience>();
-            #endregion
-             #region 岗位
-            CreateMap<Position, GetPositionForEditorOutput>();
-            CreateMap<Position, PositionListDto>()
-                .ForMember(entity => entity.Department,
-                    opt => opt
-                        .MapFrom(src =>
-                            src.Department.Name));
-            CreateMap<Position, PositionDetailDto>();
-            CreateMap<PositionCreateDto, Position>();
-            CreateMap<PositionUpdateDto, Position>();
             #endregion
         }
     }

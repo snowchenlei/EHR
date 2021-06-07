@@ -1,14 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
-using Snow.Hcm.EmployeeManagement.Positions;
 using Snow.Hcm.EmployeeManagement.Salaries;
 using Snow.Hcm.EmployeeManagement.WorkExperiences;
 using Snow.Hcm.MediaDescriptors;
 using Snow.Hcm.Users;
-using Snow.RegionManagement.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -35,10 +32,7 @@ namespace Snow.Hcm.EntityFrameworkCore
         public DbSet<EmergencyContact> EmergencyContacts { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<EducationExperience> EducationExperiences { get; set; }
-        public DbSet<Department> Departments { get; set; }
         public DbSet<Salary> Salaries { get; set; }
-
-        public DbSet<Position> Positions { get; set; }
         
         public DbSet<MediaDescriptor> MediaDescriptors { get; set; }
 

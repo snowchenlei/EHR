@@ -4,9 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Masuit.Tools.Systems;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Snow.Hcm.EmployeeManagement.Departments;
 using Snow.Hcm.EmployeeManagement.Employees;
 using Snow.Hcm.EmployeeManagement.Employees.Dtos;
 using Snow.Hcm.Web.ViewModel.Employees;
@@ -16,13 +14,10 @@ namespace Snow.Hcm.Web.Pages.Employees
     public class EditModel : HcmPageModel
     {
         private readonly IEmployeeAppService _employeeAppService;
-        private readonly IDepartmentAppService _departmentAppService;
 
-        public EditModel(IEmployeeAppService employeeAppService,
-            IDepartmentAppService departmentAppService)
+        public EditModel(IEmployeeAppService employeeAppService)
         {
             _employeeAppService = employeeAppService;
-            _departmentAppService = departmentAppService;
         }
 
         [BindProperty]
@@ -41,10 +36,6 @@ namespace Snow.Hcm.Web.Pages.Employees
             Calendars = typeof(Calendar).GetDescriptionAndValue()
                 .Select(r =>
                 new SelectListItem(r.Key, r.Value.ToString())).ToList();
-            var departments = await _departmentAppService
-               .GetAllListAsync();
-            Departments = departments.Items.Select(r =>
-                new SelectListItem(r.Name, r.Id.ToString())).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()

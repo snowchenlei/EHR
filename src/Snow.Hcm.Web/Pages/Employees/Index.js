@@ -40,6 +40,27 @@
                                     },
                                 },
                                 {
+                                    text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
+                                    action: function (data) {
+                                        // TODO:转正
+                                    },
+                                },
+                                {
+                                    text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
+                                    action: function (data) {
+                                        // TODO:升职
+                                    },
+                                },
+                                {
+                                    text: l('Edit'),
+                                    iconClass: 'fas fa-edit',
+                                    action: function (data) {
+                                        // TODO:离职
+                                    },
+                                },
+                                {
                                     text: l('Delete'),
                                     iconClass: 'fas fa-trash',
                                     visible: abp.auth.isGranted(

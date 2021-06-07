@@ -61,21 +61,7 @@ namespace Snow.Hcm.Web.Menus
                         url: "/Employees",
                         requiredPermissionName: HcmPermissions.Employees.Default
                         )
-                    ).AddItem(
-                    new ApplicationMenuItem(
-                        HcmMenus.Departments,
-                        l["Menu:Departments"],
-                        url: "/Departments",
-                        requiredPermissionName: HcmPermissions.Departments.Default
-                        )
-                    ).AddItem(
-                    new ApplicationMenuItem(
-                        HcmMenus.Positions,
-                        l["Menu:Positions"],
-                        url: "/Positions",
-                        requiredPermissionName: HcmPermissions.Positions.Default
                     )
-                )
             );
         }
     }

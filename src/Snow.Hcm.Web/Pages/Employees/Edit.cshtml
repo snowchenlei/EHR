@@ -73,8 +73,8 @@
                         <input type="file" id="CoverImage" class="form-control" />
                     </div>
                     <abp-input asp-for="Employee.Name" />
-                    @await Component.InvokeAsync("Position", Model.Employee.PositionId)
-                    <abp-input asp-for="Employee.PositionId" />
+                    @*@await Component.InvokeAsync("Position", Model.Employee.PositionId)
+                    <abp-input asp-for="Employee.PositionId" />*@
                     <abp-input asp-for="Employee.PhoneNumber" type="number" />
                     <abp-input asp-for="Employee.IdCardNumber" />
                     <div class="form-row">
