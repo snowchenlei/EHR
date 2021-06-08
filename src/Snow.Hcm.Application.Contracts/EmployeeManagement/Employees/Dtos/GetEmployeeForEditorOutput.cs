@@ -64,6 +64,21 @@ namespace Snow.Hcm.EmployeeManagement.Employees.Dtos
         public bool IsGregorianCalendar { get; set; }
 
         /// <summary>
+        /// 属相
+        /// </summary>
+        public Zodiac Zodiac { get; set; }
+
+        /// <summary>
+        /// 星座
+        /// </summary>
+        public Constellation Constellation { get; set; }
+
+        /// <summary>
+        /// 血型
+        /// </summary>
+        public BloodType BloodType { get; set; }
+
+        /// <summary>
         /// 头像Id
         /// </summary>
         public Guid? CoverImageMediaId { get; set; }

@@ -89,6 +89,21 @@ namespace Snow.Hcm.Web.ViewModel.Employees
         public PoliticalStatus PoliticalStatus { get; set; }
 
         /// <summary>
+        /// 属相
+        /// </summary>
+        public Zodiac Zodiac { get; set; }
+
+        /// <summary>
+        /// 星座
+        /// </summary>
+        public Constellation Constellation { get; set; }
+
+        /// <summary>
+        /// 血型
+        /// </summary>
+        public BloodType BloodType { get; set; }
+
+        /// <summary>
         /// 省
         /// </summary>
         [HiddenInput]

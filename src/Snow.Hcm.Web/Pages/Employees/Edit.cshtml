@@ -102,6 +102,9 @@
                     </div>
                     <abp-select asp-for="Employee.MaritalStatus" />
                     <abp-select asp-for="Employee.PoliticalStatus" />
+                    <abp-select asp-for="Employee.Zodiac" />
+                    <abp-select asp-for="Employee.Constellation" />
+                    <abp-select asp-for="Employee.BloodType" />
                     @await Component.InvokeAsync("Region", new
                     {
                         parentId = 100000,

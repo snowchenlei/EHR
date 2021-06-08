@@ -110,6 +110,31 @@ namespace Snow.Hcm.EmployeeManagement.Employees
         public int AreaId { get; set; }
 
         /// <summary>
+        /// 属相
+        /// </summary>
+        public Zodiac Zodiac { get; set; }
+
+        /// <summary>
+        /// 星座
+        /// </summary>
+        public Constellation Constellation { get; set; }
+
+        /// <summary>
+        /// 血型
+        /// </summary>
+        public BloodType BloodType { get; set; }
+
+        /// <summary>
+        /// 在职状态
+        /// </summary>
+        public InServiceStatus InServiceStatus { get; set; }
+
+        /// <summary>
+        /// 离职时间
+        /// </summary>
+        public DateTime? TimeOfDimission { get; set; }
+
+        /// <summary>
         /// 头像Id
         /// </summary>
         public Guid? CoverImageMediaId { get; set; }

@@ -56,6 +56,9 @@ namespace Snow.Hcm.EmployeeManagement.Employees
 
             var queryable = await _employeeRepository.GetQueryableAsync();
 
+            queryable = queryable
+                .Where(e => e.InServiceStatus == input.InServiceStatus);
+
              long totalCount = await AsyncExecuter.CountAsync(queryable);
             
             var entities = await AsyncExecuter.ToListAsync(queryable
@@ -94,7 +97,7 @@ namespace Snow.Hcm.EmployeeManagement.Employees
                 throw new UserFriendlyException(L["Existed", L["Employee"]]);
             }
             var entity = ObjectMapper.Map<EmployeeCreateDto, Employee>(input);
-            entity.Age = input.Birthday.GetAgeByBirthday();            
+            entity.Age = input.Birthday.GetAgeByBirthday();
             entity.EmployeeNumber = GuidGenerator.Create().ToString("N");
             entity.JoinDate = DateTime.Now;
             entity = await _employeeRepository.InsertAsync(entity);
