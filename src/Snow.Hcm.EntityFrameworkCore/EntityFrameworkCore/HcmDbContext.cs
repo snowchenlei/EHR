@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Snow.Hcm.EmployeeManagement.ContractAnnexes;
+using Snow.Hcm.EmployeeManagement.Contracts;
 using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
@@ -35,6 +37,11 @@ namespace Snow.Hcm.EntityFrameworkCore
         public DbSet<Salary> Salaries { get; set; }
         
         public DbSet<MediaDescriptor> MediaDescriptors { get; set; }
+
+        public DbSet<Contract> Contracts { get; set; }
+
+        public DbSet<ContractAnnex> ContractAnnexes { get; set; }
+
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside HcmDbContextModelCreatingExtensions.ConfigureHcm

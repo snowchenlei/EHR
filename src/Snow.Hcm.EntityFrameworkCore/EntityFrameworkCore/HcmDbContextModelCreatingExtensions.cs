@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Snow.Hcm.EmployeeManagement.ContractAnnexes;
+using Snow.Hcm.EmployeeManagement.Contracts;
 using Snow.Hcm.EmployeeManagement.EducationExperiences;
 using Snow.Hcm.EmployeeManagement.EmergencyContacts;
 using Snow.Hcm.EmployeeManagement.Employees;
@@ -72,6 +74,17 @@ namespace Snow.Hcm.EntityFrameworkCore
                 b.Property(e => e.Specialty).HasMaxLength(EducationExperienceConsts.MaxSpecialtyLength);
                 b.Property(e => e.Description).HasMaxLength(EducationExperienceConsts.MaxDescriptionLength);
                 b.ConfigureCreationTime();
+            });
+
+            builder.Entity<Contract>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(Contract), HcmConsts.DbSchema);
+                b.Property(e => e.Name).HasMaxLength(ContractConsts.MaxNameLength);
+                b.Property(e => e.ContractNumber).HasMaxLength(ContractConsts.MaxContractNumberLength);
+            });
+            builder.Entity<ContractAnnex>(b =>
+            {
+                b.ToTable(HcmConsts.DbTablePrefix + nameof(ContractAnnex), HcmConsts.DbSchema);
             });
 
             builder.Entity<Salary>(b =>

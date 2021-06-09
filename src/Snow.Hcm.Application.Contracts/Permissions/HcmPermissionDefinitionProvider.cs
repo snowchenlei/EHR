@@ -54,11 +54,15 @@ namespace Snow.Hcm.Permissions
             organizationUnits.AddChild(HcmPermissions.OrganizationUnits.Delete, L("Permission:Delete"));
 
 
-var salarys = hcmGroup.AddPermission(HcmPermissions.Salarys.Default, L("Permission:Salarys"));
-salarys.AddChild(HcmPermissions.Salarys.Create, L("Permission:Create"));
-salarys.AddChild(HcmPermissions.Salarys.Update, L("Permission:Edit"));
-salarys.AddChild(HcmPermissions.Salarys.Delete, L("Permission:Delete"));
+            var salarys = hcmGroup.AddPermission(HcmPermissions.Salarys.Default, L("Permission:Salarys"));
+            salarys.AddChild(HcmPermissions.Salarys.Create, L("Permission:Create"));
+            salarys.AddChild(HcmPermissions.Salarys.Update, L("Permission:Edit"));
+            salarys.AddChild(HcmPermissions.Salarys.Delete, L("Permission:Delete"));
 
+            var contracts = hcmGroup.AddPermission(HcmPermissions.Contracts.Default, L("Permission:Contracts"));
+            contracts.AddChild(HcmPermissions.Contracts.Create, L("Permission:Create"));
+            contracts.AddChild(HcmPermissions.Contracts.Update, L("Permission:Edit"));
+            contracts.AddChild(HcmPermissions.Contracts.Delete, L("Permission:Delete"));
         }
 
         private static LocalizableString L(string name)

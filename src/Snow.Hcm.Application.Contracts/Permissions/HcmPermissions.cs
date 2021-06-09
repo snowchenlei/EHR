@@ -51,7 +51,7 @@
             public const string Update = Default + ".Update";
             public const string Delete = Default + ".Delete";
         }
-        
+
         public static class OrganizationUnits
         {
             public const string Default = GroupName + ".OrganizationUnit";
@@ -60,12 +60,20 @@
             public const string Delete = Default + ".Delete";
         }
 
-public static class Salarys
-{
-public const string Default = GroupName + ".Salary";
-public const string Create = Default + ".Create";
-public const string Update = Default + ".Update";
-public const string Delete = Default + ".Delete";
-}
+        public static class Salarys
+        {
+            public const string Default = GroupName + ".Salary";
+            public const string Create = Default + ".Create";
+            public const string Update = Default + ".Update";
+            public const string Delete = Default + ".Delete";
+        }
+
+        public static class Contracts
+        {
+            public const string Default = GroupName + ".Contract";
+            public const string Create = Default + ".Create";
+            public const string Update = Default + ".Update";
+            public const string Delete = Default + ".Delete";
+        }
     }
 }
