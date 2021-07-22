@@ -44,16 +44,6 @@ namespace Snow.Hcm.Blazor.Menus
                 )
             );
 
-            context.Menu.Items.Insert(
-                1,
-                new ApplicationMenuItem(
-                    HcmMenus.Employee,
-                    l["Menu:Employee"],
-                    "/employees/employee",
-                    icon: "fas fa-home"
-                )
-            );
-
             return Task.CompletedTask;
         }
 

@@ -53,7 +53,6 @@ namespace Snow.Hcm
 
             ConfigureBundles();
             ConfigureUrls(configuration);
-            ConfigureConventionalControllers();
             ConfigureAuthentication(context, configuration);
             ConfigureLocalization();
             ConfigureVirtualFileSystem(context);
@@ -204,7 +203,7 @@ namespace Snow.Hcm
             }
 
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();

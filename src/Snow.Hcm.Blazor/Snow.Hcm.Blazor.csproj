@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,9 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AntDesign" Version="0.7.3" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.3-preview6" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3-preview6" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.3.5" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.*" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.*" />
   </ItemGroup>
@@ -21,16 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Identity.Blazor" Version="4.3.3" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Blazor" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.Identity.Blazor.WebAssembly" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Blazor.WebAssembly" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Blazor.WebAssembly" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Snow.Hcm.HttpApi.Client\Snow.Hcm.HttpApi.Client.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Employees\" />
   </ItemGroup>
 
 </Project>
