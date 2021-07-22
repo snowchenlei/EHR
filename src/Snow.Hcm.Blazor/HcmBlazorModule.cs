@@ -35,6 +35,7 @@ namespace Snow.Hcm.Blazor
             var environment = context.Services.GetSingletonInstance<IWebAssemblyHostEnvironment>();
             var builder = context.Services.GetSingletonInstance<WebAssemblyHostBuilder>();
 
+            builder.Services.AddAntDesign();
             ConfigureAuthentication(builder);
             ConfigureHttpClient(context, environment);
             ConfigureBlazorise(context);
