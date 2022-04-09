@@ -8,7 +8,7 @@
     "@ztree/ztree_v3": "3.5.46",
     "bootbox": "^5.5.2",
     "daterangepicker": "^3.1.0",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "select2-bootstrap4-theme": "^1.0.0",
     "yarn": "^1.22.10"
   }
