@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Snow.Ehr</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Snow.Ehr.Domain.Shared\Snow.Ehr.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Snow.DictionaryManagement.Admin.Application.Contracts" Version="3.1.1" />
+    <PackageReference Include="Snow.DictionaryManagement.Application.Contracts.Shared" Version="3.1.1" />
+    <PackageReference Include="Snow.Media.Application.Contracts" Version="3.1.0" />
+    <PackageReference Include="Snow.MenuManagement.Admin.Application.Contracts" Version="3.1.0" />
+    <PackageReference Include="Snow.OrganizationUnitManagement.Application.Contracts" Version="3.1.1" />
+    <PackageReference Include="Snow.RegionManagement.Admin.Application.Contracts" Version="3.1.0" />
+    <PackageReference Include="Snow.RegionManagement.Application.Contracts.Shared" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.ObjectExtending" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="5.2.0" />
+  </ItemGroup>
+
+</Project>

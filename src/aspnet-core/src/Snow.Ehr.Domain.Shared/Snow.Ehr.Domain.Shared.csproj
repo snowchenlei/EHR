@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Snow.Ehr</RootNamespace>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Snow.DictionaryManagement.Domain.Shared" Version="3.1.1" />
+    <PackageReference Include="Snow.Media.Domain.Shared" Version="3.1.0" />
+    <PackageReference Include="Snow.MenuManagement.Domain.Shared" Version="3.1.0" />
+    <PackageReference Include="Snow.OrganizationUnitManagement.Domain.Shared" Version="3.1.1" />
+    <PackageReference Include="Snow.RegionManagement.Domain.Shared" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="5.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Ehr\*.json" />
+    <Content Remove="Localization\Ehr\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Snow.Ehr</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Snow.Ehr.Domain.Shared\Snow.Ehr.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Snow.DictionaryManagement.Domain" Version="3.1.1" />
+    <PackageReference Include="Snow.Media.Domain" Version="3.1.0" />
+    <PackageReference Include="Snow.MenuManagement.Domain" Version="3.1.0" />
+    <PackageReference Include="Snow.OrganizationUnitManagement.Domain" Version="3.1.1" />
+    <PackageReference Include="Snow.RegionManagement.Domain" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.BlobStoring.FileSystem" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.Emailing" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain" Version="5.2.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="5.2.0" />
+  </ItemGroup>
+
+</Project>
