@@ -72,7 +72,7 @@ public class EnumController : EhrController, IEnumAppService
     /// 政治面貌
     /// </summary>
     /// <returns></returns>
-    [HttpGet("colitical-status")]
+    [HttpGet("political-status")]
     public virtual async Task<IDictionary<int, string>> GetPoliticalStatusAsync()
     {
         return await _enumAppService.GetPoliticalStatusAsync();

@@ -97,17 +97,22 @@ namespace Snow.Ehr.EmployeeManagement.Employees
         /// <summary>
         /// 省
         /// </summary>
-        public int ProvinceId { get; set; }
+        public Guid ProvinceId { get; set; }
 
         /// <summary>
         /// 市
         /// </summary>
-        public int CityId { get; set; }
+        public Guid CityId { get; set; }
 
         /// <summary>
         /// 区
         /// </summary>
-        public int AreaId { get; set; }
+        public Guid DistrictId { get; set; }
+
+        /// <summary>
+        /// 村镇
+        /// </summary>
+        public Guid StreetId { get; set; }
 
         /// <summary>
         /// 属相

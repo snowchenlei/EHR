@@ -31,7 +31,7 @@ namespace Snow.Ehr.EmployeeManagement.Employees
         /// <summary>
         /// 白羊座(03/21-04/20)
         /// </summary>
-        [Description("离职")]
+        [Description("白羊座")]
         Aries,
 
         /// <summary>

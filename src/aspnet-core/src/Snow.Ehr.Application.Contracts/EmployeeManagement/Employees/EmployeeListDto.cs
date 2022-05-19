@@ -46,11 +46,11 @@ namespace Snow.Ehr.EmployeeManagement.Employees
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public string Birthday { get; set; }
 
         /// <summary>
         /// 入职时间
         /// </summary>
-        public DateTime JoinDate { get; set; }
+        public string JoinDate { get; set; }
     }
 }

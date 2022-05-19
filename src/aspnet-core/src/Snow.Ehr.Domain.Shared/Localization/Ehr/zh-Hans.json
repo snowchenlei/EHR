@@ -90,6 +90,8 @@
     "AB": "AB",
     "O": "O",
     "DisplayName:Name": "名称",
+    "DisplayName:Region": "地区",
+    "DisplayName:Age": "年龄",
     "DisplayName:PhoneNumber": "手机号",
     "DisplayName:IdCardNumber": "身份证号",
     "DisplayName:Birthday": "生日",

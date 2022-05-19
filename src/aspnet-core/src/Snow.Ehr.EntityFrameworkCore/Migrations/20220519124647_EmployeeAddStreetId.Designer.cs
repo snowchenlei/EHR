@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Snow.Ehr.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Snow.Ehr.Migrations
 {
     [DbContext(typeof(EhrDbContext))]
-    partial class EhrDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220519124647_EmployeeAddStreetId")]
+    partial class EmployeeAddStreetId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

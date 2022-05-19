@@ -24,12 +24,15 @@ namespace Snow.Ehr.EmployeeManagement
                     opt => opt
                         .MapFrom(src =>
                             src.Birthday.ToString("yyyy-MM-dd")));
-            // TODO:EnumExtension
-            CreateMap<Employee, EmployeeListDto>();
-                //.ForMember(entity => entity.Gender,
-                //    opt => opt
-                //        .MapFrom(src =>
-                //            src.Gender.GetDescription()));
+            CreateMap<Employee, EmployeeListDto>()
+                .ForMember(entity => entity.Birthday,
+                    opt => opt
+                        .MapFrom(src =>
+                            src.Birthday.ToString("yyyy-MM-dd")))
+                .ForMember(entity => entity.JoinDate,
+                    opt => opt
+                        .MapFrom(src =>
+                            src.JoinDate.ToString("yyyy-MM-dd")));
             CreateMap<Employee, EmployeeDetailDto>();
             CreateMap<EmployeeCreateDto, Employee>();
             CreateMap<EmployeeUpdateDto, Employee>();
