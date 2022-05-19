@@ -1,0 +1,269 @@
+<page-header *ngIf="employeeId" [action]="phActionTpl" [title]="'Ehr::Edit' | abpLocalization: employee.id">
+  <ng-template #phActionTpl>
+    <button (click)="back($event)" nz-button nzType="primary">{{ 'Ehr::Back' | abpLocalization }}</button>
+  </ng-template>
+</page-header>
+<page-header *ngIf="!employeeId" [action]="phActionTpl" [title]="'Ehr::NewEmployee' | abpLocalization">
+  <ng-template #phActionTpl>
+    <button (click)="back($event)" nz-button nzType="primary">{{ 'Ehr::Back' | abpLocalization }}</button>
+  </ng-template>
+</page-header>
+
+<ng-template #loaderRef>
+  <nz-spin class="modal-spin"></nz-spin>
+</ng-template>
+<nz-card>
+  <form *ngIf="form; else loaderRef" nz-form (ngSubmit)="save()" [formGroup]="form" nzLayout="vertical">
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:CoverImage' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-upload
+              [nzLimit]="logoSetting.limit"
+              [nzData]="logoSetting.uploadParameters"
+              [nzAction]="logoSetting.action"
+              [nzSize]="logoSetting.fileSize"
+              [nzAccept]="logoSetting.accept"
+              [nzFileType]="logoSetting.fileType"
+              [nzListType]="logoSetting.listType"
+              [nzShowUploadList]="logoSetting.showUploadList"
+              [nzBeforeUpload]="beforeUpload"
+              (nzChange)="handleChange($event)"
+            >
+              <ng-container *ngIf="!coverImage">
+                <i class="upload-icon" nz-icon [nzType]="uploadLoading ? 'loading' : 'plus'"></i>
+                <div class="ant-upload-text">Upload</div>
+              </ng-container>
+              <img *ngIf="coverImage" [src]="coverImage" style="width: 100%" />
+            </nz-upload>
+            <input nz-input type="hidden" formControlName="coverImageMediaId" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{ span: 6, offset: 2 }" [nzLg]="{ span: 8 }" [nzMd]="{ span: 12 }" nzSm="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>{{ 'Ehr::DisplayName:Name' | abpLocalization }}</nz-form-label>
+          <nz-form-control nzHasFeedback [nzValidatingTip]="'Ehr::Validating' | abpLocalization" [nzErrorTip]="nameErrorTpl">
+            <input
+              formControlName="name"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:Name' | abpLocalization)"
+            />
+            <ng-template #nameErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                {{ 'Ehr::ThisFieldIsRequired.' | abpLocalization }}
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired>{{ 'Ehr::DisplayName:PhoneNumber' | abpLocalization }}</nz-form-label>
+          <nz-form-control nzHasFeedback [nzValidatingTip]="'Ehr::Validating' | abpLocalization" [nzErrorTip]="phoneNumberErrorTpl">
+            <input
+              formControlName="phoneNumber"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:PhoneNumber' | abpLocalization)"
+            />
+            <ng-template #phoneNumberErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                {{ 'Ehr::ThisFieldIsRequired.' | abpLocalization }}
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired>{{ 'Ehr::DisplayName:Birthday' | abpLocalization }}</nz-form-label>
+          <nz-form-control nzHasFeedback [nzValidatingTip]="'Ehr::Validating' | abpLocalization" [nzErrorTip]="birthdayErrorTpl">
+            <nz-date-picker
+              formControlName="birthday"
+              [nzPlaceHolder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:Birthday' | abpLocalization)"
+            ></nz-date-picker>
+            <label style="margin-left: 2rem" nz-checkbox formControlName="isGregorianCalendar">{{
+              'Ehr::DisplayName:GregorianCalendar' | abpLocalization
+            }}</label>
+            <ng-template #birthdayErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                {{ 'Ehr::ThisFieldIsRequired.' | abpLocalization }}
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{ span: 8, offset: 2 }" [nzLg]="{ span: 10 }" [nzMd]="{ span: 24 }" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:Gender' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="gender"
+              [nzOptions]="gender"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:Gender' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired>{{ 'Ehr::DisplayName:IdCardNumber' | abpLocalization }}</nz-form-label>
+          <nz-form-control nzHasFeedback [nzValidatingTip]="'Ehr::Validating' | abpLocalization" [nzErrorTip]="idCardNumberErrorTpl">
+            <input
+              formControlName="idCardNumber"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:IdCardNumber' | abpLocalization)"
+              (blur)="idCardNumberChange()"
+            />
+            <ng-template #idCardNumberErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                {{ 'Ehr::ThisFieldIsRequired.' | abpLocalization }}
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:BloodType' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="bloodType"
+              [nzOptions]="bloodType"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:BloodType' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:Zodiac' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="zodiac"
+              [nzOptions]="zodiac"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:Zodiac' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{ span: 6, offset: 2 }" [nzLg]="{ span: 8 }" [nzMd]="{ span: 12 }" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:Constellation' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="constellation"
+              [nzOptions]="constellation"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:Constellation' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{ span: 8, offset: 2 }" [nzLg]="{ span: 10 }" [nzMd]="{ span: 24 }" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:PoliticalStatus' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="politicalStatus"
+              [nzOptions]="politicalStatus"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:PoliticalStatus' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:MaritalStatus' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="maritalStatus"
+              [nzOptions]="maritalStatus"
+              [nzPlaceHolder]="'Ehr::ChoosePlaceholder' | abpLocalization: ('Ehr::DisplayName:MaritalStatus' | abpLocalization)"
+            >
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-form-item>
+      <nz-form-label>{{ 'Ehr::DisplayName:Address' | abpLocalization }}</nz-form-label>
+      <nz-form-control>
+        <nz-row>
+          <nz-col [nzSm]="6" [nzXs]="24">
+            <nz-cascader
+              nzChangeOnSelect
+              formControlName="regionIds"
+              [nzLoadData]="loadData.bind(this)"
+              [nzShowSearch]="true"
+              [nzLabelProperty]="'name'"
+              [nzValueProperty]="'id'"
+              (ngModelChange)="onChanges($event)"
+              [nzPlaceHolder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:Region' | abpLocalization)"
+            ></nz-cascader>
+          </nz-col>
+          <nz-col [nzSm]="18" [nzXs]="24">
+            <input
+              formControlName="address"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:Address' | abpLocalization)"
+            />
+          </nz-col>
+        </nz-row>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>{{ 'Ehr::DisplayName:MajorMedicalHistory' | abpLocalization }}</nz-form-label>
+      <nz-form-control>
+        <input
+          formControlName="majorMedicalHistory"
+          nz-input
+          [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:MajorMedicalHistory' | abpLocalization)"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>{{ 'Ehr::DisplayName:ViolationOfLawOrDiscipline' | abpLocalization }}</nz-form-label>
+      <nz-form-control>
+        <input
+          formControlName="violationOfLawOrDiscipline"
+          nz-input
+          [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:ViolationOfLawOrDiscipline' | abpLocalization)"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:IdCardPhotoPositive' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <input
+              formControlName="idCardPhotoPositive"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:IdCardPhotoPositive' | abpLocalization)"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{ span: 6, offset: 2 }" [nzLg]="{ span: 8 }" [nzMd]="{ span: 12 }" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>{{ 'Ehr::DisplayName:IdCardPhotoBack' | abpLocalization }}</nz-form-label>
+          <nz-form-control>
+            <input
+              formControlName="idCardPhotoBack"
+              nz-input
+              [placeholder]="'Ehr::Placeholder' | abpLocalization: ('Ehr::DisplayName:IdCardPhotoBack' | abpLocalization)"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row> -->
+    <footer-toolbar errorCollect>
+      <button nz-button type="primary" nzType="primary" [disabled]="!form.valid" [nzLoading]="isConfirmLoading">
+        {{ 'Ehr::Submit' | abpLocalization }}</button
+      >
+    </footer-toolbar>
+  </form>
+</nz-card>
